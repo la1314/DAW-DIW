@@ -1,0 +1,47 @@
+* commit db0cf6f0c608f482117b35f6e2d6c8571a43f818 (HEAD -> master, Feature-CambioNombres)
+| Author: la1314 <44264388+la1314@users.noreply.github.com>
+| Date:   Fri Sep 13 16:20:29 2019 +0200
+| 
+|     Cambio de extesión de los archivos txt a dat
+| 
+* commit 8b78d84440bfc921eb47815386dc2f17968f4332
+| Author: la1314 <44264388+la1314@users.noreply.github.com>
+| Date:   Fri Sep 13 16:19:18 2019 +0200
+| 
+|     Cambio de extesión de los archivos txt a dat
+| 
+* commit 145cddd638c454384af1ed45db81c7c4aca1340a (origin/master, origin/HEAD)
+| Author: la1314 <tsue00@gmail.com>
+| Date:   Thu Sep 12 15:37:00 2019 +0200
+| 
+|     Modificaciones en los ficheros de texto alojados en tmp y redirección de la salida estandar del resultado de git diff hacia Tareas_UsoDeGiTEsencial_Ejercicio01.diff ubicado en UD01
+| 
+* commit e8b8c534af3a93165389913c3bf9c1e869e5ccd0
+| Author: la1314 <tsue00@gmail.com>
+| Date:   Mon Sep 9 16:48:58 2019 +0200
+| 
+|     Modificando texto.txt con una verdad absoluta, papu!
+| 
+* commit 4fd5f9377fcc79aa79fd06abfab8e334fd001e04
+| Author: la1314 <tsue00@gmail.com>
+| Date:   Mon Sep 9 16:43:41 2019 +0200
+| 
+|     Anyadiendo los documentos de texto otro.txt y ultimo.txt
+| 
+* commit 839f7007326c29caee9734574cbaea14a9549409
+| Author: la1314 <tsue00@gmail.com>
+| Date:   Mon Sep 9 16:42:58 2019 +0200
+| 
+|     Anyadiendo el documento de texto diferente.txt
+| 
+* commit 15a1a64b73d21ed88f09ecace351b3c2ec02ceb6
+| Author: la1314 <tsue00@gmail.com>
+| Date:   Mon Sep 9 16:37:56 2019 +0200
+| 
+|     Temporales frescos
+| 
+* commit 48dbe54ca424a79cb278cced50c8c26bc9390116
+  Author: la1314 <44264388+la1314@users.noreply.github.com>
+  Date:   Mon Sep 9 15:49:18 2019 +0200
+  
+      Initial commit

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,114 +8,242 @@
     <title>RepKuma</title>
 
     <style>
-        
-        body * {
-            padding: 0;
-            margin: 0;
-        }
-        
-        ul li {
-            display: inline;
-        }
-        
-        nav div img {
-            float: left;
+        html, body, #contenedor {
+
+            height: 100%;
         }
 
-        nav div ul {
-
-            float: left;
-
+        body {
+          background-color: #C5D1E6;
+          margin: 0;
         }
 
-        nav div form {
-
-            float: right;
-
+        p {
+          margin: 0;
+          padding: 0;
         }
 
         body div {
-            width: 100;
+            width: 100%;
+            height: 100%;
+            /* overflow: hidden; */
         }
 
-        #PanelIzquierdo {
-     
-            float: left;
+        header {
+
+
+            width: 100%;
+            height: 10%;
 
         }
 
-        #Noticias{
-       
-            
+        nav {
+            background-color: #585D66;
+            overflow: auto;
         }
 
-        #Noticias p {
-            margin: 0;
+        #divIMG {
+          float: left;
+          width: 20%;
+        }
+
+        #divUL {
+          width: 20%;
+          float: left;
+        }
+
+        #divUL ul li {
+            display: inline;
+        }
+
+        #divFORM {
+          width: 20%;
+          float: right;
+        }
+
+        #principal {
+          background-color: #546075;
+            height: 85%;
+            width: 100%;
+            overflow: auto;
+        }
+
+        #PanelIzquierdo{
+          float: left;
+          width: 15%;
+          height: 99%;
+        }
+
+        #PanelIzquierdo img {
+          width: 100%;
+          height: 100%;
+        }
+
+        #Noticias {
+          float: left;
+          width: 70%;
+          height: 99%;
+
+        }
+
+        #Noticias article {
+
+          background-color: #A9C9FF;
+          margin-left: auto;
+          margin-right: auto;
+          height: 30%;
+          width: 80%;
+          overflow: hidden;
+        }
+
+        article figure {
+          width: 20%;
+          height: 95%;
+          float: left;
+        }
+
+        .contenido {
+          float: right;
+          width: 70%;
+          height: 95%;
         }
 
         #PanelDerecho {
-        
-            float: right;
+          float: right;
+          width: 15%;
+          height: 99%;
         }
+
+        #PanelDerecho img {
+          width: 100%;
+          height: 100%;
+        }
+
+        footer {
+          background-color: #585D66;
+          height: 5%;
+
+        }
+
+        footer p {
+
+        text-align: center;
+         margin-left: auto;
+         margin-right: auto;
+
+        }
+
+
 
     </style>
 
 </head>
+
 <body>
-    
-    <nav>
-        <div>
-            <img src="https://picsum.photos/150/50" alt="logo">   
+    <div id="contenedor">
+        <header>
+            <nav>
+                <div id="divIMG">
+                    <img src="https://picsum.photos/150/50" alt="logo">
+                </div>
+
+                <div id="divUL">
+                    <ul>
+                        <li> <a href="#">Catálogo</a> </li>
+                        <li> <a href="#">Sobre Nosotros</a></li>
+                    </ul>
+                </div>
+
+                <div id="divFORM">
+                    <form>
+
+                        <input type="text" name="username" placeholder="Usuario">
+                        <input type="text" name="password" placeholder="Contraseña">
+
+                    </form>
+                </div>
+
+            </nav>
+        </header>
+
+        <div id="principal">
+
+            <div id="PanelIzquierdo">
+
+                <img src="https://picsum.photos/450/750" alt="Producto Derecho">
+
+            </div>
+
+            <div id="Noticias">
+
+              <article class="">
+
+                <figure>
+                  <img src="https://picsum.photos/150/150" alt="">
+                </figure>
+
+                <div class="contenido">
+                  <h1>Lorem Ipsum</h1>
+                  <p>orem ipsum dolor sit amet, consectetur adipiscing elit. In ut sagittis justo, quis auctor est. Integer sit amet porta massa. Duis posuere odio quis sapien commodo dapibus. Nullam at tellus a ipsum iaculis suscipit varius et mi. Nulla ac nisl arcu.
+                    Morbi sem ipsum, laoreet quis maximus eget, elementum eget lacus. Integer dignissim viverra arcu, ac posuere ex fringilla et. Aliquam eu elit accumsan, mollis est vel, ultricies nibh. Aliquam lacinia semper nisl at rutrum. Nunc ultrices aliquet bibendum.
+                  </p>
+                </div>
+
+
+              </article>
+
+              <article class="">
+
+                <figure>
+                  <img src="https://picsum.photos/150/150" alt="">
+                </figure>
+
+                <div class="contenido">
+                  <h1>Lorem Ipsum</h1>
+                  <p>orem ipsum dolor sit amet, consectetur adipiscing elit. In ut sagittis justo, quis auctor est. Integer sit amet porta massa. Duis posuere odio quis sapien commodo dapibus. Nullam at tellus a ipsum iaculis suscipit varius et mi. Nulla ac nisl arcu.
+                    Morbi sem ipsum, laoreet quis maximus eget, elementum eget lacus. Integer dignissim viverra arcu, ac posuere ex fringilla et. Aliquam eu elit accumsan, mollis est vel, ultricies nibh. Aliquam lacinia semper nisl at rutrum. Nunc ultrices aliquet bibendum.
+                  </p>
+                </div>
+
+
+              </article>
+
+
+              <article class="">
+
+                <figure>
+                  <img src="https://picsum.photos/150/150" alt="">
+                </figure>
+
+                <div class="contenido">
+                  <h1>Lorem Ipsum</h1>
+                  <p>orem ipsum dolor sit amet, consectetur adipiscing elit. In ut sagittis justo, quis auctor est. Integer sit amet porta massa. Duis posuere odio quis sapien commodo dapibus. Nullam at tellus a ipsum iaculis suscipit varius et mi. Nulla ac nisl arcu.
+                    Morbi sem ipsum, laoreet quis maximus eget, elementum eget lacus. Integer dignissim viverra arcu, ac posuere ex fringilla et. Aliquam eu elit accumsan, mollis est vel, ultricies nibh. Aliquam lacinia semper nisl at rutrum. Nunc ultrices aliquet bibendum.
+                  </p>
+                </div>
+
+
+              </article>
+
+
+            </div>
+
+            <div id="PanelDerecho">
+
+                <img src="https://picsum.photos/450/750" alt="Producto Izquierdo">
+
+            </div>
+
+
+          </div>
+            <footer>
+              <p>Pie de página</p>
+          </footer>
         </div>
 
-        <div>
-            <ul>
-                    <li> <a href="#">Catálogo</a> </li>
-                    <li> <a href="#">Sobre Nosotros</a></li>
-            </ul>
-        </div>
-
-        <div>
-            <form>
-
-                <input type="text" name="username" placeholder="Usuario">
-                <input type="text" name="password" placeholder="Contraseña">
-            
-            </form>
-        </div>
-        
-    </nav>
 
 
-    <div>
-
-        <div id="PanelIzquierdo">
-
-            <img src="https://picsum.photos/250/550" alt="Producto Derecho">
-            
-
-        </div>
-
-        <div id="Noticias">
-
-            <p>
-                    
-            </p>
-
-        </div>
-    
-        <div id="PanelDerecho">
-
-            <img src="https://picsum.photos/250/550" alt="Producto Izquierdo">
-
-        </div>
-    
-    </div>
-
-
-    <footer>
-        <p>Esto es el footer</p>
-    </footer>
 
 </body>
+
 </html>

@@ -127,11 +127,17 @@ p {
     }
   }
 
-  @media not all and (min-width: 720px) {
-    
+  @media not all and (min-width: 310px) {
+  
+    #divIMG {
+      float: right;
+    }
+
     #divUL ul li {
+        color: pink;
         list-style: none;
         text-decoration: none;
     }
 
+    
 }   

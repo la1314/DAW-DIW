@@ -10,26 +10,24 @@ body {
 
 
 h1 {
-
+    font-family: 'Source Sans Pro', sans-serif;
     text-align: center;
-    font-size: 50px;
+    font-size: 60px;
 
 }
 
 header{
-    background-color: blue;
-    height: 70%;
+    height: 50%;
     widows: 50%;
 
 }
 
 nav{
-    
+
     margin-left: auto;
-    margin-right: auto;
-    background-color: pink;
+    margin-right: 25%;
     width: 60%;
-    height: 80%;
+    height: 50%;
 
 
 }
@@ -37,8 +35,7 @@ nav{
 nav ul {
 
     list-style: none;
-   
-  
+
 }
 
 ul li {
@@ -46,41 +43,39 @@ ul li {
     margin-bottom: 15%;
     margin-left: 15%;
     display: inline-block;
-    border: solid 1px black;
-    width: 15%;
+    width: 14%;
+    text-align: left;
 
 }
+
 
 
 a, a:visited {
+    font-size: 25px;
     text-decoration: none;
-    color: var(--a-color);  
+    color: var(--a-color);
 }
 
-a[rel="alternate"]::before {
-
+a[rel="next"]::before  {
+  content: url(img/baseline_control_point_black_18dp.png);
 }
 
-a[rel="next"] {
-    
+a[rel="tag"]::before  {
+  content: url(img/baseline_shopping_cart_black_18dp.png);
 }
 
-a[rel="tag"] {
-    
+a[rel="bookmark"]::before  {
+  content: url(img/baseline_star_black_18dp.png);
 }
 
-a[rel="bookbark"] {
-   
+a[rel="help"]::before  {
+  content: url(img/baseline_picture_as_pdf_black_18dp.png);
 }
 
-a[rel="help"] {
-    
+a[rel="search"]::before {
+  content: url(img/baseline_image_search_black_18dp.png);
 }
 
-a[rel="search"] {
-    
-}
-
-a[rel="bofollow"] {
-    
+a[rel="nofollow"]::before  {
+  content: url(img/baseline_security_black_18dp.png);
 }

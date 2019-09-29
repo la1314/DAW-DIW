@@ -1,0 +1,27 @@
+:root {
+  --main-text-impar: "Satán ! ";
+  --main-text-par: " Alabado sea el Monstruo Espagetti Volador";
+  --main-color-h2: red;
+}
+
+ul {
+ list-style: none;
+}
+
+ul li:nth-child(2n+1):hover::before {
+  content: var(--main-text-impar);
+  position: absolute;
+  left: 3px;
+}
+
+ul li:nth-child(2n):hover::after {
+  content: var(--main-text-par);
+}
+
+ul li:nth-child(3) {
+  color: green;
+}
+
+h2:first-of-type, h2::first-letter{
+  color: var(--main-color-h2);
+}

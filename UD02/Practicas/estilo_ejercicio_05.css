@@ -1,0 +1,144 @@
+:root {
+  --main-size-text: 30px;
+  --main-size-titulos: 35px;
+  --main-size-titulos-mayor: 45px;
+  --main-bg-color: lightgray;
+  --main-size-text-mayor: 45px;
+}
+
+* {
+    font-family: Amatic SC;
+}
+
+a {
+  font-style: none;
+  text-decoration: none;
+}
+
+header {
+
+  background-color: lightgray;
+
+}
+
+ul {
+  list-style: none;
+  padding-bottom: 30px;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: var(--main-size-titulos);
+  color: black;
+}
+
+.activo::after {
+
+  background-image: url('img/cthulhu.svg');
+  background-size: 50px 50px;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  margin-left: 200px;
+  content:"";
+
+}
+
+.menu-it {
+  margin-left: 10px;
+  margin-bottom: 25px;
+  margin-top: 10px;
+}
+
+.menu-it a {
+  font-size: var(--main-size-text);
+  color: green;
+}
+
+article {
+  margin-left: 20px;
+}
+
+.arti-titulo p {
+  font-size: var(--main-size-text);
+}
+
+.modulo h2 {
+  font-size: var(--main-size-titulos);
+  text-align: center;
+  font-weight: blod;
+}
+
+.modulo p {
+  font-size: var(--main-size-text);
+}
+
+.modulo {
+  height: 350px;
+  width: 170px;
+  display: inline-block;
+}
+
+.modulo:nth-child(2n) {
+  background-color: var(--main-bg-color);
+}
+
+@media (min-width: 701px) {
+
+  .logo {
+    padding-left: 20px;
+    font-size: var(--main-size-titulos-mayor);
+  }
+
+  ul {
+      text-align: right;
+      padding-right: 50px;
+  }
+  .menu-it {
+    display: inline-block;
+  }
+
+  .activo::after {
+    background-image: url();
+    background-size: 0;
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 0;
+    content:"";
+  }
+
+  .activo {
+
+    background-image: url(img/cthulhu.svg);
+    background-size: 60px;
+    width: 60px;
+    height: 60px;
+    background-position: center;
+    background-repeat: no-repeat;
+
+  }
+
+  article {
+    margin-left: 80px;
+  }
+
+  .arti-titulo p {
+    font-size: var(--main-size-text-mayor);
+  }
+
+  .modulo {
+    height: 350px;
+    width: 450px;
+    display: inline-block;
+  }
+
+  .modulo h2 {
+    font-size: var(--main-size-titulos-mayor);
+  }
+
+  .modulo p {
+    font-size: var(--main-size-text-mayor);
+  }
+
+}

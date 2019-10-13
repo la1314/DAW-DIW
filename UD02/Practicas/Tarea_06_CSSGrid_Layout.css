@@ -46,12 +46,16 @@ h4,
 h5,
 h6 {
     margin: 0 0 5px 0;
+    display: grid;
+    justify-content: center;
 }
 
 /* Modificaciones hechas al contenedor para separar por 4 columnas */
 .container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  grid-column-gap: 16px;
+  grid-row-gap: 16px;
 }
 
 /* Each item in our grid will contain numbers */
@@ -66,6 +70,16 @@ h6 {
     font-size: 35px;
     background-color: var(--yellow);
     /* best colour */
+}
+
+/* Estilo que añade una sombra a los elementos impares (Los numeros) cuando se pasa el ratón sobre dicho elementos
+  a su vez se aplica una sombra a los elementos pares (Nombres de los antiguos) cuando a los elementos impares
+  se les pase el ratón por encima*/
+.item:nth-child(2n+1):hover, .item:nth-child(2n+1):hover + .item:nth-child(2n)  {
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.86);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.86);
+  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.86);
+
 }
 
 /* Modficaciones de items por separado */

@@ -50,6 +50,11 @@ h6 {
     justify-content: center;
 }
 
+/* Añadiendo margen inferior al elemento H1 para que no este tan apegado al contenedor */
+h1 {
+  margin-bottom: 30px;
+}
+
 /* Modificaciones hechas al contenedor para separar por 4 columnas */
 .container {
   display: grid;
@@ -72,6 +77,11 @@ h6 {
     /* best colour */
 }
 
+/* Expande el item2 a 3 celdas */
+.item2 {
+  grid-column: span 3;
+}
+
 /* Estilo que añade una sombra a los elementos impares (Los numeros) cuando se pasa el ratón sobre dicho elementos
   a su vez se aplica una sombra a los elementos pares (Nombres de los antiguos) cuando a los elementos impares
   se les pase el ratón por encima*/
@@ -82,10 +92,14 @@ h6 {
 
 }
 
-/* Modficaciones de items por separado */
-
-.item2 {
-  grid-column: span 3;
+/* Añadiendo el sello de aprovación en el borde inferior derecho */
+#SealOfApproval {
+  position: fixed;
+  background-image: url(img/cthulhu_approval.gif);
+  width: 100px;
+  height: 100px;
+  bottom: 1px;
+	right: 1px;
 }
 
 .item p {

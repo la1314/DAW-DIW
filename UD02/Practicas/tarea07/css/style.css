@@ -93,13 +93,20 @@ main {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
+  grid-column-gap: 2px;
+  grid-row-gap: 2px;
 }
 
+/* Modificación a las imagenes para que ocupen todo el espacio de su celda */
+img {
+  width: 100%;
+  height: 100%;
+}
 
-
-
+/* Footer con tento centrado  */
 footer {
   grid-area: footer;
+  text-align: center;
 }
 
 .item p {

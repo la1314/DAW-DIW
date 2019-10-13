@@ -87,9 +87,16 @@ nav {
   grid-area: nav;
 }
 
+/* Añadiendo grid al main para organizar las imagenes */
 main {
   grid-area: main;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
 }
+
+
+
 
 footer {
   grid-area: footer;

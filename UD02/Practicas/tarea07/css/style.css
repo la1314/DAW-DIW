@@ -1,0 +1,161 @@
+/*Colores*/
+:root {
+    --yellow: #ffc600;
+    --black: #272727;
+    --grey: #A1A1A1;
+    --tamanyo-fuente: 39px;
+}
+
+html {
+    /* border-box box model allows us to add padding and border to our elements without increasing their size */
+    box-sizing: border-box;
+    /* A system font stack so things load nice and quick! */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-weight: 900;
+    font-size: 10px;
+    color: var(--black);
+    text-shadow: 0 2px 0 rgba(0, 0, 0, 0.07);
+}
+
+
+/*
+  WAT IS THIS?!
+  We inherit box-sizing: border-box; from our <html> selector
+  Apparently this is a bit better than applying box-sizing: border-box; directly to the * selector
+*/
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    background-image: url("../../img/topography.svg"), linear-gradient(110deg, #06be34, #6d47d9);
+    background-size: 340px, auto;
+    min-height: calc(100vh - 100px);
+    margin: 50px;
+    /* background: white; */
+    background-attachment: fixed;
+    letter-spacing: -1px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0 0 5px 0;
+}
+
+
+/* Each item in our grid will contain numbers */
+
+.item {
+    /* We center the contents of these items. You can also do this with flexbox too! */
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    border: 5px solid rgba(0, 0, 0, 0.03);
+    border-radius: 3px;
+    font-size: 35px;
+    background-color: var(--yellow);
+    /* best colour */
+}
+
+/* Apartado de las areas  */
+
+.pagina {
+  /* Modificación al tamaño, y al margen */
+  width: 95%;
+  margin-right: 0;
+  margin-left: auto;
+  display: grid;
+  grid-template-columns: 1.2fr 50px 5fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "header header header header header"
+    "nav . main main main"
+    "nav . main main main"
+    "nav . main main main"
+    "footer footer footer footer footer";
+}
+
+/* Asignación de las distintas areas */
+
+/* Texto centrado, cambio de tamañi de la fuente y margen inferior */
+header {
+  grid-area: header;
+  text-align: center;
+  margin-bottom: 100px;
+  font-size: var(--tamanyo-fuente);
+}
+
+nav {
+  grid-area: nav;
+}
+
+/* Modificaciones al padding y margin y añadido un grid con separaciones entre celdas */
+
+ul {
+    display: grid;
+    grid-template-rows: auto;
+    list-style: none;
+    grid-row-gap: 30px;
+    padding: 0;
+    margin: 0;
+}
+
+/* Eliminacion de las decoraciones */
+a {
+  text-decoration: none;
+}
+
+/* Eliminacion de las decoraciones, cambio de tamañi de fuente y añadida una sombra */
+li {
+  text-decoration: none;
+  font-size: var(--tamanyo-fuente);
+  -webkit-box-shadow: 5px 1px 15px 8px rgba(0,0,0,0.75);
+  -moz-box-shadow: 5px 1px 15px 8px rgba(0,0,0,0.75);
+  box-shadow: 5px 1px 15px 8px rgba(0,0,0,0.75);
+}
+
+/* Añadiendo grid al main para organizar las imagenes */
+main {
+  grid-area: main;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-column-gap: 4px;
+  grid-row-gap: 25px;
+}
+
+/* Modificación a las imagenes para que ocupen todo el espacio de su celda
+y añadida una sombra por defecto */
+img {
+  width: 100%;
+  height: 100%;
+  -webkit-box-shadow: 2px 2px 9px 0px rgba(237,173,237,1);
+  -moz-box-shadow: 2px 2px 9px 0px rgba(237,173,237,1);
+  box-shadow: 2px 2px 9px 0px rgba(237,173,237,1);
+}
+
+/* Footer con tento centrado y añadido margen superior  */
+footer {
+  margin-top: 80px;
+  grid-area: footer;
+  text-align: center;
+  font-size: var(--tamanyo-fuente);
+}
+
+.item p {
+    margin: 0 0 5px 0;
+}
+
+/* Añadida una sombra verde a las imagenes cuando se haga click en un enlace */
+:target {
+  -webkit-box-shadow: 2px 2px 9px 0px rgba(86,199,58,1);
+  -moz-box-shadow: 2px 2px 9px 0px rgba(86,199,58,1);
+  box-shadow: 2px 2px 9px 0px rgba(86,199,58,1);
+}

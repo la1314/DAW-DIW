@@ -46,12 +46,21 @@ h4,
 h5,
 h6 {
     margin: 0 0 5px 0;
+    display: grid;
+    justify-content: center;
+}
+
+/* Añadiendo margen inferior al elemento H1 para que no este tan apegado al contenedor */
+h1 {
+  margin-bottom: 30px;
 }
 
 /* Modificaciones hechas al contenedor para separar por 4 columnas */
 .container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  grid-column-gap: 16px;
+  grid-row-gap: 16px;
 }
 
 /* Each item in our grid will contain numbers */
@@ -68,10 +77,29 @@ h6 {
     /* best colour */
 }
 
-/* Modficaciones de items por separado */
-
+/* Expande el item2 a 3 celdas */
 .item2 {
   grid-column: span 3;
+}
+
+/* Estilo que añade una sombra a los elementos impares (Los numeros) cuando se pasa el ratón sobre dicho elementos
+  a su vez se aplica una sombra a los elementos pares (Nombres de los antiguos) cuando a los elementos impares
+  se les pase el ratón por encima*/
+.item:nth-child(2n+1):hover, .item:nth-child(2n+1):hover + .item:nth-child(2n)  {
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.86);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.86);
+  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.86);
+
+}
+
+/* Añadiendo el sello de aprovación en el borde inferior derecho */
+#SealOfApproval {
+  position: fixed;
+  background-image: url(img/cthulhu_approval.gif);
+  width: 100px;
+  height: 100px;
+  bottom: 1px;
+	right: 1px;
 }
 
 .item p {

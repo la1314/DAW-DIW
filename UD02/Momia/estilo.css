@@ -1,0 +1,13 @@
+#_contenedor {
+
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: auto;
+}
+
+.cuadrados {
+    justify-self: stretch;
+    background-color: pink;
+    height: 80px;
+    width: 80px;
+}

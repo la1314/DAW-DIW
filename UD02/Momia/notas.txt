@@ -1,0 +1,19 @@
+Se requerida de una matriz la cual estaŕa compuesta por:
+    0 marco
+    1 personaje
+    2 camino sin pisar
+    3 camino pisado
+    4 momia
+    5 cuadrados
+    6 nada
+    7 pergamino (puede matar una momia)
+    8 urna
+    9 llave
+    10 entrada
+    11 salida
+
+Se necesitará de una segunda matriz en la cual se comprobara que
+    si es rodeada por camino pisado para revelarse
+En el "marco" se ha de añadir una entrada donde aparece el personaje
+    y una salida donde saldra el personaje al tener la llave y el pergamino
+Funciones:

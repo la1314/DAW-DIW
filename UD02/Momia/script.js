@@ -7,7 +7,7 @@ window.onload = function () {
     let classfondo = "fondo";
     let classBorde = "borde";
     let classRectangulo = "rectangulo";
-    let matrizNodos
+   
 
     
     for (let f = 0; f < fila; f++) {
@@ -21,18 +21,51 @@ window.onload = function () {
         
     }
 
+    agregarRectangulos(4,5,classRectangulo, classfondo);
+   
    
 }
 
 function addNodos(fila, col, clase){
     var nodo = document.createElement("div");
-    nodo.id = fila+""+col;
+    nodo.id = fila+"-"+col;
+    nodo.innerText = fila+"-"+col;
     nodo.classList.add(clase);
-    nodo.innerText = fila + "-" + col;
     document.getElementById("_contenedor").appendChild(nodo);
 
 }
 
-function propagarRectangulo(){
+function agregarRectangulos(filas, columnas, clase, claseRetirar){
+
+    let inicioF = 4;
+    let inicioC = 3;
+
+    for (let fil = 0; fil < filas; fil++) {
+
+        for (let col = 0; col < columnas; col++) {
+            
+            propagarRectangulo(inicioF, inicioC, clase, claseRetirar);
+            inicioC+=4; 
+        }
+        inicioC = 3;
+        inicioF+=3;
+    }
+}
+
+function propagarRectangulo(fil, col, clase, claseRetirar){
+
+    document.getElementById(fil+"-"+col).classList.remove(claseRetirar);
+    document.getElementById(fil+"-"+(col-1)).classList.remove(claseRetirar);
+    document.getElementById((fil-1)+"-"+(col-1)).classList.remove(claseRetirar);
+    document.getElementById((fil-1)+"-"+col).classList.remove(claseRetirar);
+    document.getElementById((fil-1)+"-"+(col+1)).classList.remove(claseRetirar);
+    document.getElementById(fil+"-"+(col+1)).classList.remove(claseRetirar);
+
+    document.getElementById(fil+"-"+col).classList.add(clase);
+    document.getElementById(fil+"-"+(col-1)).classList.add(clase);
+    document.getElementById((fil-1)+"-"+(col-1)).classList.add(clase);
+    document.getElementById((fil-1)+"-"+col).classList.add(clase);
+    document.getElementById((fil-1)+"-"+(col+1)).classList.add(clase);
+    document.getElementById(fil+"-"+(col+1)).classList.add(clase);
 
 }

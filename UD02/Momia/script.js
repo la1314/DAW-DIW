@@ -4,7 +4,7 @@ window.onload = function () {
     */
     let fila = 16;
     let col = 23
-    let classfondo = "fondo";
+    let classPasillo = "pasillo";
     let classBorde = "borde";
     let classRectangulo = "rectangulo";
    
@@ -15,13 +15,13 @@ window.onload = function () {
             if (c == 0 || f == 0 || c == col-1 || f == fila-1 || f == 1 ) {
                 addNodos(f,c, classBorde);
             } else {
-                addNodos(f,c, classfondo);
+                addNodos(f,c, classPasillo);
             }
         }
         
     }
 
-    agregarRectangulos(4,5,classRectangulo, classfondo);
+    agregarRectangulos(4,5,classRectangulo, classPasillo);
    
    
 }
@@ -29,7 +29,8 @@ window.onload = function () {
 function addNodos(fila, col, clase){
     var nodo = document.createElement("div");
     nodo.id = fila+"-"+col;
-    nodo.innerText = fila+"-"+col;
+    //Ver posición de cada celda
+    //nodo.innerText = fila+"-"+col;
     nodo.classList.add(clase);
     document.getElementById("_contenedor").appendChild(nodo);
 

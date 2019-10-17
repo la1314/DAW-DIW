@@ -15,7 +15,7 @@ body {
     
 }
 
-.pasillo, .borde, .rectangulo {
+.pasillo, .borde, .rectangulo, .oculto, .llave, .pergamino, .sarcofago, .urna {
     background-repeat: no-repeat;
     text-align: center;
     background-size: cover;
@@ -42,7 +42,7 @@ body {
 }
 
 .llave {
-    background-image: url(img/llava.png);
+    background-image: url(img/llave.png);
 }
 
 .sarcofago {
@@ -51,4 +51,8 @@ body {
 
 .pergamino {
     background-image: url(img/pergamino.png);
+}
+
+.urna {
+    background-image: url(img/urna.png);
 }

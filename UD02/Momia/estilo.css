@@ -37,3 +37,18 @@ body {
     
 }
 
+.oculto {
+    background-image: url(img/caja.png);
+}
+
+.llave {
+    background-image: url(img/llava.png);
+}
+
+.sarcofago {
+    background-image: url(img/sarcofago.png);
+}
+
+.pergamino {
+    background-image: url(img/pergamino.png);
+}

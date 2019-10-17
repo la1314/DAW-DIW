@@ -6,15 +6,25 @@ window.onload = function () {
     let col = 23
     let classPasillo = "pasillo";
     let classBorde = "borde";
+    let classPersonaje = "personaje";
+    let classPuerta = "puerta";
     let vectorObjetos = new Array();
 
     for (let f = 0; f < fila; f++) {
         for (let c = 0; c < col; c++) {
-            if (c == 0 || f == 0 || c == col - 1 || f == fila - 1 || f == 1) {
-                addNodos(f, c, classBorde);
+            
+            if ( f==1 && c == 11) {
+                
+                addNodos(f, c, classPuerta);
+                incluirClase(f, c, classPersonaje);
             } else {
-                addNodos(f, c, classPasillo);
+                if (c == 0 || f == 0 || c == col - 1 || f == fila - 1 || f == 1) {
+                    addNodos(f, c, classBorde);
+                } else {
+                    addNodos(f, c, classPasillo);
+                }
             }
+            
         }
     }
 
@@ -35,7 +45,13 @@ function addNodos(fila, col, clase) {
     //nodo.innerText = fila + "-" + col;
     nodo.classList.add(clase);
     document.getElementById("_contenedor").appendChild(nodo);
+}
 
+function incluirClase(fil, col, clase){
+
+    var nodo = document.createElement("img");
+    nodo.classList.add(clase);
+    document.getElementById(fil + "-" + col).appendChild(nodo);
 }
 
 /*

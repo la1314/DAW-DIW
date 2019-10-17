@@ -15,7 +15,7 @@ body {
     
 }
 
-.pasillo, .borde, .rectangulo, .oculto, .llave, .pergamino, .sarcofago, .urna {
+.pasillo, .borde, .puerta, .rectangulo, .oculto, .llave, .pergamino, .sarcofago, .urna, .personaje, .sueloPisado, .momia {
     background-repeat: no-repeat;
     text-align: center;
     background-size: cover;
@@ -55,4 +55,26 @@ body {
 
 .urna {
     background-image: url(img/urna.png);
+}
+
+.sueloPisado {
+    background-image: url();
+}
+
+.momia {
+    background-image: url();
+}
+
+.puerta {
+    background-image: url(img/inicio.png);
+    z-index: -1;
+  
+}
+
+.personaje {
+    background-image: url(img/personaje.png);  
+    z-index: 30;
+    height: 100%;
+    width: 100%;
+    margin: 0;
 }

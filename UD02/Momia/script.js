@@ -31,6 +31,7 @@ window.onload = function () {
     }
 
     vectorObjetos = agregarRectangulos(4, 5, vectorObjetos);
+    
     generarObjetos(vectorObjetos);
 
     document.addEventListener("keydown", devolverValorKey, false);
@@ -74,6 +75,7 @@ function addNodos(fila, col, clase) {
     document.getElementById("_contenedor").appendChild(nodo);
 }
 
+//Función precaria por ahora mientras se determina la superposición de imagenes
 function incluirClase(fil, col, clase) {
 
     var nodo = document.createElement("img");
@@ -169,6 +171,13 @@ function removerItem(vector, item) {
     });
 };
 
+//Mediante un entero se determina hacia que direccion se va a mover el personaje
+/*
+    Arriba: 1
+    Abajo: 2
+    Izquierda: 3
+    Derecha: 4
+ */
 function moverse(direccion) {
 
     let elemento = document.getElementsByClassName(classPersonaje);
@@ -192,23 +201,26 @@ function moverse(direccion) {
     comprobarMovimiento(posicion, identificador);
 }
 
+//Comprueba mediante las posiciones pasadas que el idPas posea alguna de las dos clases para poder realizar el intercambio de clases (moverse).
 function comprobarMovimiento(idPJ, idPas) {
-
     if (document.getElementById(idPas).className == "pasillo" || document.getElementById(idPas).className == "sueloPisado") {
-
         intercambiarClases(idPJ, idPas);
     }
 }
 
 function intercambiarClases(idPj, idPas) {
 
+    // Obtiene los atributos mediante las IDs pasadas por parámetro y el nombre de la clase del atributo a cambiar
+
     divPersonaje = document.getElementById(idPj);
     divPasillo = document.getElementById(idPas);
     divPasilloClase = divPasillo.className;
-
+    
+    // Se eliminan las clases actuales de los atributos
     divPersonaje.classList.remove(classPersonaje);
     divPasillo.classList.remove(divPasilloClase);
 
+    //Se añaden las nuevas clases a los atributos
     divPersonaje.classList.add(divPasilloClase);
     divPasillo.classList.add(classPersonaje);
 }

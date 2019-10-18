@@ -41,18 +41,20 @@ window.onload = function () {
 
         if (keyCode == "ArrowUp") {
 
-            arriba();
+            moverse(1);
 
         } else if (keyCode == "ArrowDown") {
 
-            abajo();
+            moverse(2);
 
         } else if (keyCode == "ArrowLeft") {
 
-            izquierda();
+            moverse(3);
 
         } else if (keyCode == "ArrowRight") {
-            derecha();
+            
+            moverse(4);
+            
         }
 
     }
@@ -167,47 +169,26 @@ function removerItem(vector, item) {
     });
 };
 
-function arriba() {
-    
-    let elemento = document.getElementsByClassName(classPersonaje);
-    let posicion = elemento[0].id;
-    let separar = elemento[0].id.split("-");
-    fila = parseInt(separar[0]) - 1;
-    col = parseInt(separar[1]);
-    identificador = fila + "-" + col;
+function moverse(direccion) {
 
-    comprobarMovimiento(posicion, identificador);
-}
-
-function abajo() {
-
-    let elemento = document.getElementsByClassName(classPersonaje);
-    let posicion = elemento[0].id;
-    let separar = elemento[0].id.split("-");
-    fila = parseInt(separar[0]) + 1;
-    col = parseInt(separar[1]);
-    identificador = fila + "-" + col;
-
-    comprobarMovimiento(posicion, identificador);
-}
-
-function izquierda() {
     let elemento = document.getElementsByClassName(classPersonaje);
     let posicion = elemento[0].id;
     let separar = elemento[0].id.split("-");
     fila = parseInt(separar[0]);
-    col = parseInt(separar[1]) - 1;
-    identificador = fila + "-" + col;
-    comprobarMovimiento(posicion, identificador);
-}
+    col = parseInt(separar[1]);
 
-function derecha() {
-    let elemento = document.getElementsByClassName(classPersonaje);
-    let posicion = elemento[0].id;
-    let separar = elemento[0].id.split("-");
-    fila = parseInt(separar[0]);
-    col = parseInt(separar[1]) + 1;
+    if (direccion == 1) {
+        fila--;
+    } else if ( direccion == 2) {
+        fila++;
+    } else if ( direccion == 3) {
+        col--;
+    } else if ( direccion == 4){
+        col++;
+    }
+
     identificador = fila + "-" + col;
+
     comprobarMovimiento(posicion, identificador);
 }
 

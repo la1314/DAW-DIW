@@ -12,7 +12,7 @@ body {
     margin-top: 20px;
     margin-left: auto;
     margin-right: auto;
-    
+
 }
 
 .pasillo, .borde, .puerta, .rectangulo, .oculto, .llave, .pergamino, .sarcofago, .urna, .personaje, .sueloPisado, .momia {
@@ -22,19 +22,19 @@ body {
 }
 
 .pasillo {
-    
+
     justify-self: stretch;
     background-image: url(img/pasillo.png);
 }
 
 .borde {
     background-image: url(img/borde.png);
- 
+
 }
 
 .rectangulo {
     background-image: url(img/caja.png);
-    
+
 }
 
 .oculto {
@@ -62,17 +62,19 @@ body {
 }
 
 .momia {
-    background-image: url();
+    background-image: url(img/momia_Beta.png);
+    background-size: 50%;
+    background-position: center;
 }
 
 .puerta {
     background-image: url(img/inicio.png);
     z-index: -1;
-  
+
 }
 
 .personaje {
-    background-image: url(img/personaje.png);  
+    background-image: url(img/personaje.png);
     z-index: 30;
     height: 100%;
     width: 100%;

@@ -2,6 +2,7 @@ let classPasillo = "pasillo";
 let classBorde = "borde";
 let classPersonaje = "personaje";
 let classPuerta = "puerta";
+let classMomia = "momia"
 
 window.onload = function () {
 
@@ -31,8 +32,8 @@ window.onload = function () {
     }
 
     vectorObjetos = agregarRectangulos(4, 5, vectorObjetos);
-    
     generarObjetos(vectorObjetos);
+    agregarMomia(14,11);
 
     document.addEventListener("keydown", devolverValorKey, false);
 
@@ -53,9 +54,9 @@ window.onload = function () {
             moverse(3);
 
         } else if (keyCode == "ArrowRight") {
-            
+
             moverse(4);
-            
+
         }
 
     }
@@ -171,6 +172,15 @@ function removerItem(vector, item) {
     });
 };
 
+//Función que añade a una momia de forma estática (Temporalmente)
+function agregarMomia(fila, col) {
+    nodoMomia = document.getElementById(fila +"-"+ col);
+    claseNodo = nodoMomia.className;
+    nodoMomia.classList.remove(claseNodo);
+    nodoMomia.classList.add(classMomia);
+
+}
+
 //Mediante un entero se determina hacia que direccion se va a mover el personaje
 /*
     Arriba: 1
@@ -215,7 +225,7 @@ function intercambiarClases(idPj, idPas) {
     divPersonaje = document.getElementById(idPj);
     divPasillo = document.getElementById(idPas);
     divPasilloClase = divPasillo.className;
-    
+
     // Se eliminan las clases actuales de los atributos
     divPersonaje.classList.remove(classPersonaje);
     divPasillo.classList.remove(divPasilloClase);

@@ -33,7 +33,7 @@ window.onload = function () {
 
     vectorObjetos = agregarRectangulos(4, 5, vectorObjetos);
     generarObjetos(vectorObjetos);
-    agregarMomia(14,11);
+    agregarMomia(14, 11);
 
     document.addEventListener("keydown", devolverValorKey, false);
 
@@ -173,12 +173,20 @@ function removerItem(vector, item) {
 };
 
 //Función que añade a una momia de forma estática (Temporalmente)
+//TODO falta generar a la momia Aleatoriamente
 function agregarMomia(fila, col) {
-    nodoMomia = document.getElementById(fila +"-"+ col);
-    claseNodo = nodoMomia.className;
-    nodoMomia.classList.remove(claseNodo);
-    nodoMomia.classList.add(classMomia);
+    nodoMomia = document.getElementById(fila + "-" + col);
+    momia = document.createElement("div");
 
+    if (nodoMomia.childNodes.length == 0) {
+        momia.classList.add(classMomia);
+        nodoMomia.appendChild(momia);
+    } 
+    
+    //console.log(nodoMomia.childNodes[0].className);
+ 
+    //nodoMomia.classList.remove(claseNodo);
+    //nodoMomia.classList.add(classMomia);
 }
 
 //Mediante un entero se determina hacia que direccion se va a mover el personaje
@@ -198,11 +206,11 @@ function moverse(direccion) {
 
     if (direccion == 1) {
         fila--;
-    } else if ( direccion == 2) {
+    } else if (direccion == 2) {
         fila++;
-    } else if ( direccion == 3) {
+    } else if (direccion == 3) {
         col--;
-    } else if ( direccion == 4){
+    } else if (direccion == 4) {
         col++;
     }
 
@@ -233,4 +241,20 @@ function intercambiarClases(idPj, idPas) {
     //Se añaden las nuevas clases a los atributos
     divPersonaje.classList.add(divPasilloClase);
     divPasillo.classList.add(classPersonaje);
+}
+
+
+//Apartado de la I.A
+
+function iaMomia(fil, col) {
+
+    let vectorDirecciones;
+
+
+};
+
+function comprobarMovimientoMomira(fil, col) {
+
+
+
 }

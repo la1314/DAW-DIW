@@ -21,10 +21,20 @@ body {
     background-size: cover;
 }
 
+.pasillo, .sueloPisado {
+    display: grid;
+}
+
 .pasillo {
 
     justify-self: stretch;
     background-image: url(img/pasillo.png);
+    z-index: -1;
+}
+
+.sueloPisado {
+    background-image: url();
+    z-index: -1;
 }
 
 .borde {
@@ -57,16 +67,6 @@ body {
     background-image: url(img/urna.png);
 }
 
-.sueloPisado {
-    background-image: url();
-}
-
-.momia {
-    background-image: url(img/momia_Beta.png);
-    background-size: 50%;
-    background-position: center;
-}
-
 .puerta {
     background-image: url(img/inicio.png);
     z-index: -1;
@@ -79,4 +79,13 @@ body {
     height: 100%;
     width: 100%;
     margin: 0;
+}
+
+.momia {
+
+    place-self: center;
+    background-image: url(img/momia_Beta.png);
+    height: 50%;
+    width: 50%; 
+    z-index: 30;
 }

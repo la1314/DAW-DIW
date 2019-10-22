@@ -4,7 +4,9 @@ let classPersonaje = "personaje";
 let classPuerta = "puerta";
 let classMomia = "momia"
 let vectorPosicionMomia = new Array();
-let vectorObjetos = new Array();
+let vectorObjetos = new Array()
+
+
 window.onload = function () {
 
     /*Se requieren de 16 filas y 23 columnas
@@ -73,6 +75,7 @@ window.onload = function () {
 * las cuales están representadas en separares de una matriz
 */
 function addNodos(fila, col, clase) {
+
     var nodo = document.createElement("div");
     nodo.id = fila + "-" + col;
     //Ver posición de cada celda
@@ -106,7 +109,6 @@ function agregarRectangulos(filas, columnas, vector) {
             vector[index] = inicioF + "-" + inicioC;
             inicioC += 4;
             index++;
-
         }
 
         inicioC = 3;
@@ -121,7 +123,6 @@ function agregarRectangulos(filas, columnas, vector) {
 function generarObjetos(vector) {
 
     let iterandos = vector.length;
-    //console.log(vector);
 
     for (let index = 0; index < iterandos; index++) {
 
@@ -141,7 +142,7 @@ function generarObjetos(vector) {
         let valor = vector[indexRandom].split("-");
         propagarRectangulo(valor[0], parseInt(valor[1]), clase, "pasillo");
         vector = removerItem(vector, vector[indexRandom]);
-        // console.log(vector);
+        
     }
 
 }
@@ -183,8 +184,14 @@ function agregarMomia() {
     let vectorClases = document.getElementsByClassName('pasillo');
 
     for (var i = 0; i < vectorClases.length; i++) {
-      vectorPosicionMomia.push(vectorClases[i].id);
+        
+        //Añade al vector de posiciones los id de los pasillos que no pertenecen al primer pasillo horizontal
+        if (!vectorClases[i].id.match(/^2-/) ) {
+            vectorPosicionMomia.push(vectorClases[i].id);
+        }
+
     }
+
 
     console.log(vectorPosicionMomia);
 

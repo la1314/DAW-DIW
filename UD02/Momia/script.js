@@ -3,14 +3,15 @@ let classBorde = "borde";
 let classPersonaje = "personaje";
 let classPuerta = "puerta";
 let classMomia = "momia"
-
+let vectorPosicionMomia = new Array();
+let vectorObjetos = new Array();
 window.onload = function () {
 
     /*Se requieren de 16 filas y 23 columnas
     */
     let fila = 16;
     let col = 23
-    let vectorObjetos = new Array();
+
 
     for (let f = 0; f < fila; f++) {
         for (let c = 0; c < col; c++) {
@@ -32,8 +33,12 @@ window.onload = function () {
     }
 
     vectorObjetos = agregarRectangulos(4, 5, vectorObjetos);
+
     generarObjetos(vectorObjetos);
-    agregarMomia(14, 11);
+
+    //Añadiendo una momia en una posicion aleatoria de los pasillos
+    agregarMomia();
+
 
     document.addEventListener("keydown", devolverValorKey, false);
 
@@ -137,7 +142,6 @@ function generarObjetos(vector) {
         propagarRectangulo(valor[0], parseInt(valor[1]), clase, "pasillo");
         vector = removerItem(vector, vector[indexRandom]);
         // console.log(vector);
-
     }
 
 }
@@ -174,17 +178,30 @@ function removerItem(vector, item) {
 
 //Función que añade a una momia de forma estática (Temporalmente)
 //TODO falta generar a la momia Aleatoriamente
-function agregarMomia(fila, col) {
-    nodoMomia = document.getElementById(fila + "-" + col);
-    momia = document.createElement("div");
+function agregarMomia() {
+
+    let vectorClases = document.getElementsByClassName('pasillo');
+
+    for (var i = 0; i < vectorClases.length; i++) {
+      vectorPosicionMomia.push(vectorClases[i].id);
+    }
+
+    console.log(vectorPosicionMomia);
+
+    let indexRandom = Math.floor(Math.random() * vectorPosicionMomia.length);
+    let id = vectorPosicionMomia[indexRandom];
+
+
+    let nodoMomia = document.getElementById(id);
+    let momia = document.createElement("div");
+
 
     if (nodoMomia.childNodes.length == 0) {
         momia.classList.add(classMomia);
         nodoMomia.appendChild(momia);
-    } 
-    
+    }
+
     //console.log(nodoMomia.childNodes[0].className);
- 
     //nodoMomia.classList.remove(claseNodo);
     //nodoMomia.classList.add(classMomia);
 }
@@ -215,7 +232,6 @@ function moverse(direccion) {
     }
 
     identificador = fila + "-" + col;
-
     comprobarMovimiento(posicion, identificador);
 }
 
@@ -245,15 +261,11 @@ function intercambiarClases(idPj, idPas) {
 
 
 //Apartado de la I.A
-
 function iaMomia(fil, col) {
-
     let vectorDirecciones;
-
-
 };
 
-function comprobarMovimientoMomira(fil, col) {
+function comprobarMovimientoMomia(fil, col) {
 
 
 

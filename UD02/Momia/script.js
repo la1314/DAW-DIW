@@ -6,6 +6,8 @@ let classMomia = "momia"
 let classPisado = "sueloPisado"
 let vectorPosicionMomia = new Array();
 let vectorObjetos = new Array();
+let vectorMomias = new Array();
+
 
 window.onload = function () {
 
@@ -30,7 +32,6 @@ window.onload = function () {
                     addNodos(f, c, classPasillo);
                 }
             }
-
         }
     }
 
@@ -42,7 +43,8 @@ window.onload = function () {
     //this.setInterval('funcion()', 1000)
     
     agregarMomia();
-    this.setInterval('iaMomia()', 500)
+    //iaMomia()
+   this.setInterval('iaMomia()', 300)
 
     document.addEventListener("keydown", devolverValorKey, false);
 
@@ -246,45 +248,50 @@ function agregarMomia() {
     }
 
     //console.log(vectorPosicionMomia);
-
     /*TODO probablemente se tenga que moficar este bloque de abajo cuando en la posición aleatoria
     * obtenida ya exista una momia o un personaje se genere en otra posición
     */
     let indexRandom = Math.floor(Math.random() * vectorPosicionMomia.length);
     let id = vectorPosicionMomia[indexRandom];
-
-
     let nodoMomia = document.getElementById(id);
     let momia = document.createElement("div");
-
 
     if (nodoMomia.childNodes.length == 0) {
         momia.classList.add(classMomia);
         nodoMomia.appendChild(momia);
+
+        //Por cada momia creada se crea un objeto el cual es guardado en un vector de objetos Momias
+        let momiaOBJ = new Object();
+        momiaOBJ.idMomia = id;
+        momiaOBJ.direccion = 0;
+        vectorMomias.push(momiaOBJ);
     }
 
-    //console.log(nodoMomia.childNodes[0].className);
-    //nodoMomia.classList.remove(claseNodo);
-    //nodoMomia.classList.add(classMomia);
+
+
 }
 
 //Apartado de la I.A
 //Se mueve aleatoria mente pero falta implentar que busque otra dirección cuando encuentre un nuevo camino, o vea al personaje para seguirlo
 function iaMomia() {
     
-    let vectorMomias = document.getElementsByClassName("momia");
-
     for (let index = 0; index < vectorMomias.length; index++) {
-
-        //De cada clase momia que hay en el vector obtiene la posición/ID del nodo padre
-        let id = vectorMomias[index].parentNode.id; 
-        comprobarMovimientoMomia(id);   
+        comprobarMovimientoMomia(vectorMomias[index]);
     }
+
+    
 };
 
-function comprobarMovimientoMomia(id) {
+function listaMomias(){
 
-    let separador = id.split("-");
+    
+
+}
+
+function comprobarMovimientoMomia(objeto) {
+
+
+    let separador = objeto.idMomia.split("-");
     let fila = parseInt(separador[0]);
     let col = parseInt(separador[1]);
     let vectorDirecciones = new Array();
@@ -299,7 +306,7 @@ function comprobarMovimientoMomia(id) {
     }
 
     if ( abajoM.className == classPasillo || abajoM.className == classPisado) {
-        vectorDirecciones.push(abajoM.id);   
+        vectorDirecciones.push(abajoM.id);
     }
 
     if ( izquierdaM.className == classPasillo || izquierdaM.className == classPisado) {
@@ -312,17 +319,19 @@ function comprobarMovimientoMomia(id) {
 
     let indexRandom = Math.floor(Math.random() * vectorDirecciones.length);
 
-    moverMomia(id, vectorDirecciones[indexRandom]);
+    moverMomia(objeto, vectorDirecciones[indexRandom]);
 }
 
-function moverMomia(posicionActual, direccionMover) {
+function moverMomia(obj, direccionMover) {
 
-    let divMomia = document.getElementById(posicionActual);
+    let divMomia = document.getElementById(obj.idMomia);
     divMomia.removeChild(divMomia.childNodes[0]);
 
     let divCambio = document.getElementById(direccionMover);
     let momia = document.createElement("div");
+
     momia.classList.add(classMomia);
     divCambio.appendChild(momia);
 
+    obj.idMomia = direccionMover;
 }

@@ -16,35 +16,18 @@ window.onload = function () {
     let fila = 16;
     let col = 23
 
-
-    for (let f = 0; f < fila; f++) {
-        for (let c = 0; c < col; c++) {
-
-            if (f == 1 && c == 11) {
-
-                // addNodos(f, c, classPuerta);
-                addNodos(f, c, classPersonaje);
-                //incluirClase(f, c, classPersonaje);
-            } else {
-                if (c == 0 || f == 0 || c == col - 1 || f == fila - 1 || f == 1) {
-                    addNodos(f, c, classBorde);
-                } else {
-                    addNodos(f, c, classPasillo);
-                }
-            }
-        }
-    }
-
+    crearDiv(fila, col);
     vectorObjetos = agregarRectangulos(4, 5, vectorObjetos);
-
     generarObjetos(vectorObjetos);
 
     //Añadiendo una momia en una posicion aleatoria de los pasillos
     //this.setInterval('funcion()', 1000)
-    
+
+    agregarMomia();
+    agregarMomia();
     agregarMomia();
     //iaMomia()
-   this.setInterval('iaMomia()', 300)
+    //   this.setInterval('iaMomia()', 500)
 
     document.addEventListener("keydown", devolverValorKey, false);
 
@@ -72,6 +55,26 @@ window.onload = function () {
     }
 }
 
+function crearDiv(fila, col) {
+    for (let f = 0; f < fila; f++) {
+        for (let c = 0; c < col; c++) {
+            if (f == 1 && c == 11) {
+                // addNodos(f, c, classPuerta);
+                addNodos(f, c, classPersonaje);
+                //incluirClase(f, c, classPersonaje);
+            }
+            else {
+                if (c == 0 || f == 0 || c == col - 1 || f == fila - 1 || f == 1) {
+                    addNodos(f, c, classBorde);
+                }
+                else {
+                    addNodos(f, c, classPasillo);
+                }
+            }
+        }
+    }
+}
+
 /*
 * Crea y añade div al contenedor asignandole a cada uno una ID única
 * las cuales están representadas en separares de una matriz
@@ -80,8 +83,10 @@ function addNodos(fila, col, clase) {
 
     var nodo = document.createElement("div");
     nodo.id = fila + "-" + col;
+
     //Ver posición de cada celda
     //nodo.innerText = fila + "-" + col;
+
     nodo.classList.add(clase);
     document.getElementById("_contenedor").appendChild(nodo);
 }
@@ -144,7 +149,7 @@ function generarObjetos(vector) {
         let valor = vector[indexRandom].split("-");
         propagarRectangulo(valor[0], parseInt(valor[1]), clase, "pasillo");
         vector = removerItem(vector, vector[indexRandom]);
-        
+
     }
 
 }
@@ -239,9 +244,9 @@ function agregarMomia() {
     let vectorClases = document.getElementsByClassName('pasillo');
 
     for (var i = 0; i < vectorClases.length; i++) {
-        
+
         //Añade al vector de posiciones los id de los pasillos que no pertenecen al primer pasillo horizontal
-        if (!vectorClases[i].id.match(/^2-/) ) {
+        if (!vectorClases[i].id.match(/^2-/)) {
             vectorPosicionMomia.push(vectorClases[i].id);
         }
 
@@ -264,6 +269,7 @@ function agregarMomia() {
         let momiaOBJ = new Object();
         momiaOBJ.idMomia = id;
         momiaOBJ.direccion = 0;
+        momiaOBJ.movimiento = false;
         vectorMomias.push(momiaOBJ);
     }
 
@@ -274,64 +280,105 @@ function agregarMomia() {
 //Apartado de la I.A
 //Se mueve aleatoria mente pero falta implentar que busque otra dirección cuando encuentre un nuevo camino, o vea al personaje para seguirlo
 function iaMomia() {
-    
+
     for (let index = 0; index < vectorMomias.length; index++) {
         comprobarMovimientoMomia(vectorMomias[index]);
     }
 
-    
 };
-
-function listaMomias(){
-
-    
-
-}
 
 function comprobarMovimientoMomia(objeto) {
 
+    //TODO modificar algoritmo para mayor facilidad a la hora de mover la momia
 
     let separador = objeto.idMomia.split("-");
     let fila = parseInt(separador[0]);
     let col = parseInt(separador[1]);
     let vectorDirecciones = new Array();
-    let arribaM = document.getElementById((fila-1) + "-" + (col));
-    let abajoM = document.getElementById((fila+1) + "-" + (col)); 
-    let izquierdaM = document.getElementById((fila) + "-" + (col-1));
-    let derechaM = document.getElementById((fila) + "-" + (col+1));
-    
-    //TODO 
-    if ( arribaM.className == classPasillo || arribaM.className == classPisado ) {
-        vectorDirecciones.push(arribaM.id);   
+    let arribaM = document.getElementById((fila - 1) + "-" + (col));
+    let abajoM = document.getElementById((fila + 1) + "-" + (col));
+    let izquierdaM = document.getElementById((fila) + "-" + (col - 1));
+    let derechaM = document.getElementById((fila) + "-" + (col + 1));
+
+    if (objeto.direccion == 0) {
+
+        if (arribaM.className == classPasillo || arribaM.className == classPisado) {
+            vectorDirecciones.push(arribaM.id);
+        }
+
+        if (abajoM.className == classPasillo || abajoM.className == classPisado) {
+            vectorDirecciones.push(abajoM.id);
+        }
+
+        if (izquierdaM.className == classPasillo || izquierdaM.className == classPisado) {
+            vectorDirecciones.push(izquierdaM.id);
+        }
+
+        if (derechaM.className == classPasillo || derechaM.className == classPisado) {
+            vectorDirecciones.push(derechaM.id);
+
+        }
+
+        let indexRandom = Math.floor(Math.random() * vectorDirecciones.length);
+        moverMomia(objeto, vectorDirecciones[indexRandom]);
+
+    } else {
+        switch (objeto.direccion) {
+            case 1:
+
+                break;
+
+            case 2:
+
+                break;
+            case 3:
+
+                break;
+            case 4:
+
+                break;
+        }
     }
-
-    if ( abajoM.className == classPasillo || abajoM.className == classPisado) {
-        vectorDirecciones.push(abajoM.id);
-    }
-
-    if ( izquierdaM.className == classPasillo || izquierdaM.className == classPisado) {
-        vectorDirecciones.push(izquierdaM.id);   
-    }
-
-    if ( derechaM.className == classPasillo || derechaM.className == classPisado) {
-        vectorDirecciones.push(derechaM.id);   
-    }
-
-    let indexRandom = Math.floor(Math.random() * vectorDirecciones.length);
-
-    moverMomia(objeto, vectorDirecciones[indexRandom]);
 }
 
+//Mediante la comparación de la filas y columnas de dos posiciónes devolvera a que dirección se dirigira la momia
+function obtenerDireccion(inicial, cambio) {
+
+    let filaIni = parseInt(inicial.split("-")[0]);
+    let colIni = parseInt(inicial.split("-")[1]);
+    let filaCam = parseInt(cambio.split("-")[0]);
+    let colICam = parseInt(cambio.split("-")[1]);
+    let nDireccion = 0;
+
+    if (filaIni > filaCam) {
+        nDireccion = 1;
+    } else if (filaIni < filaCam) {
+        nDireccion = 2;
+    } else if (colIni > colICam) {
+        nDireccion = 3;
+    } else if (colIni < colICam) {
+        nDireccion = 4;
+    }
+
+    return nDireccion;
+}
+
+//Mueve e iniciliza los valores del objeto momia para seguir moviendose
 function moverMomia(obj, direccionMover) {
 
     let divMomia = document.getElementById(obj.idMomia);
     divMomia.removeChild(divMomia.childNodes[0]);
-
     let divCambio = document.getElementById(direccionMover);
     let momia = document.createElement("div");
-
     momia.classList.add(classMomia);
     divCambio.appendChild(momia);
 
     obj.idMomia = direccionMover;
+    obj.direccion = obtenerDireccion(obj, cambio);
+    obj.movimiento = true;
+}
+
+//Continua moviendo la momia en su dirección fijada hasta que no puede más
+function continuarMovimiento(direccion){
+    
 }

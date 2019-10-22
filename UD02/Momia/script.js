@@ -3,9 +3,9 @@ let classBorde = "borde";
 let classPersonaje = "personaje";
 let classPuerta = "puerta";
 let classMomia = "momia"
+let classPisado = "sueloPisado"
 let vectorPosicionMomia = new Array();
-let vectorObjetos = new Array()
-
+let vectorObjetos = new Array();
 
 window.onload = function () {
 
@@ -39,8 +39,10 @@ window.onload = function () {
     generarObjetos(vectorObjetos);
 
     //Añadiendo una momia en una posicion aleatoria de los pasillos
+    //this.setInterval('funcion()', 1000)
+    
     agregarMomia();
-
+    this.setInterval('iaMomia()', 500)
 
     document.addEventListener("keydown", devolverValorKey, false);
 
@@ -65,9 +67,7 @@ window.onload = function () {
             moverse(4);
 
         }
-
     }
-
 }
 
 /*
@@ -177,43 +177,7 @@ function removerItem(vector, item) {
     });
 };
 
-//Función que añade a una momia de forma estática (Temporalmente)
-//TODO falta generar a la momia Aleatoriamente
-function agregarMomia() {
-
-    let vectorClases = document.getElementsByClassName('pasillo');
-
-    for (var i = 0; i < vectorClases.length; i++) {
-        
-        //Añade al vector de posiciones los id de los pasillos que no pertenecen al primer pasillo horizontal
-        if (!vectorClases[i].id.match(/^2-/) ) {
-            vectorPosicionMomia.push(vectorClases[i].id);
-        }
-
-    }
-
-
-    console.log(vectorPosicionMomia);
-
-    let indexRandom = Math.floor(Math.random() * vectorPosicionMomia.length);
-    let id = vectorPosicionMomia[indexRandom];
-
-
-    let nodoMomia = document.getElementById(id);
-    let momia = document.createElement("div");
-
-
-    if (nodoMomia.childNodes.length == 0) {
-        momia.classList.add(classMomia);
-        nodoMomia.appendChild(momia);
-    }
-
-    //console.log(nodoMomia.childNodes[0].className);
-    //nodoMomia.classList.remove(claseNodo);
-    //nodoMomia.classList.add(classMomia);
-}
-
-//Mediante un entero se determina hacia que direccion se va a mover el personaje
+//Mediante un entero se determina hacia que direccion se va a molet momia = document.createElement("div");ver el personaje
 /*
     Arriba: 1
     Abajo: 2
@@ -266,14 +230,99 @@ function intercambiarClases(idPj, idPas) {
     divPasillo.classList.add(classPersonaje);
 }
 
+//Función que añade a una momia de forma estática (Temporalmente)
+//TODO falta generar a la momia Aleatoriamente
+function agregarMomia() {
+
+    let vectorClases = document.getElementsByClassName('pasillo');
+
+    for (var i = 0; i < vectorClases.length; i++) {
+        
+        //Añade al vector de posiciones los id de los pasillos que no pertenecen al primer pasillo horizontal
+        if (!vectorClases[i].id.match(/^2-/) ) {
+            vectorPosicionMomia.push(vectorClases[i].id);
+        }
+
+    }
+
+    //console.log(vectorPosicionMomia);
+
+    /*TODO probablemente se tenga que moficar este bloque de abajo cuando en la posición aleatoria
+    * obtenida ya exista una momia o un personaje se genere en otra posición
+    */
+    let indexRandom = Math.floor(Math.random() * vectorPosicionMomia.length);
+    let id = vectorPosicionMomia[indexRandom];
+
+
+    let nodoMomia = document.getElementById(id);
+    let momia = document.createElement("div");
+
+
+    if (nodoMomia.childNodes.length == 0) {
+        momia.classList.add(classMomia);
+        nodoMomia.appendChild(momia);
+    }
+
+    //console.log(nodoMomia.childNodes[0].className);
+    //nodoMomia.classList.remove(claseNodo);
+    //nodoMomia.classList.add(classMomia);
+}
 
 //Apartado de la I.A
-function iaMomia(fil, col) {
-    let vectorDirecciones;
+//Se mueve aleatoria mente pero falta implentar que busque otra dirección cuando encuentre un nuevo camino, o vea al personaje para seguirlo
+function iaMomia() {
+    
+    let vectorMomias = document.getElementsByClassName("momia");
+
+    for (let index = 0; index < vectorMomias.length; index++) {
+
+        //De cada clase momia que hay en el vector obtiene la posición/ID del nodo padre
+        let id = vectorMomias[index].parentNode.id; 
+        comprobarMovimientoMomia(id);   
+    }
 };
 
-function comprobarMovimientoMomia(fil, col) {
+function comprobarMovimientoMomia(id) {
 
+    let separador = id.split("-");
+    let fila = parseInt(separador[0]);
+    let col = parseInt(separador[1]);
+    let vectorDirecciones = new Array();
+    let arribaM = document.getElementById((fila-1) + "-" + (col));
+    let abajoM = document.getElementById((fila+1) + "-" + (col)); 
+    let izquierdaM = document.getElementById((fila) + "-" + (col-1));
+    let derechaM = document.getElementById((fila) + "-" + (col+1));
+    
+    //TODO 
+    if ( arribaM.className == classPasillo || arribaM.className == classPisado ) {
+        vectorDirecciones.push(arribaM.id);   
+    }
 
+    if ( abajoM.className == classPasillo || abajoM.className == classPisado) {
+        vectorDirecciones.push(abajoM.id);   
+    }
+
+    if ( izquierdaM.className == classPasillo || izquierdaM.className == classPisado) {
+        vectorDirecciones.push(izquierdaM.id);   
+    }
+
+    if ( derechaM.className == classPasillo || derechaM.className == classPisado) {
+        vectorDirecciones.push(derechaM.id);   
+    }
+
+    let indexRandom = Math.floor(Math.random() * vectorDirecciones.length);
+
+    moverMomia(id, vectorDirecciones[indexRandom]);
+}
+
+function moverMomia(posicionActual, direccionMover) {
+
+    let divMomia = document.getElementById(posicionActual);
+    divMomia.removeChild(divMomia.childNodes[0]);
+
+    let divCambio = document.getElementById(direccionMover);
+    let momia = document.createElement("div");
+    momia.classList.add(classMomia);
+    divCambio.appendChild(momia);
 
 }

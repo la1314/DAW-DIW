@@ -8,7 +8,6 @@ let vectorPosicionMomia = new Array();
 let vectorObjetos = new Array();
 let vectorMomias = new Array();
 
-
 window.onload = function () {
 
     /*Se requieren de 16 filas y 23 columnas
@@ -16,16 +15,10 @@ window.onload = function () {
     let fila = 16;
     let col = 23
 
-    crearDiv(fila, col);
-    vectorObjetos = agregarRectangulos(4, 5, vectorObjetos);
-    generarObjetos(vectorObjetos);
+    crearMapa(fila, col);
 
     //Añadiendo una momia en una posicion aleatoria de los pasillos
     //this.setInterval('funcion()', 1000)
-
-    agregarMomia();
-
-
     //iaMomia()
     this.setInterval('iaMomia()', 200)
 
@@ -55,7 +48,7 @@ window.onload = function () {
     }
 }
 
-function crearDiv(fila, col) {
+function crearMapa(fila, col) {
     for (let f = 0; f < fila; f++) {
         for (let c = 0; c < col; c++) {
             if (f == 1 && c == 11) {
@@ -73,11 +66,15 @@ function crearDiv(fila, col) {
             }
         }
     }
+
+    vectorObjetos = agregarRectangulos(4, 5, vectorObjetos);
+    generarObjetos(vectorObjetos);
+    agregarMomia();
 }
 
 /*
 * Crea y añade div al contenedor asignandole a cada uno una ID única
-* las cuales están representadas en separares de una matriz
+* las cuales están representadas en las posiciones de una matriz
 */
 function addNodos(fila, col, clase) {
 
@@ -100,10 +97,9 @@ function incluirClase(fil, col, clase) {
 }
 
 /*
- * Dado el mapa actual del juego pasamos el numemos de objetos que habŕan por fila y columnas
- * y devolvera un vector con las separares donde han de estar estos objetos
+ * Dado el mapa actual del juego pasamos el numero de objetos que habŕan por fila y columnas
+ * y devolvera un vector con las posiciones donde han de estar estos objetos
  */
-
 function agregarRectangulos(filas, columnas, vector) {
 
     let inicioF = 4;
@@ -125,8 +121,9 @@ function agregarRectangulos(filas, columnas, vector) {
     return vector;
 }
 
-//Genera los objetos con los que interactua el personaje, através de un vector que contiene
-// las separares donde pueden aparecer dichos objetos
+/*Genera los objetos con los que interactua el personaje, através de un vector que contiene
+* las posiciones donde pueden aparecer dichos objetos
+*/
 function generarObjetos(vector) {
 
     let iterandos = vector.length;

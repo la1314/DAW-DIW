@@ -24,10 +24,10 @@ window.onload = function () {
     //this.setInterval('funcion()', 1000)
 
     agregarMomia();
-    agregarMomia();
-    agregarMomia();
+
+
     //iaMomia()
-    //   this.setInterval('iaMomia()', 500)
+    this.setInterval('iaMomia()', 200)
 
     document.addEventListener("keydown", devolverValorKey, false);
 
@@ -149,7 +149,6 @@ function generarObjetos(vector) {
         let valor = vector[indexRandom].split("-");
         propagarRectangulo(valor[0], parseInt(valor[1]), clase, "pasillo");
         vector = removerItem(vector, vector[indexRandom]);
-
     }
 
 }
@@ -223,7 +222,6 @@ function comprobarMovimiento(idPJ, idPas) {
 function intercambiarClases(idPj, idPas) {
 
     // Obtiene los atributos mediante las IDs pasadas por parámetro y el nombre de la clase del atributo a cambiar
-
     divPersonaje = document.getElementById(idPj);
     divPasillo = document.getElementById(idPas);
     divPasilloClase = divPasillo.className;
@@ -249,7 +247,6 @@ function agregarMomia() {
         if (!vectorClases[i].id.match(/^2-/)) {
             vectorPosicionMomia.push(vectorClases[i].id);
         }
-
     }
 
     //console.log(vectorPosicionMomia);
@@ -262,6 +259,7 @@ function agregarMomia() {
     let momia = document.createElement("div");
 
     if (nodoMomia.childNodes.length == 0) {
+
         momia.classList.add(classMomia);
         nodoMomia.appendChild(momia);
 
@@ -272,9 +270,6 @@ function agregarMomia() {
         momiaOBJ.movimiento = false;
         vectorMomias.push(momiaOBJ);
     }
-
-
-
 }
 
 //Apartado de la I.A
@@ -284,7 +279,6 @@ function iaMomia() {
     for (let index = 0; index < vectorMomias.length; index++) {
         comprobarMovimientoMomia(vectorMomias[index]);
     }
-
 };
 
 function comprobarMovimientoMomia(objeto) {
@@ -316,47 +310,35 @@ function comprobarMovimientoMomia(objeto) {
 
         if (derechaM.className == classPasillo || derechaM.className == classPisado) {
             vectorDirecciones.push(derechaM.id);
-
         }
 
         let indexRandom = Math.floor(Math.random() * vectorDirecciones.length);
         moverMomia(objeto, vectorDirecciones[indexRandom]);
 
     } else {
-        switch (objeto.direccion) {
-            case 1:
-
-                break;
-
-            case 2:
-
-                break;
-            case 3:
-
-                break;
-            case 4:
-
-                break;
-        }
+        continuarMovimiento(objeto);
     }
 }
 
 //Mediante la comparación de la filas y columnas de dos posiciónes devolvera a que dirección se dirigira la momia
 function obtenerDireccion(inicial, cambio) {
 
-    let filaIni = parseInt(inicial.split("-")[0]);
-    let colIni = parseInt(inicial.split("-")[1]);
-    let filaCam = parseInt(cambio.split("-")[0]);
-    let colICam = parseInt(cambio.split("-")[1]);
+    let filaIni = parseInt(inicial.idMomia.split("-")[0]);
+    let colIni = parseInt(inicial.idMomia.split("-")[1]);
+    let filaCam = parseInt(cambio.id.split("-")[0]);
+    let colICam = parseInt(cambio.id.split("-")[1]);
     let nDireccion = 0;
 
     if (filaIni > filaCam) {
         nDireccion = 1;
-    } else if (filaIni < filaCam) {
+    }
+    if (filaIni < filaCam) {
         nDireccion = 2;
-    } else if (colIni > colICam) {
+    }
+    if (colIni > colICam) {
         nDireccion = 3;
-    } else if (colIni < colICam) {
+    }
+    if (colIni < colICam) {
         nDireccion = 4;
     }
 
@@ -369,16 +351,80 @@ function moverMomia(obj, direccionMover) {
     let divMomia = document.getElementById(obj.idMomia);
     divMomia.removeChild(divMomia.childNodes[0]);
     let divCambio = document.getElementById(direccionMover);
+
+    //Fija la dirección a la que irá la momia
+    obj.direccion = obtenerDireccion(obj, divCambio);
+
     let momia = document.createElement("div");
     momia.classList.add(classMomia);
     divCambio.appendChild(momia);
 
     obj.idMomia = direccionMover;
-    obj.direccion = obtenerDireccion(obj, cambio);
     obj.movimiento = true;
 }
 
-//Continua moviendo la momia en su dirección fijada hasta que no puede más
-function continuarMovimiento(direccion){
-    
+//Continua moviendo la momia en su dirección fijada hasta que no puede más o se encuentre con otro pasillo
+function continuarMovimiento(objeto) {
+
+    let separar = objeto.idMomia.split("-");
+    let fila = parseInt(separar[0]);
+    let col = parseInt(separar[1]);
+    let direccion = objeto.direccion;
+
+    if (direccion == 1) {
+        fila--;
+    } else if (direccion == 2) {
+        fila++;
+    } else if (direccion == 3) {
+        col--;
+    } else if (direccion == 4) {
+        col++;
+    }
+
+    let divCambio = document.getElementById(fila + "-" + col);
+    let divClase = divCambio.className;
+
+    if (divClase == classPasillo || divClase == classPisado || divClase == classPersonaje) {
+        
+
+        if (!comprobarNuevosPasillos(objeto)) {
+            moverMomia(objeto, divCambio.id)
+        }else {
+            objeto.direccion = 0;
+            objeto.movimiento = false;
+            comprobarMovimientoMomia(objeto);
+        }
+
+    } else {
+        objeto.direccion = 0;
+        objeto.movimiento = false;
+        comprobarMovimientoMomia(objeto);
+    }
 }
+
+function comprobarNuevosPasillos(objeto) {
+
+    let separar = objeto.idMomia.split("-");
+    let fila = parseInt(separar[0]);
+    let col = parseInt(separar[1]);
+    let izquierdaM = document.getElementById((fila) + "-" + (col - 1)).className;
+    let derechaM = document.getElementById((fila) + "-" + (col + 1)).className;
+    let arribaM = document.getElementById((fila - 1) + "-" + (col)).className;
+    let abajoM = document.getElementById((fila + 1) + "-" + (col)).className;
+    let nuevoPasillo = false;
+
+    if (objeto.direccion < 3) {
+
+        if (izquierdaM == classPasillo || izquierdaM == classPisado || derechaM == classPasillo || derechaM == classPisado) {
+            nuevoPasillo = true;
+        }
+
+    } else {
+
+        if (arribaM == classPasillo || arribaM == classPisado || abajoM == classPasillo || abajoM == classPisado) {
+            nuevoPasillo = true;
+        }
+    }
+
+    return nuevoPasillo
+};

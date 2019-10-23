@@ -212,18 +212,20 @@ function moverse(direccion) {
     comprobarMovimiento(posicion, identificador);
 }
 
-//Comprueba mediante las posiciones pasadas que el idPas posea alguna de las dos clases para poder realizar el intercambio de clases (moverse).
-function comprobarMovimiento(idPJ, idPas) {
-    if (document.getElementById(idPas).className == "pasillo" || document.getElementById(idPas).className == "sueloPisado") {
-        intercambiarClases(idPJ, idPas);
+//Comprueba mediante las posiciones pasadas que el idDestino posea alguna de las dos clases para poder realizar el intercambio de clases (moverse).
+function comprobarMovimiento(idPJ, idDestino) {
+    if (document.getElementById(idDestino).className == "pasillo" || document.getElementById(idDestino).className == "sueloPisado") {
+        intercambiarClases(idPJ, idDestino);
     }
 }
 
-function intercambiarClases(idPj, idPas) {
+//Función que cambia la clase del personaje con el div destino
+//TODO falta modificación del la clase para admitir suelo Pisado
+function intercambiarClases(idPj, idDestino) {
 
     // Obtiene los atributos mediante las IDs pasadas por parámetro y el nombre de la clase del atributo a cambiar
     divPersonaje = document.getElementById(idPj);
-    divPasillo = document.getElementById(idPas);
+    divPasillo = document.getElementById(idDestino);
     divPasilloClase = divPasillo.className;
 
     // Se eliminan las clases actuales de los atributos
@@ -275,15 +277,16 @@ function agregarMomia() {
 //Apartado de la I.A
 //Se mueve aleatoria mente pero falta implentar que busque otra dirección cuando encuentre un nuevo camino, o vea al personaje para seguirlo
 function iaMomia() {
-
     for (let index = 0; index < vectorMomias.length; index++) {
         comprobarMovimientoMomia(vectorMomias[index]);
     }
 };
 
+/*Funcion que comprueba desde la posición actual de la momia hacia que direcciones puede dirigirse
+*   guarda estás en un vector y elige una dirección aleatoriamente, si la momia ya tiene una dirección
+*   fijada está continuara moviendose en dicha dirección
+*/
 function comprobarMovimientoMomia(objeto) {
-
-    //TODO modificar algoritmo para mayor facilidad a la hora de mover la momia
 
     let separador = objeto.idMomia.split("-");
     let fila = parseInt(separador[0]);
@@ -320,7 +323,13 @@ function comprobarMovimientoMomia(objeto) {
     }
 }
 
-//Mediante la comparación de la filas y columnas de dos posiciónes devolvera a que dirección se dirigira la momia
+/*Mediante la comparación de la filas y columnas de dos posiciónes devolvera a que dirección se dirigira la momia
+* 
+    Arriba: 1
+    Abajo: 2
+    Izquierda: 3
+    Derecha: 4
+*/
 function obtenerDireccion(inicial, cambio) {
 
     let filaIni = parseInt(inicial.idMomia.split("-")[0]);
@@ -345,7 +354,7 @@ function obtenerDireccion(inicial, cambio) {
     return nDireccion;
 }
 
-//Mueve e iniciliza los valores del objeto momia para seguir moviendose
+//Mueve la momia e iniciliza los valores del objeto momia para seguir moviendose
 function moverMomia(obj, direccionMover) {
 
     let divMomia = document.getElementById(obj.idMomia);
@@ -359,6 +368,7 @@ function moverMomia(obj, direccionMover) {
     momia.classList.add(classMomia);
     divCambio.appendChild(momia);
 
+    //Modifica los atributos del objeto momia con una nueva posición y 
     obj.idMomia = direccionMover;
     obj.movimiento = true;
 }
@@ -402,6 +412,7 @@ function continuarMovimiento(objeto) {
     }
 }
 
+//Función que comprueba si hay nuevos pasillos a los que puede obtar la momia para cambiar de dirección
 function comprobarNuevosPasillos(objeto) {
 
     let separar = objeto.idMomia.split("-");

@@ -31,7 +31,9 @@ body {
 }
 
 .sueloPisado {
-    background-image: url();
+    background-image: url(img/pisado.png);
+    height: 100%;
+    width: 100%;
     z-index: -1;
 }
 

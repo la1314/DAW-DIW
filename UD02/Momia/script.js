@@ -7,6 +7,7 @@ let classPisado = "sueloPisado"
 let vectorPosicionMomia = new Array();
 let vectorObjetos = new Array();
 let vectorMomias = new Array();
+let NumeroMomias = 1;
 
 window.onload = function () {
 
@@ -19,8 +20,7 @@ window.onload = function () {
 
     //Añadiendo una momia en una posicion aleatoria de los pasillos
     //this.setInterval('funcion()', 1000)
-    //iaMomia()
-    this.setInterval('iaMomia()', 200)
+    this.setInterval('iaMomia()', 400)
 
     document.addEventListener("keydown", devolverValorKey, false);
 
@@ -211,7 +211,7 @@ function moverse(direccion) {
 
 //Comprueba mediante las posiciones pasadas que el idDestino posea alguna de las dos clases para poder realizar el intercambio de clases (moverse).
 function comprobarMovimiento(idPJ, idDestino) {
-    if (document.getElementById(idDestino).className == "pasillo" || document.getElementById(idDestino).className == "sueloPisado") {
+    if (document.getElementById(idDestino).className == classPasillo || document.getElementById(idDestino).className == classPisado) {
         intercambiarClases(idPJ, idDestino);
     }
 }
@@ -228,6 +228,10 @@ function intercambiarClases(idPj, idDestino) {
     // Se eliminan las clases actuales de los atributos
     divPersonaje.classList.remove(classPersonaje);
     divPasillo.classList.remove(divPasilloClase);
+
+    if (divPasilloClase == classPasillo) {
+        divPasilloClase = classPisado;
+    }
 
     //Se añaden las nuevas clases a los atributos
     divPersonaje.classList.add(divPasilloClase);

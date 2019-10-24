@@ -5,10 +5,15 @@ let classPuerta = "puerta";
 let classMomia = "momia"
 let classPisado = "sueloPisado"
 let classOculto = "oculto"
+let classDescubierto = "descubierto"
 let vectorPosicionMomia = new Array();
 let vectorObjetos = new Array();
 let vectorMomias = new Array();
 let NumeroMomias = 1;
+let pergamino = false;
+let urna = false;
+let llave = false;
+let sarcofago = false;
 
 window.onload = function () {
 
@@ -216,12 +221,12 @@ function descubrirPisado(posicion) {
         (document.getElementById(surOeste).className == classPisado || document.getElementById(surOeste).className == classPersonaje) &&
         (document.getElementById(surEste).className == classPisado || document.getElementById(surEste).className == classPersonaje)
         ) {    
-            retirarOculto(fil, col, classOculto);
+            retirarOculto(fil, col, classOculto, classDescubierto);
     }
 
 }
 
-function retirarOculto(fil, col, claseRetirar){
+function retirarOculto(fil, col, claseRetirar, claseDescubierta){
 
     let centro = fil + "-" + col;
     let arriba = (fil - 1) + "-" + col;
@@ -237,6 +242,18 @@ function retirarOculto(fil, col, claseRetirar){
     document.getElementById(arriba).classList.remove(claseRetirar);
     document.getElementById(norEste).classList.remove(claseRetirar);
     document.getElementById(derecha).classList.remove(claseRetirar);
+
+    document.getElementById(centro).classList.add(claseDescubierta);
+    document.getElementById(izquierda).classList.add(claseDescubierta);
+    document.getElementById(norOeste).classList.add(claseDescubierta);
+    document.getElementById(arriba).classList.add(claseDescubierta);
+    document.getElementById(norEste).classList.add(claseDescubierta);
+    document.getElementById(derecha).classList.add(claseDescubierta);
+
+    //TODO implementar aquí mediante includes las funcionabilidades de las clases específicas
+    if (condition) {
+        
+    }
 }
 
 function descubrirObjeto(posicion){

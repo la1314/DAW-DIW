@@ -52,9 +52,10 @@ function crearMapa(fila, col) {
     for (let f = 0; f < fila; f++) {
         for (let c = 0; c < col; c++) {
             if (f == 1 && c == 11) {
+
                 // addNodos(f, c, classPuerta);
                 addNodos(f, c, classPersonaje);
-                //incluirClase(f, c, classPersonaje);
+
             }
             else {
                 if (c == 0 || f == 0 || c == col - 1 || f == fila - 1 || f == 1) {
@@ -82,18 +83,10 @@ function addNodos(fila, col, clase) {
     nodo.id = fila + "-" + col;
 
     //Ver posición de cada celda
-    //nodo.innerText = fila + "-" + col;
+    nodo.innerText = fila + "-" + col;
 
     nodo.classList.add(clase);
     document.getElementById("_contenedor").appendChild(nodo);
-}
-
-//Función precaria por ahora mientras se determina la superposición de imagenes
-function incluirClase(fil, col, clase) {
-
-    var nodo = document.createElement("img");
-    nodo.classList.add(clase);
-    document.getElementById(fil + "-" + col).appendChild(nodo);
 }
 
 /*
@@ -130,7 +123,7 @@ function generarObjetos(vector) {
 
     for (let index = 0; index < iterandos; index++) {
 
-        let clase = "oculto";
+        let clase = "vacio";
 
         if (index == 0) {
             clase = "llave"
@@ -144,7 +137,7 @@ function generarObjetos(vector) {
 
         let indexRandom = Math.floor(Math.random() * vector.length);
         let valor = vector[indexRandom].split("-");
-        propagarRectangulo(valor[0], parseInt(valor[1]), clase, "pasillo");
+        propagarRectangulo(parseInt(valor[0]), parseInt(valor[1]), clase, classPasillo, "oculto");
         vector = removerItem(vector, vector[indexRandom]);
     }
 
@@ -153,24 +146,62 @@ function generarObjetos(vector) {
 /*
 * Mediante una coordenada elimina una clase y añade otra clase a los lados y encima del punto inicial
 */
-function propagarRectangulo(fil, col, clase, claseRetirar) {
+function propagarRectangulo(fil, col, clase, claseRetirar, ocultar) {
+
+    let centro = fil + "-" + col;
+    let arriba = (fil - 1) + "-" + col;
+    let izquierda = fil + "-" + (col - 1);
+    let derecha = fil + "-" + (col + 1);
+    let norOeste = (fil - 1) + "-" + (col - 1);
+    let norEste = (fil - 1) + "-" + (col + 1);
 
     //Retira la clase anterior
-    document.getElementById(fil + "-" + col).classList.remove(claseRetirar);
-    document.getElementById(fil + "-" + (col - 1)).classList.remove(claseRetirar);
-    document.getElementById((fil - 1) + "-" + (col - 1)).classList.remove(claseRetirar);
-    document.getElementById((fil - 1) + "-" + col).classList.remove(claseRetirar);
-    document.getElementById((fil - 1) + "-" + (col + 1)).classList.remove(claseRetirar);
-    document.getElementById(fil + "-" + (col + 1)).classList.remove(claseRetirar);
+    document.getElementById(centro).classList.remove(claseRetirar);
+    document.getElementById(izquierda).classList.remove(claseRetirar);
+    document.getElementById(norOeste).classList.remove(claseRetirar);
+    document.getElementById(arriba).classList.remove(claseRetirar);
+    document.getElementById(norEste).classList.remove(claseRetirar);
+    document.getElementById(derecha).classList.remove(claseRetirar);
 
-    //Añade la nueva clase
-    document.getElementById(fil + "-" + col).classList.add(clase);
-    document.getElementById(fil + "-" + (col - 1)).classList.add(clase);
-    document.getElementById((fil - 1) + "-" + (col - 1)).classList.add(clase);
-    document.getElementById((fil - 1) + "-" + col).classList.add(clase);
-    document.getElementById((fil - 1) + "-" + (col + 1)).classList.add(clase);
-    document.getElementById(fil + "-" + (col + 1)).classList.add(clase);
+    //Añade las nuevas clases
+    document.getElementById(centro).classList.add(clase, ocultar, centro);
+    document.getElementById(izquierda).classList.add(clase, ocultar, centro);
+    document.getElementById(norOeste).classList.add(clase, ocultar, centro);
+    document.getElementById(arriba).classList.add(clase, ocultar, centro);
+    document.getElementById(norEste).classList.add(clase, ocultar, centro);
+    document.getElementById(derecha).classList.add(clase, ocultar, centro);
 
+}
+
+//Función utilizada para descubrir si lo que rodea al objeto es suelo pisado
+function descubrirObjeto(posicion) {
+
+    let fil = parseInt(posicion.split("-")[0]);
+    let col = parseInt(posicion.split("-")[1]);
+
+    let abajo = (fil - 1) + "-" + col;
+    let abajoDer = (fil - 1) + "-" + (col + 1);
+    let abajoIzq = (fil - 1) + "-" + (col - 1);
+
+    let arriba = (fil - 2) + "-" + col;
+    let arribaDer = (fil - 2) + "-" + (col + 1);
+    let arribaIzq = (fil - 2) + "-" + (col - 1);
+
+    let izquierda = fil + "-" + (col - 2);
+    let izquierdaArriba = (fil - 1) + "-" + (col - 2);
+    let derecha = fil + "-" + (col + 2);
+    let derechaAbajo = (fil - 1) + "-" + (col + 2);
+
+    let norOeste = (fil - 2) + "-" + (col - 2);
+    let norEste = (fil - 2) + "-" + (col + 2);
+    let surOeste = (fil + 1) + "-" + (col - 2);
+    let surEste = (fil + 1) + "-" + (col + 2);
+
+
+}
+
+function personajeDescubrir(){
+    
 }
 
 // Elimina un elemento de un arrray
@@ -396,11 +427,11 @@ function continuarMovimiento(objeto) {
     let divClase = divCambio.className;
 
     if (divClase == classPasillo || divClase == classPisado || divClase == classPersonaje) {
-        
+
 
         if (!comprobarNuevosPasillos(objeto)) {
             moverMomia(objeto, divCambio.id)
-        }else {
+        } else {
             objeto.direccion = 0;
             objeto.movimiento = false;
             comprobarMovimientoMomia(objeto);

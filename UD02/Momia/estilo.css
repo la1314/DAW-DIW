@@ -14,7 +14,7 @@ body {
     margin-right: auto;
 }
 
-.pasillo, .borde, .puerta, .rectangulo, .oculto, .llave, .pergamino, .sarcofago, .urna, .personaje, .sueloPisado, .momia {
+.pasillo, .vacio, .borde, .puerta, .rectangulo, .oculto, .llave, .pergamino, .sarcofago, .urna, .personaje, .sueloPisado, .momia {
     background-repeat: no-repeat;
     text-align: center;
     background-size: cover;
@@ -46,7 +46,13 @@ body {
 }
 
 .oculto {
-    background-image: url(img/caja.png);
+    background-image: url(img/caja.png) !important;
+    z-index: 30;
+    }
+
+.vacio {
+    background-image: url(img/vacio.png);
+    z-index: -1;
 }
 
 .llave {

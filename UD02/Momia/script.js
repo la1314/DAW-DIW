@@ -2,18 +2,19 @@ let classPasillo = "pasillo";
 let classBorde = "borde";
 let classPersonaje = "personaje";
 let classPuerta = "puerta";
-let classMomia = "momia"
-let classPisado = "sueloPisado"
-let classOculto = "oculto"
-let classDescubierto = "descubierto"
+let classMomia = "momia";
+let classPisado = "sueloPisado";
+let classOculto = "oculto";
+let classDescubierto = "descubierto";
+let classUrna = "urna";
+let classLlave = "llave";
+let classSarcofago = "sarcofago";
+let classPergamino = "pergamino";
+let classMamadisimo = "mamadisimo"
 let vectorPosicionMomia = new Array();
 let vectorObjetos = new Array();
 let vectorMomias = new Array();
 let NumeroMomias = 1;
-let pergamino = false;
-let urna = false;
-let llave = false;
-let sarcofago = false;
 
 window.onload = function () {
 
@@ -77,8 +78,8 @@ function crearMapa(fila, col) {
     vectorObjetos = agregarRectangulos(4, 5, vectorObjetos);
     generarObjetos(vectorObjetos);
     agregarMomia();
-    
-    
+
+
 }
 
 /*
@@ -134,13 +135,13 @@ function generarObjetos(vector) {
         let clase = "vacio";
 
         if (index == 0) {
-            clase = "llave"
+            clase = classLlave;
         } else if (index == 1) {
-            clase = "sarcofago"
+            clase = classSarcofago;
         } else if (index == 2) {
-            clase = "pergamino"
+            clase = classPergamino;
         } else if (index == 3) {
-            clase = "urna"
+            clase = classUrna;
         }
 
         let indexRandom = Math.floor(Math.random() * vector.length);
@@ -186,7 +187,7 @@ function descubrirPisado(posicion) {
 
     let fil = parseInt(posicion.split("-")[0]);
     let col = parseInt(posicion.split("-")[1]);
- 
+
     let abajo = (fil + 1) + "-" + col;
     let abajoDer = (fil + 1) + "-" + (col + 1);
     let abajoIzq = (fil + 1) + "-" + (col - 1);
@@ -204,29 +205,29 @@ function descubrirPisado(posicion) {
     let norEste = (fil - 2) + "-" + (col + 2);
     let surOeste = (fil + 1) + "-" + (col - 2);
     let surEste = (fil + 1) + "-" + (col + 2);
-    
+
     if (
-        (document.getElementById(abajo).className == classPisado || document.getElementById(abajo).className == classPersonaje) &&
-        (document.getElementById(abajoDer).className == classPisado || document.getElementById(abajoDer).className == classPersonaje) &&
-        (document.getElementById(abajoIzq).className == classPisado || document.getElementById(abajoIzq).className == classPersonaje) &&
-        (document.getElementById(arriba).className == classPisado || document.getElementById(arriba).className == classPersonaje) &&
-        (document.getElementById(arribaDer).className == classPisado || document.getElementById(arribaDer).className == classPersonaje) &&
-        (document.getElementById(arribaIzq).className == classPisado || document.getElementById(arribaIzq).className == classPersonaje) &&
-        (document.getElementById(izquierda).className == classPisado || document.getElementById(izquierda).className == classPersonaje) &&
-        (document.getElementById(izquierdaArriba).className == classPisado || document.getElementById(izquierdaArriba).className == classPersonaje) &&
-        (document.getElementById(derecha).className == classPisado || document.getElementById(derecha).className == classPersonaje) &&
-        (document.getElementById(derechaAbajo).className == classPisado || document.getElementById(derechaAbajo).className == classPersonaje) &&
-        (document.getElementById(norOeste).className == classPisado || document.getElementById(norOeste).className == classPersonaje) &&
-        (document.getElementById(norEste).className == classPisado || document.getElementById(norEste).className == classPersonaje) &&
-        (document.getElementById(surOeste).className == classPisado || document.getElementById(surOeste).className == classPersonaje) &&
-        (document.getElementById(surEste).className == classPisado || document.getElementById(surEste).className == classPersonaje)
-        ) {    
-            retirarOculto(fil, col, classOculto, classDescubierto);
+        (document.getElementById(abajo).className == classPisado || document.getElementById(abajo).className.includes(classPersonaje)) &&
+        (document.getElementById(abajoDer).className == classPisado || document.getElementById(abajoDer).className.includes(classPersonaje)) &&
+        (document.getElementById(abajoIzq).className == classPisado || document.getElementById(abajoIzq).className.includes(classPersonaje)) &&
+        (document.getElementById(arriba).className == classPisado || document.getElementById(arriba).className.includes(classPersonaje)) &&
+        (document.getElementById(arribaDer).className == classPisado || document.getElementById(arribaDer).className.includes(classPersonaje)) &&
+        (document.getElementById(arribaIzq).className == classPisado || document.getElementById(arribaIzq).className.includes(classPersonaje)) &&
+        (document.getElementById(izquierda).className == classPisado || document.getElementById(izquierda).className.includes(classPersonaje)) &&
+        (document.getElementById(izquierdaArriba).className == classPisado || document.getElementById(izquierdaArriba).className.includes(classPersonaje)) &&
+        (document.getElementById(derecha).className == classPisado || document.getElementById(derecha).className.includes(classPersonaje)) &&
+        (document.getElementById(derechaAbajo).className == classPisado || document.getElementById(derechaAbajo).className.includes(classPersonaje)) &&
+        (document.getElementById(norOeste).className == classPisado || document.getElementById(norOeste).className.includes(classPersonaje)) &&
+        (document.getElementById(norEste).className == classPisado || document.getElementById(norEste).className.includes(classPersonaje)) &&
+        (document.getElementById(surOeste).className == classPisado || document.getElementById(surOeste).className.includes(classPersonaje)) &&
+        (document.getElementById(surEste).className == classPisado || document.getElementById(surEste).className.includes(classPersonaje))
+    ) {
+        retirarOculto(fil, col, classOculto, classDescubierto);
     }
 
 }
 
-function retirarOculto(fil, col, claseRetirar, claseDescubierta){
+function retirarOculto(fil, col, claseRetirar, claseDescubierta) {
 
     let centro = fil + "-" + col;
     let arriba = (fil - 1) + "-" + col;
@@ -251,20 +252,23 @@ function retirarOculto(fil, col, claseRetirar, claseDescubierta){
     document.getElementById(derecha).classList.add(claseDescubierta);
 
     //TODO implementar aquí mediante includes las funcionabilidades de las clases específicas
-    if (condition) {
-        
-    }
+    /*if (document.getElementById(centro).className.includes(classPergamino)) {
+        let id = document.getElementsByClassName(classPersonaje)[0].id;
+        let personaje = document.getElementById(id);
+        personaje.classList.remove(classPersonaje);
+        personaje.classList.add(classMamadisimo);
+    }*/
 }
 
-function descubrirObjeto(posicion){
+function descubrirObjeto(posicion) {
 
     let fil = parseInt(posicion.split("-")[0]);
     let col = parseInt(posicion.split("-")[1]);
 
-    let nordEste = (fil-1) + "-" + (col-1);
-    let nordOeste = (fil-1) + "-" + (col+1);
-    let surEste = (fil+1) + "-" + (col-1);
-    let surOeste = (fil+1) + "-" + (col+1);
+    let nordEste = (fil - 1) + "-" + (col - 1);
+    let nordOeste = (fil - 1) + "-" + (col + 1);
+    let surEste = (fil + 1) + "-" + (col - 1);
+    let surOeste = (fil + 1) + "-" + (col + 1);
 
     if (document.getElementById(nordEste).className.includes(classOculto)) {
         descubrirPisado(document.getElementById(nordEste).classList[2]);
@@ -302,6 +306,7 @@ function moverse(direccion) {
     let elemento = document.getElementsByClassName(classPersonaje);
     let posicion = elemento[0].id;
     let separar = elemento[0].id.split("-");
+
     fila = parseInt(separar[0]);
     col = parseInt(separar[1]);
 
@@ -322,9 +327,9 @@ function moverse(direccion) {
 //Comprueba mediante las posiciones pasadas que el idDestino posea alguna de las dos clases para poder realizar el intercambio de clases (moverse).
 function comprobarMovimiento(idPJ, idDestino) {
     if (document.getElementById(idDestino).className == classPasillo || document.getElementById(idDestino).className == classPisado) {
-        
+
         intercambiarClases(idPJ, idDestino);
-        
+
         descubrirObjeto(idDestino);
     }
 }
@@ -337,8 +342,6 @@ function intercambiarClases(idPj, idDestino) {
     divPersonaje = document.getElementById(idPj);
     divPasillo = document.getElementById(idDestino);
     divPasilloClase = divPasillo.className;
-
-    // Se eliminan las clases actuales de los atributos
     divPersonaje.classList.remove(classPersonaje);
     divPasillo.classList.remove(divPasilloClase);
 
@@ -349,6 +352,22 @@ function intercambiarClases(idPj, idDestino) {
     //Se añaden las nuevas clases a los atributos
     divPersonaje.classList.add(divPasilloClase);
     divPasillo.classList.add(classPersonaje);
+
+    let id = document.getElementsByClassName(classPergamino)[0].id;
+    let divPergamino = document.getElementById(id).className;
+    
+    if (divPergamino.includes(classDescubierto)) {
+
+        let mamados = document.getElementsByClassName(classMamadisimo);
+
+        for (let index = 0; index < mamados.length; index++) {
+            let idMamado = mamados[index].id;
+            document.getElementById(idMamado).classList.remove(classMamadisimo);
+        }
+
+        divPasillo.classList.add(classMamadisimo);
+        
+    }
 
 
 }

@@ -252,12 +252,9 @@ function retirarOculto(fil, col, claseRetirar, claseDescubierta) {
     document.getElementById(derecha).classList.add(claseDescubierta);
 
     //TODO implementar aquí mediante includes las funcionabilidades de las clases específicas
-    /*if (document.getElementById(centro).className.includes(classPergamino)) {
-        let id = document.getElementsByClassName(classPersonaje)[0].id;
-        let personaje = document.getElementById(id);
-        personaje.classList.remove(classPersonaje);
-        personaje.classList.add(classMamadisimo);
-    }*/
+    if (document.getElementById(centro).className.includes(classPergamino)) {
+        comprobarPergamino();
+    }
 }
 
 function descubrirObjeto(posicion) {
@@ -335,7 +332,6 @@ function comprobarMovimiento(idPJ, idDestino) {
 }
 
 //Función que cambia la clase del personaje con el div destino
-//TODO falta modificación del la clase para admitir suelo Pisado
 function intercambiarClases(idPj, idDestino) {
 
     // Obtiene los atributos mediante las IDs pasadas por parámetro y el nombre de la clase del atributo a cambiar
@@ -353,30 +349,29 @@ function intercambiarClases(idPj, idDestino) {
     divPersonaje.classList.add(divPasilloClase);
     divPasillo.classList.add(classPersonaje);
 
-    let id = document.getElementsByClassName(classPergamino)[0].id;
-    let divPergamino = document.getElementById(id).className;
-    
-    if (divPergamino.includes(classDescubierto)) {
 
-        let mamados = document.getElementsByClassName(classMamadisimo);
-
-        for (let index = 0; index < mamados.length; index++) {
-            let idMamado = mamados[index].id;
-            document.getElementById(idMamado).classList.remove(classMamadisimo);
-        }
-
-        divPasillo.classList.add(classMamadisimo);
-        
-    }
-
+    // Comprueba si se ha descubierto el pergamino
+    comprobarPergamino();
+    // Comprueba el sarcofago
+    comprobarSarcofago();
 
 }
 
-//Función que añade a una momia de forma estática (Temporalmente)
-//TODO falta generar a la momia Aleatoriamente
+// Funcion que añade a una momia aleatoriamente
 function agregarMomia() {
 
-    let vectorClases = document.getElementsByClassName('pasillo');
+    let vectorPasillo = document.getElementsByClassName(classPasillo);
+    let vectorPisado = document.getElementsByClassName(classPisado);
+    let vectorClases = new Array();
+
+    for (var i = 0; i < vectorPasillo.length; i++) {
+      vectorClases.push(vectorPasillo[i]);
+    }
+
+    for (var i = 0; i < vectorPisado.length; i++) {
+      vectorClases.push(vectorPisado[i]);
+    }
+
 
     for (var i = 0; i < vectorClases.length; i++) {
 
@@ -459,7 +454,7 @@ function comprobarMovimientoMomia(objeto) {
 }
 
 /*Mediante la comparación de la filas y columnas de dos posiciónes devolvera a que dirección se dirigira la momia
-* 
+*
     Arriba: 1
     Abajo: 2
     Izquierda: 3
@@ -503,7 +498,7 @@ function moverMomia(obj, direccionMover) {
     momia.classList.add(classMomia);
     divCambio.appendChild(momia);
 
-    //Modifica los atributos del objeto momia con una nueva posición y 
+    //Modifica los atributos del objeto momia con una nueva posición y
     obj.idMomia = direccionMover;
     obj.movimiento = true;
 }
@@ -574,3 +569,34 @@ function comprobarNuevosPasillos(objeto) {
 
     return nuevoPasillo
 };
+
+function comprobarPergamino(){
+  let id = document.getElementsByClassName(classPergamino)[0].id;
+  let divPergamino = document.getElementById(id).className;
+
+  if (divPergamino.includes(classDescubierto)) {
+
+      let mamados = document.getElementsByClassName(classMamadisimo);
+
+      for (let index = 0; index < mamados.length; index++) {
+          let idMamado = mamados[index].id;
+          document.getElementById(idMamado).classList.remove(classMamadisimo);
+      }
+
+      divPasillo.classList.add(classMamadisimo);
+  }
+
+}
+
+function comprobarSarcofago(){
+
+  let id = document.getElementsByClassName(classSarcofago)[0].id;
+  if (document.getElementById(id).className.includes(classDescubierto)) {
+      agregarMomia();
+      let sarcofagos = document.getElementsByClassName(classSarcofago);
+      for (var i = 0; i < sarcofagos.length; i++) {
+        document.getElementById(sarcofagos[i].id).classList.remove(classDescubierto);
+      }
+  }
+
+}

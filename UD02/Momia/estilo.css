@@ -14,7 +14,7 @@ body {
     margin-right: auto;
 }
 
-.pasillo, .vacio, .borde, .puerta, .rectangulo, .oculto, .llave, .pergamino, .sarcofago, .urna, .personaje, .sueloPisado, .momia {
+.pasillo, .vacio, .borde, .puerta, .rectangulo, .oculto, .llave, .pergamino, .sarcofago, .urna, .personaje, .sueloPisado, .momia, .mamadisimo {
     background-repeat: no-repeat;
     text-align: center;
     background-size: cover;
@@ -88,7 +88,7 @@ body {
     place-self: center;
     background-image: url(img/momia_Beta.png);
     height: 50%;
-    width: 50%; 
+    width: 50%;
     z-index: 30;
 }
 

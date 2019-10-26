@@ -253,7 +253,9 @@ function retirarOculto(fil, col, claseRetirar, claseDescubierta) {
 
     //TODO implementar aquí mediante includes las funcionabilidades de las clases específicas
     if (document.getElementById(centro).className.includes(classPergamino)) {
-        comprobarPergamino();
+        let id = document.getElementsByClassName(classPersonaje)[0].id;
+        let personaje = document.getElementById(id);
+        comprobarPergamino(personaje);
     }
 }
 
@@ -351,7 +353,7 @@ function intercambiarClases(idPj, idDestino) {
 
 
     // Comprueba si se ha descubierto el pergamino
-    comprobarPergamino();
+    comprobarPergamino(divPasillo);
     // Comprueba el sarcofago
     comprobarSarcofago();
 
@@ -570,20 +572,18 @@ function comprobarNuevosPasillos(objeto) {
     return nuevoPasillo
 };
 
-function comprobarPergamino(){
+function comprobarPergamino(personaje){
+
   let id = document.getElementsByClassName(classPergamino)[0].id;
   let divPergamino = document.getElementById(id).className;
-
   if (divPergamino.includes(classDescubierto)) {
-
       let mamados = document.getElementsByClassName(classMamadisimo);
 
       for (let index = 0; index < mamados.length; index++) {
           let idMamado = mamados[index].id;
           document.getElementById(idMamado).classList.remove(classMamadisimo);
       }
-
-      divPasillo.classList.add(classMamadisimo);
+      personaje.classList.add(classMamadisimo);
   }
 
 }

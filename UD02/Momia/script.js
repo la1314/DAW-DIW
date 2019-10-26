@@ -79,7 +79,6 @@ function crearMapa(fila, col) {
     generarObjetos(vectorObjetos);
     agregarMomia();
 
-
 }
 
 /*
@@ -252,11 +251,19 @@ function retirarOculto(fil, col, claseRetirar, claseDescubierta) {
     document.getElementById(derecha).classList.add(claseDescubierta);
 
     //TODO implementar aquí mediante includes las funcionabilidades de las clases específicas
+
+    //Cuando se descubre pergamino llama a las funciones necesarias para poner mamadisimo al personaje
     if (document.getElementById(centro).className.includes(classPergamino)) {
         let id = document.getElementsByClassName(classPersonaje)[0].id;
         let personaje = document.getElementById(id);
         comprobarPergamino(personaje);
     }
+
+    //Cuando se descubre el sarcofago se libera una nueva momia
+    if (document.getElementById(centro).className.includes(classSarcofago)) {
+      comprobarSarcofago();
+    }
+
 }
 
 function descubrirObjeto(posicion) {
@@ -337,9 +344,9 @@ function comprobarMovimiento(idPJ, idDestino) {
 function intercambiarClases(idPj, idDestino) {
 
     // Obtiene los atributos mediante las IDs pasadas por parámetro y el nombre de la clase del atributo a cambiar
-    divPersonaje = document.getElementById(idPj);
-    divPasillo = document.getElementById(idDestino);
-    divPasilloClase = divPasillo.className;
+    let divPersonaje = document.getElementById(idPj);
+    let divPasillo = document.getElementById(idDestino);
+    let divPasilloClase = divPasillo.className;
     divPersonaje.classList.remove(classPersonaje);
     divPasillo.classList.remove(divPasilloClase);
 
@@ -351,11 +358,10 @@ function intercambiarClases(idPj, idDestino) {
     divPersonaje.classList.add(divPasilloClase);
     divPasillo.classList.add(classPersonaje);
 
-
     // Comprueba si se ha descubierto el pergamino
     comprobarPergamino(divPasillo);
     // Comprueba el sarcofago
-    comprobarSarcofago();
+    comprobrarMatarMomia(idDestino);
 
 }
 
@@ -597,6 +603,41 @@ function comprobarSarcofago(){
       for (var i = 0; i < sarcofagos.length; i++) {
         document.getElementById(sarcofagos[i].id).classList.remove(classDescubierto);
       }
+  }
+
+}
+
+function comprobrarMatarMomia(id) {
+
+  let personaje = document.getElementById(id);
+
+  if (personaje.className.includes(classMamadisimo)) {
+
+    if (personaje.childNodes.length > 0) {
+
+      let momias = personaje.childNodes[0];
+      personaje.removeChild(momias);
+
+      for (var i = 0; i < vectorMomias.length; i++) {
+
+            if (vectorMomias[i].idMomia == id) {
+
+              let momia = vectorMomias[i];
+              vectorMomias = removerItem(vectorMomias, momia);
+            }
+      }
+
+      let pergaminos = document.getElementsByClassName(classPergamino);
+
+        for (var i = 0; i < pergaminos.length; i++) {
+
+            document.getElementById(pergaminos[i].id).classList.remove(classDescubierto);
+
+        }
+        personaje.classList.remove(classMamadisimo);
+
+    }
+
   }
 
 }

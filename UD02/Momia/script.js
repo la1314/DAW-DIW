@@ -16,18 +16,17 @@ let vectorObjetos = new Array();
 let vectorMomias = new Array();
 var numeroMomias = 2;
 var numeroVidas = 4;
+var fila = 16;
+var col = 23;
 window.onload = function() {
 
   /*Se requieren de 16 filas y 23 columnas
    */
-  let fila = 16;
-  let col = 23
-
   crearMapa(fila, col);
-
   //Añadiendo una momia en una posicion aleatoria de los pasillos
   //this.setInterval('funcion()', 1000)
-  this.setInterval('iaMomia()', 400)
+
+  this.setInterval('iaMomia()', 400);
 
   document.addEventListener("keydown", devolverValorKey, false);
 
@@ -43,6 +42,7 @@ window.onload = function() {
 
       moverse(2);
 
+
     } else if (keyCode == "ArrowLeft") {
 
       moverse(3);
@@ -56,6 +56,15 @@ window.onload = function() {
 }
 
 function crearMapa(fila, col) {
+
+  let contenedor = document.getElementById("_contenedor");
+
+  while(contenedor.firstChild) {
+
+    contenedor.removeChild(contenedor.firstChild)
+
+  }
+
   for (let f = 0; f < fila; f++) {
     for (let c = 0; c < col; c++) {
       if (f == 1 && c == 11) {
@@ -316,8 +325,8 @@ function moverse(direccion) {
     let posicion = elemento[0].id;
     let separar = elemento[0].id.split("-");
 
-    fila = parseInt(separar[0]);
-    col = parseInt(separar[1]);
+    let fila = parseInt(separar[0]);
+    let col = parseInt(separar[1]);
 
     if (direccion == 1) {
       fila--;
@@ -329,7 +338,7 @@ function moverse(direccion) {
       col++;
     }
 
-    identificador = fila + "-" + col;
+    let identificador = fila + "-" + col;
     comprobarMovimiento(posicion, identificador);
   }
 
@@ -340,9 +349,14 @@ function comprobarMovimiento(idPJ, idDestino) {
   if (document.getElementById(idDestino).className == classPasillo || document.getElementById(idDestino).className == classPisado) {
 
     intercambiarClases(idPJ, idDestino);
-
     descubrirObjeto(idDestino);
   }
+
+  if (document.getElementById(idDestino).className == classPuerta) {
+
+    recargar();
+  }
+
 }
 
 //Función que cambia la clase del personaje con el div destino
@@ -397,6 +411,7 @@ function agregarMomia() {
     if (!vectorClases[i].id.match(/^2-/)) {
       vectorPosicionMomia.push(vectorClases[i].id);
     }
+
   }
 
   //console.log(vectorPosicionMomia);
@@ -425,9 +440,13 @@ function agregarMomia() {
 //Apartado de la I.A
 //Se mueve aleatoria mente pero falta implentar que busque otra dirección cuando encuentre un nuevo camino, o vea al personaje para seguirlo
 function iaMomia() {
-  for (let index = 0; index < vectorMomias.length; index++) {
-    comprobarMovimientoMomia(vectorMomias[index]);
+
+  if (document.getElementById("_contenedor").childNodes.length == (16*23)) {
+      for (let index = 0; index < vectorMomias.length; index++) {
+        comprobarMovimientoMomia(vectorMomias[index]);
+      }
   }
+
 };
 
 /*Funcion que comprueba desde la posición actual de la momia hacia que direcciones puede dirigirse
@@ -673,9 +692,6 @@ function comprobrarMatarPersonaje(id) {
       personaje.classList.add(classPisado);
       numeroVidas--;
 
-      console.log("Vidas: " + numeroVidas);
-      console.log("Momias: " + numeroMomias);
-
       if (numeroVidas > 0) {
         invocarPersonaje();
       }
@@ -708,5 +724,10 @@ function comprobarPuerta() {
         llaves[i].classList.remove(classDescubierto);
     }
   }
+}
 
+function recargar() {
+  numeroMomias++;
+  vectorMomias = new Array();
+  crearMapa(fila, col);
 }

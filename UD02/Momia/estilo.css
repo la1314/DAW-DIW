@@ -1,102 +1,242 @@
 body {
-    margin: 0px;
-    width: 100%;
-    height: 100%;
+  margin: 0px;
+  width: 100%;
+  height: 100%;
+  background-image: url(img/bg.gif);
+}
+
+#centrado {
+  display: grid;
+  justify-items: center;
 }
 
 #_contenedor {
-    display: grid;
-    grid-template-columns: repeat(23, auto);
-    grid-template-rows: repeat(16, 45px);
-    width: 90%;
-    margin-top: 20px;
-    margin-left: auto;
-    margin-right: auto;
+  display: grid;
+  grid-template-columns: repeat(23, 45px);
+  grid-template-rows: repeat(16, 45px);
+  height: 90%;
+  margin-top: 40px;
+}
+
+#_contenedor div {
+  align-items: center;
 }
 
 .pasillo, .vacio, .borde, .puerta, .rectangulo, .oculto, .llave, .pergamino, .sarcofago, .urna, .personaje, .sueloPisado, .momia, .mamadisimo {
-    background-repeat: no-repeat;
-    text-align: center;
-    background-size: cover;
+  background-repeat: no-repeat;
+  text-align: center;
+  background-size: cover;
 }
 
 .pasillo, .sueloPisado {
-    display: grid;
+  display: grid;
 }
 
 .pasillo {
-    justify-self: stretch;
-    background-image: url(img/pasillo.png);
-    z-index: -1;
+  justify-self: stretch;
+  background-image: url(img/pasillo.png);
+  z-index: -1;
 }
 
 .sueloPisado {
-    background-image: url(img/pisado.png);
-    height: 100%;
-    width: 100%;
-    z-index: -1;
+  background-image: url(img/pisado.png);
+  height: 100%;
+  width: 100%;
+  z-index: -1;
 }
 
 .borde {
-    background-image: url(img/borde.png);
+  background-image: url(img/borde.png);
 }
 
 .rectangulo {
-    background-image: url(img/caja.png);
+  background-image: url(img/caja.png);
 }
 
 .oculto {
-    background-image: url(img/caja.png) !important;
-    z-index: 30;
-    }
+  background-image: url(img/caja.png) !important;
+  z-index: 30;
+}
 
 .vacio {
-    background-image: url(img/vacio.png);
-    z-index: -1;
+  background-image: url(img/vacio.png);
+  z-index: -1;
 }
 
 .llave {
-    background-image: url(img/llave.png);
+  background-image: url(img/llave.png);
 }
 
 .sarcofago {
-    background-image: url(img/sarcofago.png);
+  background-image: url(img/sarcofago.png);
 }
 
 .pergamino {
-    background-image: url(img/pergamino.png);
+  background-image: url(img/pergamino.png);
 }
 
 .urna {
-    background-image: url(img/urna.png);
+  background-image: url(img/urna.png);
 }
 
 .puerta {
-    background-image: url(img/inicio.png) !important;
-    z-index: 29;
+  background-image: url(img/inicio.png) !important;
+  z-index: 29;
 }
 
 .personaje {
-    background-image: url(img/personaje.png);
-    z-index: 30;
-    height: 100%;
-    width: 100%;
-    margin: 0;
+  background-image: url(img/personaje.gif);
+  z-index: 30;
+  height: 100%;
+  width: 100%;
+  margin: 0;
 }
 
 .momia {
-    place-self: center;
-    background-image: url(img/momia_Beta.png);
-    height: 50%;
-    width: 50%;
-    z-index: 30;
+  background-image: url(img/momia.png) !important;
+  height: 100%;
+  width: 100%;
+  z-index: 30;
 }
 
 .mamadisimo {
+  background-image: url(img/mamadisimo.png) !important;
+  z-index: 31;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  -webkit-animation: mamadisimo 0.8s linear infinite both;
+  animation: mamadisimo 0.8s linear infinite both;
+}
 
-    background-image: url(img/mamadisimo.png) !important;
-    z-index: 31;
-    height: 100%;
-    width: 100%;
-    margin: 0;
+.vidas {
+  background-image: url(img/vida.gif);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+}
+
+.momias, .puntuacion, .momiasContador, .puntuacionContador, .vidasContador {
+  background-color: black;
+  color: white;
+  display: inline-grid;
+  justify-items: center;
+  align-items: center;
+  -webkit-box-shadow: inset 0px 0px 19px 0px rgba(224, 107, 113, 1);
+  -moz-box-shadow: inset 0px 0px 19px 0px rgba(224, 107, 113, 1);
+  box-shadow: inset 0px 0px 19px 0px rgba(224, 107, 113, 1);
+}
+
+.gameover {
+  background-image: url(img/gameover.png) !important;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 100%;
+  width: 100%;
+  -webkit-animation: gameover 0.6s 2 both;
+  animation: gameover 0.6s 2 both;
+}
+
+@-webkit-keyframes mamadisimo {
+  0% {
+    -webkit-transform: translate(0);
+    transform: translate(0);
+  }
+
+  20% {
+    -webkit-transform: translate(-2px, 2px);
+    transform: translate(-2px, 2px);
+  }
+
+  40% {
+    -webkit-transform: translate(-2px, -2px);
+    transform: translate(-2px, -2px);
+  }
+
+  60% {
+    -webkit-transform: translate(2px, 2px);
+    transform: translate(2px, 2px);
+  }
+
+  80% {
+    -webkit-transform: translate(2px, -2px);
+    transform: translate(2px, -2px);
+  }
+
+  100% {
+    -webkit-transform: translate(0);
+    transform: translate(0);
+  }
+}
+
+@keyframes mamadisimo {
+  0% {
+    -webkit-transform: translate(0);
+    transform: translate(0);
+  }
+
+  20% {
+    -webkit-transform: translate(-2px, 2px);
+    transform: translate(-2px, 2px);
+  }
+
+  40% {
+    -webkit-transform: translate(-2px, -2px);
+    transform: translate(-2px, -2px);
+  }
+
+  60% {
+    -webkit-transform: translate(2px, 2px);
+    transform: translate(2px, 2px);
+  }
+
+  80% {
+    -webkit-transform: translate(2px, -2px);
+    transform: translate(2px, -2px);
+  }
+
+  100% {
+    -webkit-transform: translate(0);
+    transform: translate(0);
+  }
+}
+
+/* ----------------------------------------------
+ * Generated by Animista on 2019-10-27 22:44:59
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info.
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+/**
+ * ----------------------------------------
+ * animation gameover
+ * ----------------------------------------
+ */
+@-webkit-keyframes gameover {
+
+  0%,
+  50%,
+  100% {
+    opacity: 1;
+  }
+
+  25%,
+  75% {
+    opacity: 0;
+  }
+}
+
+@keyframes gameover {
+
+  0%,
+  50%,
+  100% {
+    opacity: 1;
+  }
+
+  25%,
+  75% {
+    opacity: 0;
+  }
 }

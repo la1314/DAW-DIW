@@ -10,23 +10,24 @@ let classUrna = "urna";
 let classLlave = "llave";
 let classSarcofago = "sarcofago";
 let classPergamino = "pergamino";
-let classMamadisimo = "mamadisimo"
+let classMamadisimo = "mamadisimo";
 let vectorPosicionMomia = new Array();
 let vectorObjetos = new Array();
 let vectorMomias = new Array();
-var numeroMomias = 2;
+var numeroMomias = 1;
 var numeroVidas = 4;
 var fila = 16;
 var col = 23;
+var puntuacion = 0;
+
 window.onload = function() {
 
   /*Se requieren de 16 filas y 23 columnas
    */
   crearMapa(fila, col);
-  //Añadiendo una momia en una posicion aleatoria de los pasillos
-  //this.setInterval('funcion()', 1000)
 
-  this.setInterval('iaMomia()', 400);
+  //this.setInterval('funcion()', 1000)
+  this.setInterval('iaMomia()', 700);
 
   document.addEventListener("keydown", devolverValorKey, false);
 
@@ -41,7 +42,6 @@ window.onload = function() {
     } else if (keyCode == "ArrowDown") {
 
       moverse(2);
-
 
     } else if (keyCode == "ArrowLeft") {
 
@@ -59,7 +59,7 @@ function crearMapa(fila, col) {
 
   let contenedor = document.getElementById("_contenedor");
 
-  while(contenedor.firstChild) {
+  while (contenedor.firstChild) {
 
     contenedor.removeChild(contenedor.firstChild)
 
@@ -81,13 +81,14 @@ function crearMapa(fila, col) {
     }
   }
 
+  agregarPaneles();
+
   vectorObjetos = agregarRectangulos(4, 5, vectorObjetos);
   generarObjetos(vectorObjetos);
 
   for (var i = 0; i < numeroMomias; i++) {
     agregarMomia();
   }
-
 
 }
 
@@ -260,13 +261,13 @@ function retirarOculto(fil, col, claseRetirar, claseDescubierta) {
   document.getElementById(norEste).classList.add(claseDescubierta);
   document.getElementById(derecha).classList.add(claseDescubierta);
 
-  //TODO implementar aquí mediante includes las funcionabilidades de las clases específicas
-
+  puntuacion+=10;
   //Cuando se descubre pergamino llama a las funciones necesarias para poner mamadisimo al personaje
   if (document.getElementById(centro).className.includes(classPergamino)) {
     let id = document.getElementsByClassName(classPersonaje)[0].id;
     let personaje = document.getElementById(id);
     comprobarPergamino(personaje);
+    puntuacion+=10;
   }
 
   //Cuando se descubre el sarcofago se libera una nueva momia
@@ -274,6 +275,8 @@ function retirarOculto(fil, col, claseRetirar, claseDescubierta) {
     comprobarSarcofago();
   }
 
+  comprobarPuerta();
+  actualizarPuntuacion();
 }
 
 function descubrirObjeto(posicion) {
@@ -383,9 +386,7 @@ function intercambiarClases(idPj, idDestino) {
   comprobrarMatarMomia(idDestino);
   // Comprueba si el personaje se encuentra en la misma posición que una momia
   comprobrarMatarPersonaje(idDestino);
-
-  // Comprueba si la puerta puede ser abierta
-  comprobarPuerta();
+  actualizarPuntuacion();
 
 }
 
@@ -441,10 +442,10 @@ function agregarMomia() {
 //Se mueve aleatoria mente pero falta implentar que busque otra dirección cuando encuentre un nuevo camino, o vea al personaje para seguirlo
 function iaMomia() {
 
-  if (document.getElementById("_contenedor").childNodes.length == (16*23)) {
-      for (let index = 0; index < vectorMomias.length; index++) {
-        comprobarMovimientoMomia(vectorMomias[index]);
-      }
+  if (document.getElementById("_contenedor").childNodes.length == (16 * 23)) {
+    for (let index = 0; index < vectorMomias.length; index++) {
+      comprobarMovimientoMomia(vectorMomias[index]);
+    }
   }
 
 };
@@ -618,6 +619,7 @@ function comprobarPergamino(personaje) {
       let idMamado = mamados[index].id;
       document.getElementById(idMamado).classList.remove(classMamadisimo);
     }
+
     personaje.classList.add(classMamadisimo);
   }
 }
@@ -663,7 +665,7 @@ function comprobrarMatarMomia(id) {
 
       personaje.classList.remove(classMamadisimo);
       numeroMomias--;
-
+      puntuacion+=30;
     }
   }
 }
@@ -694,6 +696,15 @@ function comprobrarMatarPersonaje(id) {
 
       if (numeroVidas > 0) {
         invocarPersonaje();
+      }else {
+
+        let contenedor = document.getElementById("_contenedor");
+        while (contenedor.firstChild) {
+          contenedor.removeChild(contenedor.firstChild)
+        }
+
+        document.getElementsByTagName('body')[0].classList.add("gameover");
+
       }
 
     }
@@ -720,14 +731,55 @@ function comprobarPuerta() {
     document.getElementById("1-11").classList.add(classPuerta);
 
     for (var i = 0; i < iteraciones; i++) {
-        urnas[i].classList.remove(classDescubierto);
-        llaves[i].classList.remove(classDescubierto);
+      urnas[i].classList.remove(classDescubierto);
+      llaves[i].classList.remove(classDescubierto);
     }
   }
 }
 
+//Cambia de nivel añadiendo una nueva momia
 function recargar() {
   numeroMomias++;
   vectorMomias = new Array();
   crearMapa(fila, col);
+}
+
+function agregarPaneles() {
+
+  let imgVida = document.getElementById("0-14");
+  let conVidas = document.getElementById("0-15");
+  let imgMomias = document.getElementById("0-17");
+  let conMomias = document.getElementById("0-18");
+  let imgPuntuacion = document.getElementById("0-20");
+  let conPuntuacion = document.getElementById("0-21");
+
+  imgVida.classList.remove(classBorde);
+  conVidas.classList.remove(classBorde);
+  imgMomias.classList.remove(classBorde);
+  conMomias.classList.remove(classBorde);
+  imgPuntuacion.classList.remove(classBorde);
+  conPuntuacion.classList.remove(classBorde);
+
+  imgVida.classList.add("vidas");
+  conVidas.classList.add("vidasContador");
+  imgMomias.classList.add("momias");
+  conMomias.classList.add("momiasContador");
+  imgPuntuacion.classList.add("puntuacion");
+  conPuntuacion.classList.add("puntuacionContador");
+  imgPuntuacion.innerText = "Ptos:"
+  imgMomias.innerText = "Mons:"
+  actualizarPuntuacion();
+
+}
+
+function actualizarPuntuacion(){
+
+  let conVidas = document.getElementById("0-15");
+  let conMomias = document.getElementById("0-18");
+  let conPuntuacion = document.getElementById("0-21");
+
+  conVidas.innerText = numeroVidas;
+  conMomias.innerText = numeroMomias;
+  conPuntuacion.innerText = puntuacion;
+
 }

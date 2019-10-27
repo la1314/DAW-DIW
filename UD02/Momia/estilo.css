@@ -72,8 +72,8 @@ body {
 }
 
 .puerta {
-    background-image: url(img/inicio.png);
-    z-index: -1;
+    background-image: url(img/inicio.png) !important;
+    z-index: 29;
 }
 
 .personaje {

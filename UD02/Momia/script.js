@@ -27,7 +27,7 @@ window.onload = function() {
   crearMapa(fila, col);
 
   //this.setInterval('funcion()', 1000)
-  this.setInterval('iaMomia()', 700);
+  this.setInterval('iaMomia()', 800);
 
   document.addEventListener("keydown", devolverValorKey, false);
 
@@ -489,9 +489,10 @@ function comprobarMovimientoMomia(objeto) {
 
     let indexRandom = Math.floor(Math.random() * vectorDirecciones.length);
 
-    //TODO Implementar seguir Personaje
+   
+    //Comprueba si en las direcciones posibles se encuentra el personaje
     let posibleDireccion = comprobarSeguirPersonaje(objeto, vectorDirecciones);
-    console.log(posibleDireccion);
+
 
     if (posibleDireccion != 0 ) {
       moverMomia(objeto, posibleDireccion);

@@ -815,6 +815,7 @@ function recargar() {
   crearMapa(fila, col);
 }
 
+//Agrega los paneles de en posiciones estáticas
 function agregarPaneles() {
 
   let imgVida = document.getElementById("0-14");
@@ -843,6 +844,7 @@ function agregarPaneles() {
 
 }
 
+//Función que actualizar los paneles con nueva información cada vez que es llamada
 function actualizarPuntuacion(){
 
   let conVidas = document.getElementById("0-15");

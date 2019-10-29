@@ -467,28 +467,98 @@ function comprobarMovimientoMomia(objeto) {
 
   if (objeto.direccion == 0) {
 
-    if (arribaM.className == classPasillo || arribaM.className == classPisado) {
+    if (arribaM.className == classPasillo || arribaM.className == classPisado || arribaM.className == classPersonaje ) {
+      
       vectorDirecciones.push(arribaM.id);
     }
 
-    if (abajoM.className == classPasillo || abajoM.className == classPisado) {
+    if (abajoM.className == classPasillo || abajoM.className == classPisado || abajoM.className == classPersonaje ) {
+     
       vectorDirecciones.push(abajoM.id);
     }
 
-    if (izquierdaM.className == classPasillo || izquierdaM.className == classPisado) {
+    if (izquierdaM.className == classPasillo || izquierdaM.className == classPisado || izquierdaM.className == classPersonaje ) {
+      
       vectorDirecciones.push(izquierdaM.id);
     }
 
-    if (derechaM.className == classPasillo || derechaM.className == classPisado) {
+    if (derechaM.className == classPasillo || derechaM.className == classPisado || derechaM.className == classPersonaje ) {
+      
       vectorDirecciones.push(derechaM.id);
     }
 
     let indexRandom = Math.floor(Math.random() * vectorDirecciones.length);
-    moverMomia(objeto, vectorDirecciones[indexRandom]);
+
+    //TODO Implementar seguir Personaje
+    let posibleDireccion = comprobarSeguirPersonaje(objeto, vectorDirecciones);
+    console.log(posibleDireccion);
+
+    if (posibleDireccion != 0 ) {
+      moverMomia(objeto, posibleDireccion);
+    }else{
+      moverMomia(objeto, vectorDirecciones[indexRandom]);
+    } 
 
   } else {
     continuarMovimiento(objeto);
   }
+}
+
+//Sigue la direcciónes comprobando si hay un personaje en alguna de las posibles direcciones
+/*
+    Arriba: 1
+    Abajo: 2
+    Izquierda: 3
+    Derecha: 4
+*/
+function comprobarSeguirPersonaje(posicionInicial, direcciones){
+
+  let personajeDireccion = 0;
+
+  for (let index = 0; index < direcciones.length; index++) {
+    
+    let continuar = true;
+    let filaAux = parseInt(direcciones[index].split("-")[0]);
+    let colAux = parseInt(direcciones[index].split("-")[1]);
+    let divComprobar = document.getElementById(direcciones[index]);
+    let direccion = obtenerDireccion(posicionInicial, divComprobar);
+
+    do {
+      
+      let id = filaAux +"-"+ colAux;
+      let div = document.getElementById(id).className;
+
+      if (div == classPasillo || div == classPisado || div == classPersonaje) {
+
+        if (div == classPersonaje) {
+
+          personajeDireccion = direcciones[index];
+          continuar = false;
+
+        } else {
+
+          if (direccion == 1) {
+            filaAux--;
+          } else if (direccion == 2) {
+            filaAux++;
+          } else if (direccion == 3) {
+            colAux--;
+          } else if (direccion == 4) {
+            colAux++;
+          }
+        }
+      }else{
+
+        continuar = false;
+       
+      }
+
+    } while (continuar);
+
+  }
+
+  return personajeDireccion;
+  
 }
 
 /*Mediante la comparación de la filas y columnas de dos posiciónes devolvera a que dirección se dirigira la momia

@@ -25,6 +25,7 @@ body {
     
     display: flex;
     flex-direction: column;
+    transition: 0.07s
 
 }
 
@@ -38,4 +39,10 @@ kbd {
     text-align: center;
     color: yellow;
     font-size: 40px;
+}
+
+.expansion {
+    border-color: pink;
+    transform: scale(1.1);
+    box-shadow: 3px 5px greenyellow;
 }

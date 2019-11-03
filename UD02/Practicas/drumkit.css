@@ -1,6 +1,6 @@
 body {
 
-    background: url(tarea09/Annie.jpg) no-repeat; 
+    background: url(tarea09/Annie.jpg) no-repeat;
     background-size: cover;
 
 }
@@ -12,20 +12,18 @@ body {
     grid-template-columns: repeat(4, 200px);
     grid-column-gap: 25px;
     justify-content: center;
-    align-content: center;	
+    align-content: center;
 }
 
 .key {
 
-    background-color: #bcebf3b0;
-
-    -webkit-box-shadow: 0px 0px 0px 7px rgba(218, 215, 209, 0.75);
-    -moz-box-shadow: 0px 0px 0px 7px rgba(0,0,0,0.75);
-    box-shadow: 0px 0px 0px 7px rgba(0,0,0,0.75);
-    
+    background-color: rgba(45, 91, 133, 0.75);
+    -webkit-box-shadow: 0px 0px 0px 7px rgba(35, 45, 111, 0.90);
+    -moz-box-shadow: 0px 0px 0px 7px rgba(35, 45, 111, 0.90);
+    box-shadow: 0px 0px 0px 7px rgba(35, 45, 111, 0.90);
     display: flex;
     flex-direction: column;
-    transition: 0.07s
+    transition: 0.07s;
 
 }
 
@@ -42,7 +40,10 @@ kbd {
 }
 
 .expansion {
-    border-color: pink;
+
+    border-color: rgba(13, 20, 68, 0.93);
     transform: scale(1.1);
-    box-shadow: 3px 5px greenyellow;
+    -webkit-box-shadow: 0px 0px 0px 7px rgba(13, 20, 68, 0.93);
+    -moz-box-shadow: 0px 0px 0px 7px rgba(13, 20, 68, 0.93);
+    box-shadow: 0px 0px 0px 7px rgba(13, 20, 68, 0.93);
 }

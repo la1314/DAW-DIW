@@ -1,0 +1,39 @@
+body{
+    margin: 0%;
+}
+
+.caja {
+
+    background-image: url(cthulhu.svg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height: 80px;
+    width: 80px;
+    transition: 2s;
+  
+} 
+
+.linear {
+    transition: margin-left 2s linear;
+}
+
+.ease-in {
+    transition: margin-left 2s ease-in;
+}
+
+.ease-out {
+    transition: margin-left 2s ease-in-out;
+}
+
+.ease {
+    transition: margin-left 2s ease;
+}
+
+.ease-in-out {
+    transition: margin-left 2s ease-in-out;
+}
+
+.transicion {
+    margin-left: 92%;
+    
+}

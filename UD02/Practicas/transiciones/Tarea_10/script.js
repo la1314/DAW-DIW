@@ -6,34 +6,22 @@ classes.push('ease');
 classes.push('ease-in-out');
 
 
-window.onload = function() {
+function init() {
 
-    let boton = document.querySelector('button');
-    limparEventos();
-    boton.addEventListener('click', lanzarEvento);
-
-}
-
-function lanzarEvento(){
-
-    cajas = document.getElementsByClassName('caja');
-    
-    for (let index = 0; index < cajas.length; index++) {
-        
-        cajas[index].classList.toggle(classes[index]);
-        cajas[index].classList.toggle("transicion");
-    }
+  let boton = document.querySelector('button');
+  boton.addEventListener('click', lanzarEvento);
 
 }
 
-function limparEventos(){
+function lanzarEvento() {
 
-    cajas = document.getElementsByClassName('caja');
-    
-    for (let index = 0; index < cajas.length; index++) {
-        
-        cajas[index].classList.toggle(classes[index]);
-        
-    }
+  cajas = document.getElementsByClassName('caja');
+
+  for (let index = 0; index < cajas.length; index++) {
+
+    cajas[index].classList.toggle("transicion");
+  }
 
 }
+
+window.onload = init;

@@ -9,9 +9,8 @@ body{
     background-size: 100%;
     height: 80px;
     width: 80px;
-    transition: 2s;
-  
-} 
+
+}
 
 .linear {
     transition: margin-left 2s linear;
@@ -35,5 +34,5 @@ body{
 
 .transicion {
     margin-left: 92%;
-    
+
 }

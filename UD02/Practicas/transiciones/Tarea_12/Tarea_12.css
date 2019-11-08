@@ -18,7 +18,7 @@ button{
 }
 
 
-box{
+box {
     background-color: #1e0;
     border:3px solid #AABBAA;
     /* 
@@ -26,6 +26,9 @@ box{
     ^(;,;)^ : Fragmento perdido
 
    */
+    height: 80px;
+    width: 80px;
+
     border-radius: 10px;
 }
 

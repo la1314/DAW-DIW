@@ -1,0 +1,91 @@
+:root {
+    --tamanyo-cajas: 100px;
+}
+
+body {
+  background-color: grey;
+  padding: 3rem;
+}
+
+container {
+  margin: 1rem;
+  display: grid;
+  grid-template-columns: repeat(5, 100px);
+  grid-column-gap: 25px;
+  grid-row-gap: 25px;
+}
+
+button {
+  border: 3px solid darkgrey;
+  height: var(--tamanyo-cajas);
+  width: var(--tamanyo-cajas);
+}
+
+box {
+  background-color: #1e0;
+  border: 3px solid #AABBAA;
+  height: var(--tamanyo-cajas);
+  width: var(--tamanyo-cajas);
+  border-radius: 10px;
+  z-index: 1;
+  transition: transform 0.8s ease-in-out;
+}
+
+/* Se lanza cuando la caja es pulsada */
+.evoluciona {
+
+  background-color: #e10;
+  transform: translateX(125px);
+  z-index: 30;
+
+}
+
+
+/* Se lanza para volver a la caja a su posicion inicial */
+.desevoluciona {
+
+  background-color: #10e;
+  transform: translateX(0px);
+  z-index: 1;
+
+}
+
+.ultimate {
+
+  background-color: #441155;
+  background-image: url('cthulhu.svg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  z-index: 1;
+
+}
+
+.ultimate:hover {
+  transform: scale(1.2);
+}
+
+header {
+  display: grid;
+  grid-template-columns: repeat(3, var(--tamanyo-cajas));
+  grid-column-gap: 25px;
+}
+
+#_giroO {
+
+  background-image: url('O.png');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  height: var(--tamanyo-cajas);
+  width: var(--tamanyo-cajas);
+
+}
+
+#_recorridoV {
+
+  background-image: url('V.png');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  height: var(--tamanyo-cajas);
+  width: var(--tamanyo-cajas);
+
+}

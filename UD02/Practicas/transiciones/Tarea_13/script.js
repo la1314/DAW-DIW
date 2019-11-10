@@ -18,7 +18,7 @@ function eventoBoton() {
 
 //Al contenedor añade una caja la cual tiene un listener que llamará a la función evoluciona cuando esta sea clickada
 function crearCaja() {
-  
+
   quitarOrden();
   let contendor = document.querySelector('container');
   let caja = document.createElement('box');
@@ -102,7 +102,7 @@ function recorrer() {
   quitarOrden();
 }
 
-//
+//Elimina la orden actual de girar o recorrerV
 function quitarOrden() {
 
   let cajas = document.querySelectorAll('box');

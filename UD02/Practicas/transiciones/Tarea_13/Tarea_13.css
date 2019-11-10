@@ -60,7 +60,7 @@ box {
 header {
   margin-left: 16px;
   display: grid;
-  grid-template-columns: repeat(3, var(--tamanyo-cajas));
+  grid-template-columns: repeat(4, var(--tamanyo-cajas));
   grid-column-gap: 25px;
 }
 
@@ -117,4 +117,12 @@ header {
   100% {
     transform: translateY(0) translateX(0);
   }
+}
+
+#_quitarOrden {
+  background-image: url('quitarOrden.png');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  height: var(--tamanyo-cajas);
+  width: var(--tamanyo-cajas);
 }

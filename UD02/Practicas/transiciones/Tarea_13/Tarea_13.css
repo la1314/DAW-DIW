@@ -1,5 +1,5 @@
 :root {
-    --tamanyo-cajas: 100px;
+  --tamanyo-cajas: 100px;
 }
 
 body {
@@ -33,31 +33,24 @@ box {
 
 /* Se lanza cuando la caja es pulsada */
 .evoluciona {
-
   background-color: #e10;
   transform: translateX(125px);
   z-index: 30;
-
 }
-
 
 /* Se lanza para volver a la caja a su posicion inicial */
 .desevoluciona {
-
   background-color: #10e;
   transform: translateX(0px);
   z-index: 1;
-
 }
 
 .ultimate {
-
   background-color: #441155;
   background-image: url('cthulhu.svg');
   background-repeat: no-repeat;
   background-size: 100%;
   z-index: 1;
-
 }
 
 .ultimate:hover {
@@ -72,29 +65,56 @@ header {
 }
 
 #_giroO {
-
   background-image: url('O.png');
   background-size: 100%;
   background-repeat: no-repeat;
   height: var(--tamanyo-cajas);
   width: var(--tamanyo-cajas);
-
 }
 
 #_recorridoV {
-
   background-image: url('V.png');
   background-size: 100%;
   background-repeat: no-repeat;
   height: var(--tamanyo-cajas);
   width: var(--tamanyo-cajas);
-
 }
 
 .girar {
-  background-color: pink;
+  animation: girar 5s linear infinite both;
+}
+
+@-webkit-keyframes girar {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .recorrerV {
-  background-color: gray;
+  animation: recorrerV 5s cubic-bezier(0.250, 0.460, 0.450, 0.940) infinite both;
+}
+
+@keyframes recorrerV {
+  0% {
+    transform: translateY(0) translateX(0);
+  }
+
+  25% {
+    transform: translateY(-20px) translateX(20px);
+  }
+
+  50% {
+    transform: translateY(0) translateX(0);
+  }
+
+  75% {
+    transform: translateY(-20px) translateX(-20px);
+  }
+  100% {
+    transform: translateY(0) translateX(0);
+  }
 }

@@ -78,6 +78,7 @@ function ordenGirar() {
   cajas.forEach(element => element.addEventListener('click', revocarOrden));
 }
 
+//Añade la clase girar y elimina la clase recorrerV si el elemento actual la posee
 function girar() {
 
   if (this.className.includes('recorrerV')) {
@@ -97,6 +98,7 @@ function ordenRecorrer() {
 
 }
 
+//Añade la clase recorrerV y elimina la clase girar si el elemento actual la posee
 function recorrer() {
   if (this.className.includes('girar')) {
     this.classList.remove('girar');
@@ -129,6 +131,7 @@ function quitarOrden(){
 
 }
 
+//Quita las clases girar y recorrerV del elemento actual
 function quitarClase(){
 
   this.classList.remove('girar');

@@ -14,12 +14,15 @@ function eventoBoton() {
   let divRecorrer = document.getElementById('_recorridoV');
   divRecorrer.addEventListener('click', ordenRecorrer);
 
+  let divQuitarOrden = document.getElementById('_quitarOrden');
+  divQuitarOrden.addEventListener('click', quitarOrden);
+
 }
 
 //Al contenedor añade una caja la cual tiene un listener que llamará a la función evoluciona cuando esta sea clickada
 function crearCaja() {
 
-  quitarOrden();
+  revocarOrden();
   let contendor = document.querySelector('container');
   let caja = document.createElement('box');
   caja.addEventListener('click', evolucionar);
@@ -66,13 +69,13 @@ function apareceCthu() {
 // y añade al resto de cajas el quitar el listener de girar si estás son clickadas
 function ordenGirar() {
 
-  quitarOrden();
+  revocarOrden();
 
   const seres = document.querySelectorAll('.ultimate');
   seres.forEach(element => element.addEventListener('click', girar));
 
   let cajas = document.querySelectorAll('box:not(.ultimate)');
-  cajas.forEach(element => element.addEventListener('click', quitarOrden));
+  cajas.forEach(element => element.addEventListener('click', revocarOrden));
 }
 
 function girar() {
@@ -81,13 +84,13 @@ function girar() {
     this.classList.remove('recorrerV');
   }
   this.classList.add('girar');
-  quitarOrden();
+  revocarOrden();
 }
 
 //Funcion que añade un listener a los seres de Sedefkar que los hará recorrer en V si con clickados
 // y añade al resto de cajas el quitar el listener de recorrer en V si estás son clickadas
 function ordenRecorrer() {
-  quitarOrden();
+  revocarOrden();
 
   const seres = document.querySelectorAll('.ultimate');
   seres.forEach(element => element.addEventListener('click', recorrer));
@@ -99,18 +102,38 @@ function recorrer() {
     this.classList.remove('girar');
   }
   this.classList.add('recorrerV');
-  quitarOrden();
+  revocarOrden();
 }
 
-//Elimina la orden actual de girar o recorrerV
-function quitarOrden() {
+//Revoca la orden actual de girar o recorrerV
+function revocarOrden() {
 
   let cajas = document.querySelectorAll('box');
-  cajas.forEach(element => element.removeEventListener('click', quitarOrden, false));
+  cajas.forEach(element => element.removeEventListener('click', revocarOrden, false));
 
   const seres = document.querySelectorAll('.ultimate');
   seres.forEach(element => element.removeEventListener('click', girar, false));
   seres.forEach(element => element.removeEventListener('click', recorrer, false));
+  seres.forEach(element => element.removeEventListener('click', quitarClase, false));
+
+}
+
+//Quita la orden actual volviendo al ser de Sedefkar a su estado inicial
+
+function quitarOrden(){
+
+  const seres = document.querySelectorAll('.ultimate');
+  seres.forEach(element => element.addEventListener('click', quitarClase));
+  let cajas = document.querySelectorAll('box:not(.ultimate)');
+  cajas.forEach(element => element.addEventListener('click', revocarOrden));
+
+}
+
+function quitarClase(){
+
+  this.classList.remove('girar');
+  this.classList.remove('recorrerV');
+  revocarOrden();
 
 }
 

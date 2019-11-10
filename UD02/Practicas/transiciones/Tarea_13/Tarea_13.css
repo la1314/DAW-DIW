@@ -10,7 +10,7 @@ body {
 container {
   margin: 1rem;
   display: grid;
-  grid-template-columns: repeat(5, 100px);
+  grid-template-columns: repeat(5, var(--tamanyo-cajas));
   grid-column-gap: 25px;
   grid-row-gap: 25px;
 }
@@ -28,7 +28,7 @@ box {
   width: var(--tamanyo-cajas);
   border-radius: 10px;
   z-index: 1;
-  transition: transform 0.8s ease-in-out;
+  transition: transform 0.5s ease-in-out;
 }
 
 /* Se lanza cuando la caja es pulsada */
@@ -65,6 +65,7 @@ box {
 }
 
 header {
+  margin-left: 16px;
   display: grid;
   grid-template-columns: repeat(3, var(--tamanyo-cajas));
   grid-column-gap: 25px;
@@ -88,4 +89,12 @@ header {
   height: var(--tamanyo-cajas);
   width: var(--tamanyo-cajas);
 
+}
+
+.girar {
+  background-color: pink;
+}
+
+.recorrerV {
+  background-color: gray;
 }

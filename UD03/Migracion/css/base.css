@@ -32,10 +32,22 @@ body{
 */
 
 content {
+
+    /*
+    *   Borde redondeado
+    */
     border-radius: 15px 15px 15px 15px;
     border: 0px solid #000000;
+    
+    /*
+    *   Tamaño del div
+    */
     height: 95%;
     width: 80%;
+
+    /*
+    *   Añadido color transparente
+    */
     background-color: rgba(180, 190, 192, 0.86);
 
 }
@@ -52,12 +64,16 @@ items{
     
 }
 
-item{
+item {
     /* 
      * Fragmentos perdidos 
      * ^(;,;)^
      */
+     display: grid;
+     text-align: center;
 }
+
+
 
 /*
 * CSS for body
@@ -65,6 +81,8 @@ item{
 
 button{
     
+    align-self: center;
+
     /* 
      * Fragmentos perdidos 
      * ^(;,;)^
@@ -98,6 +116,11 @@ button:active {
 
 steps{
     
+    /*
+    *   Añadido grid de 3 columnas y filas automáticas
+    *   con separación entre la fila
+    */
+
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: auto;
@@ -115,6 +138,9 @@ steps{
 * with a transition.
 */
 steps * {
+
+
+    text-align: left;
     /* 
      * Fragmentos perdidos 
      * ^(;,;)^

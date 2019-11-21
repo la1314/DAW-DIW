@@ -3,28 +3,28 @@ CSS Base for the Miskatonic Herald
 */
 
 @font-face {
-  font-family: neon;
-  src: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/707108/neon.ttf);
+    font-family: neon;
+    src: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/707108/neon.ttf);
 }
 
 /*
 * CSS for body
 */
 
-body{
+body {
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    height:100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
 
     /*background-color:#323232;*/
-    background-image:url("https://picsum.photos/1600/900");
+    background-image: url("https://picsum.photos/1600/900");
     font-family: 'OuroborosRegular';
     font-weight: normal;
     font-style: normal;
     margin: 0;
-    color:#ffffff;
+    color: #ffffff;
 }
 
 
@@ -73,13 +73,14 @@ item {
      * Fragmentos perdidos
      * ^(;,;)^
      */
-     display: grid;
-     text-align: center;
+    display: grid;
+    justify-content: center;
+    text-align: center;
 }
 
 item h1 {
 
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 
@@ -87,9 +88,9 @@ item h1 {
 * CSS for body
 */
 
-button{
+button {
 
-    justify-self: center;
+
     height: 60px;
     width: 450px;
     font-size: 30px;
@@ -98,7 +99,7 @@ button{
     border-radius: 15px 15px 15px 15px;
     border: 2px solid white;
     font-family: 'OuroborosRegular';
- 
+
     /*
      * Fragmentos perdidos
      * ^(;,;)^
@@ -130,7 +131,7 @@ button:active {
 *   GUI.
 */
 
-steps{
+steps {
 
     /*
     *   Añadido grid de 3 columnas y filas automáticas
@@ -164,7 +165,7 @@ steps * {
      */
 }
 
-.estabaEscondido{
+.estabaEscondido {
 
     /*
      * Fragmentos perdidos
@@ -177,34 +178,44 @@ steps * {
 /*
 * CSS for ProgressBars
 */
-progress{
+progress {
 
     justify-self: center;
     width: 90%;
     height: 100%;
-
-    border-radius: 5px 5px 5px 5px;
-    border: 2px solid white;
+   
     /*
      * Fragmentos perdidos
      * ^(;,;)^
      */
 }
 
+progress::-webkit-progress-value {
+    transition : width 5s ease;
+}
 
-
-finalmsg{
+finalmsg {
 
     /*
      * Fragmentos perdidos
      * ^(;,;)^
      */
+    color: #E23A3A;
+    text-shadow: 0px 0px 21px rgba(168, 62, 168, 1);
+    animation: neon 4s ease-in-out infinite both;
+
 }
 
 @keyframes neon {
 
-    /*
-     * Fragmentos perdidos
-     * ^(;,;)^
-     */
+    0%,
+    50%,
+    100% {
+        opacity: 1;
+    }
+
+    25%,
+    75% {
+        opacity: 0;
+    }
 }

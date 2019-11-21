@@ -15,7 +15,11 @@ FUNCIONES PERDIDAS
 */
 
 function startMigration(){
-
+    
+    let spanes = document.querySelectorAll('progress');
+    spanes.forEach(element => element.value = index);
+    
+    
     // Fragmentos perdidos
     // ^(;,;)^
 }

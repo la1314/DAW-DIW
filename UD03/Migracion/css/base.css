@@ -16,7 +16,7 @@ body{
     align-items:center;
     justify-content:center;
     height:100vh;
-    
+
     /*background-color:#323232;*/
     background-image:url("https://picsum.photos/1600/900");
     font-family: 'OuroborosRegular';
@@ -38,7 +38,7 @@ content {
     */
     border-radius: 15px 15px 15px 15px;
     border: 0px solid #000000;
-    
+
     /*
     *   Tamaño del div
     */
@@ -49,30 +49,32 @@ content {
     *   Añadido color transparente
     */
     background-color: rgba(180, 190, 192, 0.86);
-
 }
 
-items{
+items {
 
-   
-    
-
-    /* 
-     * Fragmentos perdidos 
+    display: grid;
+    grid-template-rows: auto;
+    row-gap: 10px;
+    /*
+     * Fragmentos perdidos
      * ^(;,;)^
      */
-    
 }
 
 item {
-    /* 
-     * Fragmentos perdidos 
+    /*
+     * Fragmentos perdidos
      * ^(;,;)^
      */
      display: grid;
      text-align: center;
 }
 
+item h1 {
+
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
 
 
 /*
@@ -80,27 +82,34 @@ item {
 */
 
 button{
-    
-    align-self: center;
 
-    /* 
-     * Fragmentos perdidos 
+    justify-self: center;
+    height: 60px;
+    width: 450px;
+    font-size: 30px;
+    color: white;
+    background-color: #A87FB2;
+    border-radius: 15px 15px 15px 15px;
+    border: 2px solid white;
+
+    /*
+     * Fragmentos perdidos
      * ^(;,;)^
      */
 }
 
 button:hover {
-    
-    /* 
-     * Fragmentos perdidos 
+
+    /*
+     * Fragmentos perdidos
      * ^(;,;)^
      */
 }
 
 button:active {
-    
-    /* 
-     * Fragmentos perdidos 
+
+    /*
+     * Fragmentos perdidos
      * ^(;,;)^
      */
 }
@@ -108,25 +117,25 @@ button:active {
 
 /*
 * CSS for steps
-* - Includes the opacity for the 
+* - Includes the opacity for the
 *   animation that makes this more
 *   dinamyc, but is only a simple
 *   GUI.
 */
 
 steps{
-    
+
     /*
     *   Añadido grid de 3 columnas y filas automáticas
     *   con separación entre la fila
     */
 
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr 3.5fr 1fr;
     grid-template-rows: auto;
     row-gap: 50px;
-    /* 
-     * Fragmentos perdidos 
+    /*
+     * Fragmentos perdidos
      * ^(;,;)^
      */
 }
@@ -141,16 +150,16 @@ steps * {
 
 
     text-align: left;
-    /* 
-     * Fragmentos perdidos 
+    /*
+     * Fragmentos perdidos
      * ^(;,;)^
      */
 }
 
 .estabaEscondido{
-   
-    /* 
-     * Fragmentos perdidos 
+
+    /*
+     * Fragmentos perdidos
      * ^(;,;)^
      */
 }
@@ -162,8 +171,14 @@ steps * {
 */
 progress{
 
-    /* 
-     * Fragmentos perdidos 
+    justify-self: center;
+    width: 90%;
+    height: 100%;
+
+    border-radius: 5px 5px 5px 5px;
+    border: 2px solid white;
+    /*
+     * Fragmentos perdidos
      * ^(;,;)^
      */
 }
@@ -172,17 +187,16 @@ progress{
 
 finalmsg{
 
-    /* 
-     * Fragmentos perdidos 
+    /*
+     * Fragmentos perdidos
      * ^(;,;)^
      */
 }
 
 @keyframes neon {
- 
-    /* 
-     * Fragmentos perdidos 
+
+    /*
+     * Fragmentos perdidos
      * ^(;,;)^
      */
 }
-

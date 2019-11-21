@@ -12,6 +12,7 @@ CSS Base for the Miskatonic Herald
 */
 
 body{
+
     display:flex;
     align-items:center;
     justify-content:center;
@@ -43,19 +44,24 @@ content {
     *   Tamaño del div
     */
     height: 95%;
-    width: 80%;
+    width: 75%;
 
     /*
     *   Añadido color transparente
     */
     background-color: rgba(180, 190, 192, 0.86);
+
+    display: grid;
 }
 
 items {
 
     display: grid;
+    justify-self: center;
     grid-template-rows: auto;
     row-gap: 10px;
+    width: 95%;
+    height: 90%;
     /*
      * Fragmentos perdidos
      * ^(;,;)^
@@ -91,7 +97,8 @@ button{
     background-color: #A87FB2;
     border-radius: 15px 15px 15px 15px;
     border: 2px solid white;
-
+    font-family: 'OuroborosRegular';
+ 
     /*
      * Fragmentos perdidos
      * ^(;,;)^
@@ -150,6 +157,7 @@ steps * {
 
 
     text-align: left;
+
     /*
      * Fragmentos perdidos
      * ^(;,;)^

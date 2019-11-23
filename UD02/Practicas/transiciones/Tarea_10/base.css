@@ -21,7 +21,7 @@ body{
 }
 
 .ease-out {
-    transition: margin-left 2s ease-in-out;
+    transition: margin-left 2s ease-out;
 }
 
 .ease {
@@ -33,6 +33,7 @@ body{
 }
 
 .transicion {
+
     margin-left: 92%;
 
 }

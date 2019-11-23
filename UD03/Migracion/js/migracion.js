@@ -14,12 +14,32 @@ FUNCIONES PERDIDAS
 
 */
 
+function sumarProgreso() {
+
+
+
+  let anchura = parseInt(this.style.width);
+  if (anchura < 95) {
+    anchura += 5;
+    this.style.width = anchura + '%';
+
+    if (anchura >= 95) {
+      this.removeEventListener('transitionend', sumarProgreso);
+    }
+  }
+
+
+}
+
 function startMigration(){
-    
-    let spanes = document.querySelectorAll('progress');
-    spanes.forEach(element => element.value = index);
-    
-    
+
+    let progresos = document.querySelectorAll('progress');
+    progresos.forEach( function(element){
+      element.value = 100;
+      element.style.width = '10%'
+      element.addEventListener('transitionend', sumarProgreso)
+    });
+
     // Fragmentos perdidos
     // ^(;,;)^
 }

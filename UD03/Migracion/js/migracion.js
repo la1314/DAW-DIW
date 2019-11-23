@@ -16,7 +16,7 @@ function mostrarLabel() {
 
     datas[nlabels].classList.add('estabaEscondido');
     datas[nlabels].addEventListener('transitionend', mostrarProgreso);
-    nlabels++;
+
   }
 }
 
@@ -44,10 +44,11 @@ function sumarProgreso() {
     if (anchura >= 95) {
 
       let datas = document.querySelectorAll('steplabel');
-      datas[nlabels-1].removeEventListener('transitionend', mostrarProgreso);
+      datas[nlabels].removeEventListener('transitionend', mostrarProgreso);
       this.removeEventListener('transitionend', sumarProgreso);
       let finals = document.querySelectorAll('finalmsg');
       mostrarFinal(finals, nfinals);
+
       nfinals++;
 
     }
@@ -61,7 +62,7 @@ function mostrarFinal(final, posicion) {
 
   final[posicion].classList.add('estabaEscondido');
   final[posicion].classList.add('finalmsgAnimation');
-
+  nlabels++;
   mostrarLabel();
 }
 

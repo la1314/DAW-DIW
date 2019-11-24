@@ -1,0 +1,68 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>El Heraldo de Miskatonic</title>
+  <meta name="description" content="El Heraldo de Miskatonic">
+  <meta name="author" content="Angel Berlanas Vicente">
+
+
+  <!--TTF -->
+  <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/ouroboros" type="text/css" />
+
+  <style>
+    @import url("css/base_progreso.css");
+  </style>
+
+  <script src="js/migracion_progreso.js"></script>
+
+
+</head>
+
+<body>
+
+  <content>
+    <items>
+      <item>
+        <h1>Migracion del Heraldo de Miskatonic</h1>
+      </item>
+      <item>
+        <button>¡Hágase la Migración!</button>
+      </item>
+      <item>
+        <steps>
+
+          <steplabel data-step="1">Crear la nueva BD (PostgreSQL)</steplabel>
+          <distinto data-step="2"><div class="izquierda"></div><div class="derecha"></div></distinto>
+          <finalmsg data-step="3">¡Completado!</finalmsg>
+
+          <steplabel data-step="4">Crear nueva API</steplabel>
+          <distinto data-step="5"><div class="izquierda"></div><div class="derecha"></div></distinto>
+          <finalmsg data-step="6">¡Completado!</finalmsg>
+
+          <steplabel data-step="7">Establecer el Proxy</steplabel>
+          <distinto data-step="8"><div class="izquierda"></div><div class="derecha"></div></distinto>
+          <finalmsg data-step="9">¡Completado!</finalmsg>
+
+          <steplabel data-step="10">Migrar los datos (SQL)</steplabel>
+          <distinto data-step="11"><div class="izquierda"></div><div class="derecha"></div></distinto>
+          <finalmsg data-step="12">¡Completado!</finalmsg>
+
+          <steplabel data-step="13">Establecer la nueva BD como Main</steplabel>
+          <distinto data-step="14"><div class="izquierda"></div><div class="derecha"></div></distinto>
+          <finalmsg data-step="15">¡Completado!</finalmsg>
+
+          <steplabel data-step="16">Borrar los datos antiguos</steplabel>
+          <distinto data-step="17"><div class="izquierda"></div><div class="derecha"></div></distinto>
+          <finalmsg data-step="18">¡Completado!</finalmsg>
+
+        </steps>
+      </item>
+    </items>
+  </content>
+</body>
+
+</html>

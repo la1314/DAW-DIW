@@ -7,15 +7,15 @@ email : <berlanas_ang@gva.es>
 
 */
 
-//Muerta el label actual y añade un listener a la barra de progreso siguiente
+//Muerta el elemento actual y añade un listener a la barra de progreso que le precede
 function mostrarLabel() {
 
-  let datas = document.querySelectorAll('steplabel');
+  let datas = document.querySelectorAll('*[data-step]');
 
-  if (nlabels < datas.length) {
+  if (elementoActual < dataSteps) {
 
-    datas[nlabels].classList.add('estabaEscondido');
-    datas[nlabels].addEventListener('transitionend', mostrarProgreso);
+    datas[elementoActual].classList.add('estabaEscondido');
+    datas[elementoActual].addEventListener('transitionend', mostrarProgreso);
 
   }
 }
@@ -23,17 +23,17 @@ function mostrarLabel() {
 //Muestra la barra de progreso actual y le añade un listener de transitionend
 function mostrarProgreso() {
 
-  let progresos = document.querySelectorAll('progress');
-  progresos[nprogresos].classList.add('estabaEscondido');
-  progresos[nprogresos].value = 100;
-  progresos[nprogresos].style.width = "5%";
-  progresos[nprogresos].addEventListener('transitionend', sumarProgreso)
-  nprogresos++;
+  elementoActual++;
+  let datas = document.querySelectorAll('*[data-step]');
+  datas[elementoActual].classList.add('estabaEscondido');
+  datas[elementoActual].value = 100;
+  datas[elementoActual].style.width = "5%";
+  datas[elementoActual].addEventListener('transitionend', sumarProgreso)
 
 }
 
 //Aumenta de 5 en 5 el tramaño de la anchura del proceso hasta llegar a 95%,
-// entonces remueve el listener del Label y de la barrara de proceso y entonces llama al la función de mostrar mensaje finals
+// entonces remueve el listener del elemento y de la barrara de proceso y entonces llama al la función de mostrar mensaje finals
 function sumarProgreso() {
 
   let anchura = parseInt(this.style.width);
@@ -43,36 +43,38 @@ function sumarProgreso() {
 
     if (anchura >= 95) {
 
-      let datas = document.querySelectorAll('steplabel');
-      datas[nlabels].removeEventListener('transitionend', mostrarProgreso);
+      elementoActual++;
+      let datas = document.querySelectorAll('*[data-step]');
+      datas[elementoActual].removeEventListener('transitionend', mostrarProgreso);
       this.removeEventListener('transitionend', sumarProgreso);
-      let finals = document.querySelectorAll('finalmsg');
-      mostrarFinal(finals, nfinals);
-
-      nfinals++;
-
+      mostrarFinal(datas, elementoActual);
     }
   }
 
 }
 
 //Muestra el nensaje de completado y añade tambien su animación
-// al final llama a la función mostrarLabel para mostrar el siguiente label
+// al final llama a la función mostrarLabel para mostrar el siguiente elemento
 function mostrarFinal(final, posicion) {
 
   final[posicion].classList.add('estabaEscondido');
   final[posicion].classList.add('finalmsgAnimation');
-  nlabels++;
+  elementoActual++;
   mostrarLabel();
 }
 
-//Elimina el listener del boton y llama a la función mostrarLabel para mostrar el primer elemento label
+//Elimina el listener del boton y llama a la función mostrarLabel para mostrar el primer elemento
 function startMigration() {
 
   document.querySelector("button").removeEventListener("click", startMigration);
+
+  let datas = document.querySelectorAll('*[data-step]');
+  dataSteps = datas[datas.length-1].getAttribute('data-step');
+
   mostrarLabel();
 
 }
+
 
 function init() {
 
@@ -85,6 +87,6 @@ function init() {
 
 // Init the environment when all is ready
 window.onload = init;
-let nlabels = 0;
-let nfinals = 0;
-let nprogresos = 0;
+
+let elementoActual = 0;
+let dataSteps = 0;

@@ -1,0 +1,35 @@
+$font-stack: Helvetica,sans-serif;
+$primary-color: #444;
+$font-color: #DDD;
+
+body {
+  font: 100% $font-stack;
+  background-color: $primary-color;
+}
+
+%fuente-basica {
+  border: 1px solid gray;
+  padding: 10px;
+  border-radius: 10px;
+  color: $font-color;
+}
+
+.resultados {
+  ul {
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-row-gap: 5px;
+
+    li {
+      list-style: none;
+      width: 50vw;
+      @extend %fuente-basica;
+    }
+
+    li:nth-child(2n) {
+      border: 1px solid green;
+    }
+  }
+}

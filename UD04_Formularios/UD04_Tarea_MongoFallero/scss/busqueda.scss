@@ -1,0 +1,303 @@
+$font-stack: Helvetica, sans-serif;
+$primary-color: #444;
+$font-color: #DDD;
+$header-color: white;
+$border-color: black;
+$cuadro-color: #5e5646;
+$nombre-color: aquamarine;
+$empresa: EvilCorp;
+
+ @if $empresa == EvilCorp {
+
+   $primary-color: #630F23;
+   $header-color: #320812;
+   $border-color: #190409;
+   $cuadro-color: #887378;
+   $nombre-color: #1FC69F;
+   $font-color: #DDD;
+
+ } @else if $empresa == StarbredCofe {
+
+   $primary-color: #285F2E;
+   $header-color: #0B1B0D;
+   $border-color: #7CA480;
+   $cuadro-color: #2E6D54;
+   $nombre-color: #6D2E67;
+   $font-color: #DDD;
+ }
+
+body {
+
+  font: 100% $font-stack;
+  background-color: $primary-color;
+  display: grid;
+}
+
+%fuente-basica {
+
+  border: 1px solid gray;
+  padding: 10px;
+  border-radius: 10px;
+  color: $font-color;
+}
+
+h1 {
+
+  font-size: 45px;
+  color: $font-color;
+  text-align: center;
+}
+
+.filtros {
+
+  padding-top: 30px;
+
+  label {
+    color: $font-color;
+  }
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+
+  -moz-appearance: textfield;
+}
+
+#cabecera {
+
+  background-color: $header-color;
+  align-self: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  top: 0;
+  position: fixed;
+}
+
+#logo {
+
+  @if $empresa == EvilCorp {
+
+    background-image: url('../img/evilcorp.png');
+
+  } @else if $empresa == StarbredCofe {
+
+    background-image: url('../img/cthulhu.png');
+  }
+
+  height: 150px;
+  width: 150px;
+  background-size: 100% 100%;
+}
+
+#busqueda {
+
+  display: visible;
+  margin-bottom: 15px;
+  height: 100%;
+  width: 80%;
+}
+
+#busquedaform{
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+
+#divMapa,
+#map {
+
+  z-index: 80;
+  width: 450px;
+  height: 450px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
+
+#cerrarMapa {
+
+  float: right;
+  position: relative;
+  background-color: black;
+  color: white;
+  height: 35px;
+  width: 35px;
+  z-index: 99 !important;
+}
+
+.resultados {
+
+  padding: 0;
+  padding-top: 160px;
+  display: grid;
+  height: 100%;
+  width: 80%;
+  grid-template-rows: auto;
+  grid-row-gap: 25px;
+  grid-column-gap: 30px;
+  align-items: center;
+  align-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cuadro {
+
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 20vw;
+  background-color: $cuadro-color;
+  border-radius: 12px 12px 12px 12px;
+  border: 2px solid $border-color;
+  width: 100%;
+}
+
+.resaltado {
+
+  @if $empresa == EvilCorp {
+    box-shadow: 0px 0px 9px 1px rgba(152, 170, 167,0.75);
+
+  } @else if $empresa == StarbredCofe {
+    background-color: #629267;
+    box-shadow: 0px 0px 9px 1px rgba(182, 150, 161,0.75);
+  }
+}
+
+.botones {
+
+  width: 150px;
+  height: 50px;
+}
+
+.botonesFallas,
+.imagenes,
+.nombres, .contenedorVotos {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.imagenes {
+  background-repeat: no-repeat;
+  margin-top: 10px;
+  background-size: 100% 100%;
+  height: 55vh;
+}
+
+.nombres {
+  display: grid;
+  color: black;
+  background-color: $nombre-color;
+  height: 70px;
+
+  p {
+    place-self: center;
+    font-size: 20px;
+  }
+}
+
+.contenedorVotos {
+
+  display: flex;
+  flex-direction: row;
+  height: 60px;
+  margin-bottom: 10px;
+}
+
+vote {
+
+  height: 50px;
+  width: 50px;
+}
+
+.voto {
+  background-image: url("../img/flame_1.png");
+  background-size: 100% 100%;
+}
+
+.votado {
+  background-image: url("../img/flame_2.png");
+  background-size: 100% 100%;
+}
+
+.contador {
+
+  display: grid;
+  margin-left: auto;
+  margin-right: 0;
+  color: white;
+  background-color: $nombre-color;
+  height: 50px;
+  width: 50px;
+
+  p {
+    place-self: center;
+    font-size: 20px;
+    margin: 0;
+  }
+}
+
+.botonesFallas {
+
+  display: grid;
+  align-self: center;
+  width: 30%;
+  height: 35px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+
+/* Samsung Galaxy S5 ----------- */
+@media only screen and (min-device-width: 360px) and (max-device-height: 640px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 3) {
+  /* Styles */
+  .resultados {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media only screen and (min-device-width: 360px) and (max-device-height: 640px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 3) {
+  /* Styles */
+  .resultados {
+    grid-template-columns: 1fr;
+
+  }
+  .cuadro {
+    width: 65vw;
+    height: 75vw;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #busqueda {
+    display: none;
+  }
+}
+
+
+@media (min-width:1025px) {
+  /* big landscape tablets, laptops, and desktops */
+  .resultados {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (min-width:1281px) {
+  /* hi-res laptops and desktops */
+  .resultados {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

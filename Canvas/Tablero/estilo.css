@@ -1,0 +1,14 @@
+body {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
+
+#canvas {
+
+  
+    height: 600px;
+    width: 600px;
+    background-color: brown;
+
+}

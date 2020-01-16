@@ -1,25 +1,31 @@
 body {
   font: 100% Helvetica, sans-serif;
   background-color: #630F23;
-  display: grid; }
+  display: grid;
+}
 
 h1 {
   font-size: 45px;
   color: #DDD;
-  text-align: center; }
+  text-align: center;
+}
 
 .filtros {
-  padding-top: 30px; }
-  .filtros label {
-    color: #DDD; }
+  padding-top: 30px;
+}
+.filtros label {
+  color: #DDD;
+}
 
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
   -webkit-appearance: none;
-  margin: 0; }
+  margin: 0;
+}
 
-input[type="number"] {
-  -moz-appearance: textfield; }
+input[type=number] {
+  -moz-appearance: textfield;
+}
 
 #cabecera {
   background-color: #320812;
@@ -31,23 +37,27 @@ input[type="number"] {
   justify-content: space-between;
   margin-bottom: 15px;
   top: 0;
-  position: fixed; }
+  position: fixed;
+}
 
 #logo {
   background-image: url("../img/evilcorp.png");
   height: 150px;
   width: 150px;
-  background-size: 100% 100%; }
+  background-size: 100% 100%;
+}
 
 #busqueda {
   display: visible;
   margin-bottom: 15px;
   height: 100%;
-  width: 80%; }
+  width: 80%;
+}
 
 #busquedaform {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); }
+  grid-template-columns: repeat(4, 1fr);
+}
 
 #divMapa,
 #map {
@@ -58,7 +68,8 @@ input[type="number"] {
   top: 50%;
   left: 50%;
   /* bring your own prefixes */
-  transform: translate(-50%, -50%); }
+  transform: translate(-50%, -50%);
+}
 
 #cerrarMapa {
   float: right;
@@ -67,7 +78,8 @@ input[type="number"] {
   color: white;
   height: 35px;
   width: 35px;
-  z-index: 99 !important; }
+  z-index: 99 !important;
+}
 
 .resultados {
   padding: 0;
@@ -81,7 +93,8 @@ input[type="number"] {
   align-items: center;
   align-content: center;
   margin-left: auto;
-  margin-right: auto; }
+  margin-right: auto;
+}
 
 .cuadro {
   display: flex;
@@ -91,54 +104,65 @@ input[type="number"] {
   background-color: #887378;
   border-radius: 12px 12px 12px 12px;
   border: 2px solid #190409;
-  width: 100%; }
+  width: 100%;
+}
 
 .resaltado {
-  box-shadow: 0px 0px 9px 1px rgba(152, 170, 167, 0.75); }
+  box-shadow: 0px 0px 9px 1px rgba(152, 170, 167, 0.75);
+}
 
 .botones {
   width: 150px;
-  height: 50px; }
+  height: 50px;
+}
 
 .botonesFallas,
 .imagenes,
 .nombres, .contenedorVotos {
   width: 90%;
   margin-left: auto;
-  margin-right: auto; }
+  margin-right: auto;
+}
 
 .imagenes {
   background-repeat: no-repeat;
   margin-top: 10px;
   background-size: 100% 100%;
-  height: 55vh; }
+  height: 55vh;
+}
 
 .nombres {
   display: grid;
   color: black;
   background-color: #1FC69F;
-  height: 70px; }
-  .nombres p {
-    place-self: center;
-    font-size: 20px; }
+  height: 70px;
+}
+.nombres p {
+  place-self: center;
+  font-size: 20px;
+}
 
 .contenedorVotos {
   display: flex;
   flex-direction: row;
   height: 60px;
-  margin-bottom: 10px; }
+  margin-bottom: 10px;
+}
 
 vote {
   height: 50px;
-  width: 50px; }
+  width: 50px;
+}
 
 .voto {
   background-image: url("../img/flame_1.png");
-  background-size: 100% 100%; }
+  background-size: 100% 100%;
+}
 
 .votado {
   background-image: url("../img/flame_2.png");
-  background-size: 100% 100%; }
+  background-size: 100% 100%;
+}
 
 .contador {
   display: grid;
@@ -147,11 +171,13 @@ vote {
   color: white;
   background-color: #1FC69F;
   height: 50px;
-  width: 50px; }
-  .contador p {
-    place-self: center;
-    font-size: 20px;
-    margin: 0; }
+  width: 50px;
+}
+.contador p {
+  place-self: center;
+  font-size: 20px;
+  margin: 0;
+}
 
 .botonesFallas {
   display: grid;
@@ -159,33 +185,44 @@ vote {
   width: 30%;
   height: 35px;
   margin-top: 5px;
-  margin-bottom: 5px; }
+  margin-bottom: 5px;
+}
 
 /* Samsung Galaxy S5 ----------- */
 @media only screen and (min-device-width: 360px) and (max-device-height: 640px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3) {
   /* Styles */
   .resultados {
-    grid-template-columns: repeat(3, 1fr); } }
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
 @media only screen and (min-device-width: 360px) and (max-device-height: 640px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 3) {
   /* Styles */
   .resultados {
-    grid-template-columns: 1fr; }
+    grid-template-columns: 1fr;
+  }
 
   .cuadro {
     width: 65vw;
     height: 75vw;
     margin-left: auto;
-    margin-right: auto; }
+    margin-right: auto;
+  }
 
   #busqueda {
-    display: none; } }
+    display: none;
+  }
+}
 @media (min-width: 1025px) {
   /* big landscape tablets, laptops, and desktops */
   .resultados {
-    grid-template-columns: repeat(3, 1fr); } }
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
 @media (min-width: 1281px) {
   /* hi-res laptops and desktops */
   .resultados {
-    grid-template-columns: repeat(3, 1fr); } }
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
 
 /*# sourceMappingURL=busqueda.css.map */

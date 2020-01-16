@@ -21,6 +21,7 @@ function init() {
                     ctx.fillStyle = "pink";
                 }
                 ctx.fillRect(x, y, 100, 50);
+                ctx.stroke();
                 x+=50;
                 num++;
 

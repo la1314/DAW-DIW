@@ -45,66 +45,42 @@ function dibujarBarras(ctx, x, y, anchoBarras, altoDibujable, valorTotal, valore
     x += anchoBarras;
     //ctx.stroke();
 
-    //Lineas falta unir puntos
-    //alturaBarra = (canvas.width-marcoW) - (altoDibujable * (valores[index].value / valorTotal));
-    // ctx.lineWidth = 1;
-    // ctx.beginPath();
-    // ctx.moveTo(x, altoDibujable);
-    // ctx.lineTo(x, alturaBarra);
-    // ctx.stroke();
-    //x += anchoBarras;
-
-
-    //console.log(x);
-
-
   }
 }
 
 function dibujarLineas(ctx, x, anchoBarras, altoDibujable, valorTotal, valores) {
   let alturaBarra;
   //Centra el punto de inicio a la mitad ocupable de una barra imaginaria
- 
+
   let xPunto = x + anchoBarras/2;
   let xLinea = x + anchoBarras/2;
   let coordenadas = new Array();
-  coordenadas = [];
+
 
   for (let index = 0; index < valores.length; index++) {
 
-    ctx.fillStyle = dioses[index].color;
-    /*
-    * X = marcoW como punto de inicio, posteriormente a este valor se le suma el ancho de barras en la siguiente iteración
-    * Y = Marca el punto donde se empezara a dibujar en este caso nos interesa que empiece en la parte de abajo
-    */
-   
+
 
     //Lineas falta unir puntos
     alturaBarra = (altoDibujable) - (altoDibujable * (valores[index].value / valorTotal));
     ctx.lineWidth = 2;
     ctx.beginPath();
-    /* ctx.moveTo(x, altoDibujable);
-    ctx.lineTo(x, alturaBarra); */
     ctx.arc(xPunto, alturaBarra, 3, 0, 2 * Math.PI);
     let coordenada = new Object();
     coordenada.x = xPunto;
     coordenada.y = alturaBarra;
-
     coordenadas.push(coordenada);
-
-    console.log(xPunto + " - " + alturaBarra);
-    coordenadas = 
     ctx.stroke();
     xPunto += anchoBarras;
-
+    ctx.fillStyle = dioses[index].color;
   }
 
   for (let index = 0; index < valores.length-1; index++) {
 
     alturaBarra = (altoDibujable) - (altoDibujable * (valores[index].value / valorTotal));
     ctx.beginPath();
-    ctx.moveTo(xLinea, altoDibujable);
-    ctx.lineTo(xLinea, alturaBarra); 
+    ctx.moveTo(coordenadas[index].x, coordenadas[index].y);
+    ctx.lineTo(coordenadas[index+1].x, coordenadas[index+1].y);
     ctx.stroke();
   }
 }

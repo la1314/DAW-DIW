@@ -21,7 +21,8 @@ function buildGrafico() {
   let y = canvas.height - marcoH;
 
   //dibujarBarras(ctx, x, y, anchoBarras, altoDibujable, valorTotal, valores);
-  dibujarLineas(ctx, x, anchoBarras, altoDibujable, valorTotal, valores);
+  //dibujarLineas(ctx, x, anchoBarras, altoDibujable, valorTotal, valores);
+  dibujarQuesito(ctx, x, y, anchoBarras, altoDibujable, valorTotal, valores);
 
 }
 
@@ -37,9 +38,9 @@ function dibujarBarras(ctx, x, y, anchoBarras, altoDibujable, valorTotal, valore
 
     alturaBarra = (altoDibujable * (valores[index].value / valorTotal));
     /*
-    * X = marcoW como punto de inicio, posteriormente a este valor se le suma el ancho de barras en la siguiente iteración
-    * Y = Marca el punto donde se empezara a dibujar en este caso nos interesa que empiece en la parte de abajo
-    */
+     * X = marcoW como punto de inicio, posteriormente a este valor se le suma el ancho de barras en la siguiente iteración
+     * Y = Marca el punto donde se empezara a dibujar en este caso nos interesa que empiece en la parte de abajo
+     */
 
     ctx.fillRect(x, y, anchoBarras, -alturaBarra);
     x += anchoBarras;
@@ -52,41 +53,66 @@ function dibujarLineas(ctx, x, anchoBarras, altoDibujable, valorTotal, valores) 
   let alturaBarra;
   //Centra el punto de inicio a la mitad ocupable de una barra imaginaria
 
-  let xPunto = x + anchoBarras/2;
-  let xLinea = x + anchoBarras/2;
+  let xPunto = x + anchoBarras / 2;
+  let xLinea = x + anchoBarras / 2;
   let coordenadas = new Array();
 
 
   for (let index = 0; index < valores.length; index++) {
-
-
-
+    ctx.strokeStyle = dioses[index].color;
     //Lineas falta unir puntos
     alturaBarra = (altoDibujable) - (altoDibujable * (valores[index].value / valorTotal));
     ctx.lineWidth = 2;
     ctx.beginPath();
-    ctx.arc(xPunto, alturaBarra, 3, 0, 2 * Math.PI);
+    ctx.arc(xPunto, alturaBarra, 5, 0, 2 * Math.PI);
+    ctx.fillStyle = dioses[index].color;
+    ctx.fill();
     let coordenada = new Object();
     coordenada.x = xPunto;
     coordenada.y = alturaBarra;
     coordenadas.push(coordenada);
     ctx.stroke();
     xPunto += anchoBarras;
-    ctx.fillStyle = dioses[index].color;
+
   }
 
-  for (let index = 0; index < valores.length-1; index++) {
+  ctx.strokeStyle = "black";
+
+  for (let index = 0; index < valores.length - 1; index++) {
 
     alturaBarra = (altoDibujable) - (altoDibujable * (valores[index].value / valorTotal));
     ctx.beginPath();
     ctx.moveTo(coordenadas[index].x, coordenadas[index].y);
-    ctx.lineTo(coordenadas[index+1].x, coordenadas[index+1].y);
+    ctx.lineTo(coordenadas[index + 1].x, coordenadas[index + 1].y);
     ctx.stroke();
   }
 }
 
-function dibujarQuesito(params) {
+function dibujarQuesito(ctx, x, y, anchoBarras, altoDibujable, valorTotal, valores) {
 
+  let canvas = document.querySelector('canvas');
+
+  let context = canvas.getContext('2d');
+  let centerX = canvas.width / 2;
+  let centerY = canvas.height / 2;
+  let radius = 70;
+
+  ctx.beginPath();
+  //ángulo de rebanada = 2 * PI * valor de categoría / valor total
+
+  let lastend = 0;
+
+  for (var index = 0; index < valores.length; index++) {
+    ctx.fillStyle = dioses[index].color;
+    ctx.beginPath();
+
+    ctx.moveTo(centerX, centerY);
+    // Arc Parameters: x, y, radius, startingAngle (radians), endingAngle (radians), antiClockwise (boolean)
+    ctx.arc(centerX, centerY, centerY, lastend, lastend + (Math.PI * 2 * (valores[index].value / valorTotal)), false);
+    ctx.lineTo(centerX, centerY);
+    ctx.fill();
+    lastend += Math.PI * 2 * (valores[index].value / valorTotal);
+  }
 }
 
 function loadListeners() {
@@ -117,25 +143,25 @@ function init() {
 window.onload = init;
 
 const dioses = [{
-  nombre: "Cthulhu",
-  poder: 1000,
-  color: "green"
-},
-{
-  nombre: "Nyarlatothep",
-  poder: 600,
-  color: "red"
-},
-{
-  nombre: "Azazoth",
-  poder: 1400,
-  color: "grey"
-},
-{
-  nombre: "Pepe",
-  poder: 800,
-  color: "purple"
-}
+    nombre: "Cthulhu",
+    poder: 1000,
+    color: "green"
+  },
+  {
+    nombre: "Nyarlatothep",
+    poder: 600,
+    color: "red"
+  },
+  {
+    nombre: "Azazoth",
+    poder: 1400,
+    color: "grey"
+  },
+  {
+    nombre: "Pepe",
+    poder: 800,
+    color: "purple"
+  }
 ];
 
 //let anguloActual = -0.5 * Math.PI;

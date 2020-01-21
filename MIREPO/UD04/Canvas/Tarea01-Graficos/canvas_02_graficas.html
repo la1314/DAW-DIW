@@ -1,28 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Ejercicio Canvas - Formulario </title>
-    <link rel="stylesheet" type="text/css" href="graficos.css"/>
+    <link rel="stylesheet" type="text/css" href="graficos.css" />
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Michroma" />
     <script src="graficos.js"></script>
 </head>
+
 <body>
 
-    <header> <h1>Ejemplo de Graficas </h1></header>
+    <header>
+        <h1>Ejemplo de Graficas </h1>
+    </header>
     <main>
         <datos>
-            <p class="left"> Clave</p>  <p class="right">Valor</p>
+            <p class="left"> Clave</p>
+            <p class="right">Valor</p>
             <input class="left" type="text" name="key_1"><input class="right" type="text" name="value_1">
             <input class="left" type="text" name="key_2"><input class="right" type="text" name="value_2">
             <input class="left" type="text" name="key_3"><input class="right" type="text" name="value_3">
             <input class="left" type="text" name="key_4"><input class="right" type="text" name="value_4">
 
+
+            <select name="graficos">
+                <option value="quesito">Quesito</option>
+                <option value="barras">Barras</option>
+                <option value="lineas">Líneas</option>
+                
+            </select>
             <input type="button" name="grafiqueame" value="Grafiqueame">
+
         </datos>
-        <canvas style="border:1px solid #000000;" width="500" height="500">
+
+        <center>
+            <canvas style="border:1px solid #000000;" width="500" height="500">
+        </center>
+        
 
         </canvas>
     </main>
@@ -30,4 +47,5 @@
 
 
 </body>
+
 </html>

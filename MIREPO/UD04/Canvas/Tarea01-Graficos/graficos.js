@@ -103,12 +103,12 @@ function dibujarQuesito(ctx, x, y, anchoBarras, altoDibujable, valorTotal, valor
   let lastend = 0;
 
   for (var index = 0; index < valores.length; index++) {
+
     ctx.fillStyle = dioses[index].color;
     ctx.beginPath();
-
     ctx.moveTo(centerX, centerY);
     // Arc Parameters: x, y, radius, startingAngle (radians), endingAngle (radians), antiClockwise (boolean)
-    ctx.arc(centerX, centerY, centerY, lastend, lastend + (Math.PI * 2 * (valores[index].value / valorTotal)), false);
+    ctx.arc(centerX, centerY, (centerY*0.90), lastend, lastend + (Math.PI * 2 * (valores[index].value / valorTotal)), false);
     ctx.lineTo(centerX, centerY);
     ctx.fill();
     lastend += Math.PI * 2 * (valores[index].value / valorTotal);

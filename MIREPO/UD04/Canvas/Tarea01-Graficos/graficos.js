@@ -61,16 +61,12 @@ function dibujarBarras(ctx, x, y, anchoBarras, altoDibujable, valorTotal, valore
     ctx.fillRect(x, y, anchoBarras, -alturaBarra);
 
     ctx.font = '15pt Arial';
-    ctx.fillText(claves[index].value, x, alturaTexto-5);
+    ctx.fillText(claves[index].value, x, alturaTexto - 5);
 
     x += anchoBarras;
     //ctx.stroke();
-
-    
-
   }
 
-  
 }
 
 function dibujarLineas(ctx, x, anchoBarras, altoDibujable, valorTotal, valores, claves) {
@@ -93,7 +89,7 @@ function dibujarLineas(ctx, x, anchoBarras, altoDibujable, valorTotal, valores, 
     ctx.fillStyle = dioses[index].color;
     ctx.fill();
     ctx.stroke();
-    
+
 
     //Objeto
     let coordenada = new Object();
@@ -104,7 +100,7 @@ function dibujarLineas(ctx, x, anchoBarras, altoDibujable, valorTotal, valores, 
 
     //Nombres
     ctx.font = '15pt Arial';
-    ctx.fillText(claves[index].value, xPunto, alturaBarra-5);
+    ctx.fillText(claves[index].value, xPunto, alturaBarra - 5);
     xPunto += anchoBarras;
 
   }
@@ -140,12 +136,12 @@ function dibujarQuesito(ctx, valorTotal, valores, claves) {
     ctx.moveTo(centerX, centerY);
     // Arc Parameters: x, y, radius, startingAngle (radians), endingAngle (radians), antiClockwise (boolean)
     let lastendPI = lastend + (Math.PI * 2 * (valores[index].value / valorTotal));
-    
+
     ctx.arc(centerX, centerY, (centerY * 0.70), lastend, lastendPI, false);
     ctx.lineTo(centerX, centerY);
     ctx.fill();
     let coordenada = new Object();
-    coordenada.grado = (360*(valores[index].value / valorTotal));
+    coordenada.grado = (360 * (valores[index].value / valorTotal));
     coordenadas.push(coordenada);
     lastend += Math.PI * 2 * (valores[index].value / valorTotal);
   }
@@ -153,8 +149,8 @@ function dibujarQuesito(ctx, valorTotal, valores, claves) {
   let acumulativos = [];
   let suma = 0;
   for (let index = 0; index < coordenadas.length; index++) {
-    
-    suma+=coordenadas[index].grado;
+
+    suma += coordenadas[index].grado;
     acumulativos.push(suma);
   }
 
@@ -166,21 +162,19 @@ function dibujarQuesito(ctx, valorTotal, valores, claves) {
     ctx.font = '15pt Arial';
     ctx.fillStyle = 'white';
     ctx.translate(centerX, centerY);
-    gradros = acumulativos[index] - (coordenadas[index].grado/2);
+    gradros = acumulativos[index] - (coordenadas[index].grado / 2);
     ctx.rotate(gradros * Math.PI / 180);
- 
+
     ctx.fillText(claves[index].value, 39, 0);
 
     ctx.restore();
-    console.log(gradros + " -:"+ claves[index].value);
-    
+    console.log(gradros + " -:" + claves[index].value);
+
   }
 }
 
 function loadListeners() {
   document.querySelector("input[name='grafiqueame']").addEventListener("click", buildGrafico);
-  //Borrar al acabar pruebas
-  document.querySelector("input[name='grafiqueame']").click();
 }
 
 function init() {
@@ -188,14 +182,10 @@ function init() {
   console.log(" * Init ");
 
   document.querySelectorAll("input[class='left']").forEach((item, i) => {
-
-    //console.log(item);
-    //console.log(dioses[i].nombre);
     item.value = dioses[i].nombre;
   });
 
   document.querySelectorAll("input[class='right']").forEach((item, i) => {
-
     item.value = dioses[i].poder;
   });
 
@@ -203,29 +193,28 @@ function init() {
 
 }
 
-
 window.onload = init;
 
 const dioses = [{
-  nombre: "Cthulhu",
-  poder: 1000,
-  color: "green"
-},
-{
-  nombre: "Nyarlatothep",
-  poder: 600,
-  color: "red"
-},
-{
-  nombre: "Azazoth",
-  poder: 1400,
-  color: "grey"
-},
-{
-  nombre: "Pepe",
-  poder: 800,
-  color: "purple"
-}
+    nombre: "Cthulhu",
+    poder: 1000,
+    color: "green"
+  },
+  {
+    nombre: "Nyarlatothep",
+    poder: 600,
+    color: "red"
+  },
+  {
+    nombre: "Azazoth",
+    poder: 1400,
+    color: "grey"
+  },
+  {
+    nombre: "Pepe",
+    poder: 800,
+    color: "purple"
+  }
 ];
 
 //let anguloActual = -0.5 * Math.PI;

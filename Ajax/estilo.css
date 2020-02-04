@@ -1,0 +1,19 @@
+.partidas {
+
+    height: 300px;
+    width: 100%;
+    border: black solid 1px;
+
+}
+
+.rival {
+    float: right;
+    height: 10%;
+    width: 50%;
+}
+
+.enlaces {
+    float: left;
+    height: 10%;
+    width: 50%;
+}

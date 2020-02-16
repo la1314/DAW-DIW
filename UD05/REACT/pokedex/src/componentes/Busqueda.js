@@ -62,6 +62,7 @@ export default class Busqueda extends Component {
                         <input type="text" name="filtrar" onChange={this.filtrarPokemons} />
                     </form>
                 </div>
+                <div id='CartaFlotante'></div>
                 <Listado pokemons={this.state.pokemons} />
             </div>
         );

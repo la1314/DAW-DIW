@@ -1,24 +1,41 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import Carta from './Carta';
 
 export default class Listado extends Component {
 
-    mostarCarta = (pokemon) => {
+    showCard = (datos) => {
+        let carta = <Carta key={datos.name+"_poke"} pokemon={datos}/>;
+        let contenedor = document.getElementById('CartaFlotante');
+        ReactDOM.render(carta,contenedor)
+    }
 
-        console.log(pokemon);  
+    capitalize = (str) => {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    }
 
+    formatWeight = (str) => {
+
+        return (str / 10) + " Kg";
     }
 
     render() {
+        const pokemons = this.props.pokemons;
         return (
-            <div className='contenedor'>
+
+            <div id='patata' className='contenedor'>
                 {
-                    this.props.pokemons.map((item, i) => (
-                        <div key={item.name} className="cartas" onClick={()=>this.mostarCarta(item)} >
+                    pokemons.map((item) => (
+                        <div key={item.name} className="cartas" >
                             <img src={item.sprites.front_default} alt={item.name} />
                             <div className="datos">
-                                <h4><b>{item.name}</b></h4>
+                                <h4><b>{this.capitalize(item.name)}</b></h4>
+                                <h4><b>{this.formatWeight(item.weight)}</b></h4>
                             </div>
+                            <button onClick={ () => this.showCard(item)}>Consultar Datos</button>
+                  
                         </div>
+
                     ))
                 }
             </div>

@@ -37,10 +37,20 @@
   background-color: gray;
   z-index: 80;
   width: 40vw;
-  height: 50vh;
+  height: 600px;
   position: fixed;
   top: 50%;
   left: 50%;
   /* bring your own prefixes */
   transform: translate(-50%, -50%);
+}
+
+.cerrarMapa {
+  float: right;
+  position: relative;
+  background-color: black;
+  color: white;
+  height: 35px;
+  width: 35px;
+  z-index: 99 !important;
 }

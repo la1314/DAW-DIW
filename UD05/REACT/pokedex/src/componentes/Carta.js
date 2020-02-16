@@ -9,7 +9,10 @@ export default class Carta extends Component {
         this.state = {
             descripcion: null,
             pokemon: this.props.pokemon,
-            tipos: []
+            tipos: [],
+            habilidades: [],
+            descripcionHabilidades: [],
+            estadisticas: []
         };
     }
 
@@ -22,9 +25,17 @@ export default class Carta extends Component {
             this.cargarTipos(tipo.type.url)
         });
 
+        await pokemon.abilities.map(item => {
+            this.cargarHabilidades(item.ability.url);
+        })
+
+        await pokemon.stats.map(item => {
+            this.cargarEstadisticas(item.stat.url, item.base_stat);
+        })
 
     }
 
+    //Carga de forma asincrona al estado descripcion la traducción al español de la descripcion del pokemon
     cargarDescripcion = async (url) => {
 
         const res = await axios.get(url);
@@ -42,7 +53,38 @@ export default class Carta extends Component {
 
         this.setState({
             tipos: this.state.tipos.concat(tipo[0].name)
+
         });
+    }
+
+    //Carga de forma asincrona al estado habilidades y descricionHabilidades la traducción al español de las habilidades del pokemon
+    cargarHabilidades = async (url) => {
+
+        const res = await axios.get(url);
+        const habilidad = res.data.names.filter(item => item.language.name === 'es')
+        const descripcion = res.data.flavor_text_entries.filter(item => item.language.name === 'es')
+
+        this.setState({
+            habilidades: this.state.habilidades.concat(habilidad[0].name),
+            descripcionHabilidades: this.state.descripcionHabilidades.concat(descripcion[0].flavor_text)
+        });
+    }
+
+    cargarEstadisticas = async (url, puntos) => {
+
+        const res = await axios.get(url);
+        const estadisticas = res.data.names.filter(item => item.language.name === 'es')
+        let estadistica = {
+            "name": estadisticas[0].name,
+            "point": puntos
+        };
+
+        this.setState({
+            estadisticas: this.state.estadisticas.concat(estadistica),
+        });
+
+        console.log(this.state.estadisticas);
+        
     }
 
     //Cuando es llamado desmonta el contenedor de la Carta
@@ -52,19 +94,43 @@ export default class Carta extends Component {
         ReactDOM.unmountComponentAtNode(contenedor);
     }
 
+    mostrarHabilidades = (item, descripcion) => {
+
+        return (
+            <div>
+                <div>{item}</div>
+                <div>{descripcion}</div>
+            </div>
+        )
+    }
+
+    
+    mostrarEstadisticas = (name, points) => {
+        console.log(name + ' - ' + points);
+        
+        return (
+            <div>
+                <div>{name}</div>
+                <div>{points}</div>
+            </div>
+        )
+    }
+
     render() {
 
-        const { descripcion, pokemon, tipos } = this.state
+        const { descripcion, pokemon, tipos, habilidades, descripcionHabilidades, estadisticas } = this.state
         return (
 
-            <div className='carta' id={pokemon.name + "_poke"} >
-                <button onClick={() => this.closeCard()} >X</button>
+            <div className='carta' key={pokemon.name + "_poke"} >
+                <button className='cerrarMapa' onClick={() => this.closeCard()} >X</button>
+
                 <div className='cartaHead'>
                     <div>
                         <div className='namePokemon'>{pokemon.name}</div>
                         <div className='number'>{pokemon.id}</div>
                     </div>
                 </div>
+
                 <div className='cartaBody'>
                     <img src={pokemon.sprites.front_default} alt={pokemon.name} />
                     <div>
@@ -72,26 +138,31 @@ export default class Carta extends Component {
                         <div className='estadisticas'>{}</div>
                     </div>
                 </div>
+
                 <div className='Habilidades'>
+                    <h3>Habilidades</h3>
+                    {
 
-
-
+                        habilidades.map((item, index) =>
+                            <div key={item}>{this.mostrarHabilidades(item, descripcionHabilidades[index])}</div>
+                        )
+                    }
                 </div>
+
                 <div className='cartaFoot'>
-                    <div className='puntos'>{}</div>
+                    <div className='puntos'>
+                    <h3>Estadisticas</h3>
+                        {
+                           estadisticas.map(tipo =>
+                            <div key={tipo.name}>{this.mostrarEstadisticas(tipo.name, tipo.point)}</div>
+                            )
+                        }
+                    </div>
                     <div>
                         <div className='tipo'>
+                            <h3>Tipo</h3>
                             {
-                                tipos.map(
-                                    tipo => <div key={tipo + "_key"} > {tipo} </div>
-                                )
-                            }
-                        </div>
-                        <div className='debilidad'>
-                            {
-                                /* pokemon.types.map(
-                                     tipo => <div>{tipo.type.name}</div>
-                                 )*/
+                             tipos.map(tipo => <div key={tipo+'_'} >{tipo}</div>)
                             }
                         </div>
                     </div>

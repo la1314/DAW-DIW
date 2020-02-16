@@ -9,6 +9,7 @@ export default class Listado extends Component {
             isLoaded: false,
             pokemons: [],
             datos: []
+            
         };
     }
 

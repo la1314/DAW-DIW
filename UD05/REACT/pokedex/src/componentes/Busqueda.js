@@ -4,7 +4,6 @@ import Listado from './Listado';
 export default class Busqueda extends Component {
 
     constructor(props) {
-
         super(props);
         this.state = {
             error: null,
@@ -12,7 +11,6 @@ export default class Busqueda extends Component {
             allPokemons: [],
             datosPokemons: [],
             pokemons: []
-            
         };
     }
 
@@ -48,6 +46,7 @@ export default class Busqueda extends Component {
             )
     }
 
+    //Se filtra en pokemons cuyos nombres incluyan el valor del input filtrar
     filtrarPokemons = (e) => {
         this.setState({
             pokemons: this.state.datosPokemons.filter(pokemon => pokemon.name.includes(e.target.value))
@@ -56,15 +55,15 @@ export default class Busqueda extends Component {
 
     render() {
         return (
-            <div className="busqueda">
-                <h1>PokeDex</h1>
-                <form id="busquedaform">
-                    <input type="text" name="calle" onChange={this.filtrarPokemons} />
-                </form>
+            <div>
+                <div className="cabecera">
+                    <h1>PokeDex</h1>
+                    <form id="busquedaform">
+                        <input type="text" name="filtrar" onChange={this.filtrarPokemons} />
+                    </form>
+                </div>
                 <Listado pokemons={this.state.pokemons} />
-
             </div>
-
         );
     }
 }

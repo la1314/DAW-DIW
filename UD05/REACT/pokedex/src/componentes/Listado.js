@@ -5,9 +5,12 @@ import Carta from './Carta';
 export default class Listado extends Component {
 
     showCard = (datos) => {
-        let carta = <Carta key={datos.name+"_poke"} pokemon={datos}/>;
+
         let contenedor = document.getElementById('CartaFlotante');
-        ReactDOM.render(carta,contenedor)
+        ReactDOM.unmountComponentAtNode(contenedor);
+        let carta = <Carta pokemon={datos} />;
+          
+        ReactDOM.render(carta, contenedor)
     }
 
     capitalize = (str) => {
@@ -32,8 +35,8 @@ export default class Listado extends Component {
                                 <h4><b>{this.capitalize(item.name)}</b></h4>
                                 <h4><b>{this.formatWeight(item.weight)}</b></h4>
                             </div>
-                            <button onClick={ () => this.showCard(item)}>Consultar Datos</button>
-                  
+                            <button onClick={() => this.showCard(item)}>Consultar Datos</button>
+
                         </div>
 
                     ))

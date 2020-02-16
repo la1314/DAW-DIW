@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import axios from 'axios';
 
 export default class Carta extends Component {
@@ -7,20 +8,25 @@ export default class Carta extends Component {
         super(props);
         this.state = {
             descripcion: null,
-            pokemon: this.props.pokemon
+            pokemon:  this.props.pokemon
         };
     }
  
     async componentDidMount() {
 
-        const res = await axios.get(this.state.pokemon.species.url);
+        const res = await axios.get(this.props.pokemon.species.url);
         const descripcion = res.data.flavor_text_entries.filter(entrada => entrada.language.name === 'es')
         
         this.setState({
             descripcion: descripcion[0].flavor_text,
-
         });
          
+    }
+
+    cerrarCarta = () => {
+        
+        let contenedor = document.getElementById('CartaFlotante');
+        ReactDOM.unmountComponentAtNode(contenedor);
     }
 
     render() {
@@ -28,7 +34,8 @@ export default class Carta extends Component {
         const {descripcion, pokemon} = this.state
         return (
 
-            <div className='carta'>
+            <div className='carta' id={pokemon.name+"_poke"} >
+                <button onClick={()=> this.cerrarCarta()} >X</button>
                 <div className='cartaHead'>
                     <div>
                         <div className='namePokemon'>{pokemon.name}</div>
@@ -54,9 +61,9 @@ export default class Carta extends Component {
                         </div>
                         <div className='debilidad'>
                             {
-                                pokemon.types.map(
+                               /* pokemon.types.map(
                                     tipo => <div>{tipo.type.name}</div>
-                                )
+                                )*/
                             }
                         </div>
                     </div>

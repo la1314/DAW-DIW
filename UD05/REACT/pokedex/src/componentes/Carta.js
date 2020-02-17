@@ -82,9 +82,6 @@ export default class Carta extends Component {
         this.setState({
             estadisticas: this.state.estadisticas.concat(estadistica),
         });
-
-        console.log(this.state.estadisticas);
-        
     }
 
     //Cuando es llamado desmonta el contenedor de la Carta
@@ -94,22 +91,21 @@ export default class Carta extends Component {
         ReactDOM.unmountComponentAtNode(contenedor);
     }
 
+    //Crear los div de habilidades con los datos pasados como parámetro
     mostrarHabilidades = (item, descripcion) => {
 
         return (
-            <div>
+            <div className='divHabilidades'>
                 <div>{item}</div>
                 <div>{descripcion}</div>
             </div>
         )
     }
 
-    
+    //Crear los div de estadisticas con los datos pasados como parámetro
     mostrarEstadisticas = (name, points) => {
-        console.log(name + ' - ' + points);
-        
         return (
-            <div>
+            <div className='divEstadisticas'>
                 <div>{name}</div>
                 <div>{points}</div>
             </div>
@@ -135,34 +131,36 @@ export default class Carta extends Component {
                     <img src={pokemon.sprites.front_default} alt={pokemon.name} />
                     <div>
                         <div className='descripcion'>{descripcion}</div>
-                        <div className='estadisticas'>{}</div>
                     </div>
                 </div>
 
                 <div className='Habilidades'>
                     <h3>Habilidades</h3>
-                    {
-
-                        habilidades.map((item, index) =>
-                            <div key={item}>{this.mostrarHabilidades(item, descripcionHabilidades[index])}</div>
-                        )
-                    }
+                    <div>
+                        {
+                            habilidades.map((item, index) =>
+                                <div key={item}>{this.mostrarHabilidades(item, descripcionHabilidades[index])}</div>
+                            )
+                        }
+                    </div>
                 </div>
 
                 <div className='cartaFoot'>
                     <div className='puntos'>
-                    <h3>Estadisticas</h3>
-                        {
-                           estadisticas.map(tipo =>
-                            <div key={tipo.name}>{this.mostrarEstadisticas(tipo.name, tipo.point)}</div>
-                            )
-                        }
+                        <h3>Estadisticas</h3>
+                        <div className='divPuntos'>
+                            {
+                                estadisticas.map(tipo =>
+                                    <div key={tipo.name}>{this.mostrarEstadisticas(tipo.name, tipo.point)}</div>
+                                )
+                            }
+                        </div>
                     </div>
                     <div>
                         <div className='tipo'>
                             <h3>Tipo</h3>
                             {
-                             tipos.map(tipo => <div key={tipo+'_'} >{tipo}</div>)
+                                tipos.map(tipo => <div key={tipo + '_'} >{tipo}</div>)
                             }
                         </div>
                     </div>

@@ -4,6 +4,7 @@ import Carta from './Carta';
 
 export default class Listado extends Component {
 
+    //Función que añade al ReactDOM una carta con los datos pasados
     showCard = (datos) => {
 
         let contenedor = document.getElementById('CartaFlotante');
@@ -13,17 +14,38 @@ export default class Listado extends Component {
         ReactDOM.render(carta, contenedor)
     }
 
+    //Añade capitalize al string pasado
     capitalize = (str) => {
         return str.charAt(0).toUpperCase() + str.slice(1);
     }
 
+    //Formatea el peso del pokemon
     formatWeight = (str) => {
 
         return (str / 10) + " Kg";
     }
 
+    //Ordena mediante ID los pokemons
+    ordenarPokemons = (pokemons) => {
+
+        let ordenado = pokemons.sort(function (a, b) {
+            if (a.id > b.id) {
+              return 1;
+            }
+            if (a.id < b.id) {
+              return -1;
+            }
+            // a must be equal to b
+            return 0;
+          });
+
+        return ordenado;
+    }
+
     render() {
-        const pokemons = this.props.pokemons;
+
+        const pokemons = this.ordenarPokemons(this.props.pokemons);
+
         return (
 
             <div id='patata' className='contenedor'>

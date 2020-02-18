@@ -21,15 +21,15 @@ export default class Carta extends Component {
         const { pokemon } = this.state;
 
         await this.cargarDescripcion(pokemon.species.url);
-        await pokemon.types.map(tipo => {
+        await pokemon.types.forEach(tipo => {
             this.cargarTipos(tipo.type.url)
         });
 
-        await pokemon.abilities.map(item => {
+        await pokemon.abilities.forEach(item => {
             this.cargarHabilidades(item.ability.url);
         })
 
-        await pokemon.stats.map(item => {
+        await pokemon.stats.forEach(item => {
             this.cargarEstadisticas(item.stat.url, item.base_stat);
         })
 

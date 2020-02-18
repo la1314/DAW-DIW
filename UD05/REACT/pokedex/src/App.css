@@ -1,10 +1,17 @@
+body {
+  background: rgb(2, 0, 36);
+  background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(214, 97, 43, 1) 38%, rgba(0, 212, 255, 1) 100%);
+}
+
 .App {
   text-align: center;
 }
 
 .cabecera {
+
   width: 80%;
-  background-color: #282c34;
+/*   background: rgb(238,85,34);
+  background: linear-gradient(180deg, rgba(238,85,34,1) 1%, rgba(210,214,43,1) 100%, rgba(0,212,255,1) 100%);  */
   min-height: 15vh;
   display: flex;
   justify-self: center;
@@ -15,6 +22,8 @@
   color: white;
   margin-left: auto;
   margin-right: auto;
+  border: 0px solid #000000;
+  border-radius: 28px 28px 28px 28px;
 }
 
 .contenedor {
@@ -23,6 +32,8 @@
   margin-top: 15px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
   align-items: center;
   align-content: center;
   margin-left: auto;
@@ -30,6 +41,9 @@
 }
 
 .cartas {
+  border: 0px solid #000000;
+  background-color:	#D6C169;
+  border-radius: 28px 28px 28px 28px;
   border: solid 1px black;
 }
 
@@ -43,6 +57,10 @@
   left: 50%;
   /* bring your own prefixes */
   transform: translate(-50%, -50%);
+}
+
+.carta img {
+  background-color: pink;
 }
 
 .cerrarMapa {
@@ -75,7 +93,6 @@
 
 }
 
-.divHabilidades div {}
 
 .divPuntos {
 
@@ -93,4 +110,4 @@
   border: salmon 1px solid;   */
   display: flex;
   flex-direction: column-reverse;
-} 
+}

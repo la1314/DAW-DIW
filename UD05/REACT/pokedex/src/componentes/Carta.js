@@ -123,7 +123,7 @@ export default class Carta extends Component {
                 <div className='cartaHead'>
                     <div>
                         <div className='namePokemon'>{pokemon.name}</div>
-                        <div className='number'>{pokemon.id}</div>
+                        <div className='number'>{ 'Nº '+pokemon.id}</div>
                     </div>
                 </div>
 
@@ -134,16 +134,26 @@ export default class Carta extends Component {
                     </div>
                 </div>
 
-                <div className='Habilidades'>
-                    <h3>Habilidades</h3>
-                    <div>
-                        {
-                            habilidades.map((item, index) =>
-                                <div key={item}>{this.mostrarHabilidades(item, descripcionHabilidades[index])}</div>
-                            )
-                        }
+                <div className='contentHT'>
+
+                    <div className='Habilidades'>
+                        <h3>Habilidades</h3>
+                        <div>
+                            {
+                                habilidades.map((item, index) =>
+                                    <div key={item}>{this.mostrarHabilidades(item, descripcionHabilidades[index])}</div>
+                                )
+                            }
+                        </div>
                     </div>
+                    <div className='tipo'>
+                            <h3>Tipo</h3>
+                            {
+                                tipos.map(tipo => <div key={tipo + '_'} >{tipo}</div>)
+                            }
+                        </div>
                 </div>
+
 
                 <div className='cartaFoot'>
                     <div className='puntos'>
@@ -151,16 +161,8 @@ export default class Carta extends Component {
                         <div className='divPuntos'>
                             {
                                 estadisticas.map(tipo =>
-                                    <div key={tipo.name}>{this.mostrarEstadisticas(tipo.name, tipo.point)}</div>
+                                    <div style={{border: 'solid black 0.5px'}} key={tipo.name}>{this.mostrarEstadisticas(tipo.name, tipo.point)}</div>
                                 )
-                            }
-                        </div>
-                    </div>
-                    <div>
-                        <div className='tipo'>
-                            <h3>Tipo</h3>
-                            {
-                                tipos.map(tipo => <div key={tipo + '_'} >{tipo}</div>)
                             }
                         </div>
                     </div>

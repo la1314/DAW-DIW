@@ -56,7 +56,7 @@ export default class Busqueda extends Component {
             })
         } else {
             this.setState({
-                pokemons: this.state.datosPokemons.filter(pokemon => pokemon.name.includes(e.target.value))
+                pokemons: this.state.datosPokemons.filter(pokemon => pokemon.name.includes(e.target.value.toLowerCase()))
             }) 
         }
     }

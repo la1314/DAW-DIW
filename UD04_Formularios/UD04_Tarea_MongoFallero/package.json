@@ -20,7 +20,7 @@
     "externalip": "^1.0.2",
     "mongodb": "^3.4.0",
     "mongoose": "^5.8.1",
-    "node-sass": "^4.13.0",
+    "node-sass": "^7.0.0",
     "nodemon": "^2.0.2",
     "path": "^0.12.7",
     "proj4": "^2.6.0",
